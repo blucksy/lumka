@@ -7,6 +7,12 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'image',
+      title: 'Image',
+      validation: (Rule) => Rule.required(),
+      type: 'image',
+    }),
+    defineField({
       name: 'artist',
       title: 'Artwork Creator',
       validation: (Rule) => Rule.required(),
@@ -14,14 +20,20 @@ export default defineType({
       to: [{type: 'artist'}],
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      validation: (Rule) => Rule.required(),
-      type: 'blockContent',
+      name: 'title',
+      title: 'Artwork Title',
+      description: 'Example: Paradise Lost',
+      type: 'string',
     }),
     defineField({
-      name: 'dimensions',
-      title: 'Dimensions',
+      name: 'year',
+      title: 'Artwork Year',
+      description: 'Example: 2025',
+      type: 'string',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
       validation: (Rule) => Rule.required(),
       type: 'blockContent',
     }),

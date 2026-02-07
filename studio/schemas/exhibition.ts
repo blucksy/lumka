@@ -12,6 +12,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       type: 'string',
     }),
+    defineField({
+      name: 'exhibitionImage',
+      title: 'Exhibition Thumbnail',
+      validation: (Rule) => Rule.required(),
+      type: 'image',
+    }),
+
     orderRankField({type: 'exhibition', newItemPosition: 'after'}),
     defineField({
       name: 'slug',
@@ -24,57 +31,56 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
-      validation: (Rule) => Rule.required(),
-      type: 'array',
-      of: [
-        {
-          type: 'image',
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative text',
-              description:
-                'Important for SEO and accessibility. Guidelines: https://accessibility.huit.harvard.edu/describe-content-images',
-              options: {
-                isHighlighted: true,
-              },
-            },
-          ],
-        },
-        {
-          type: 'mux.video',
-          options: {
-            hotspot: true,
-          },
-        },
-      ],
-    }),
-    // artists reference
-    defineField({
       name: 'artist',
       title: 'Artist',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'artist'}]}],
     }),
     defineField({
-      name: 'color',
-      title: 'Color',
-      type: 'color',
-      validation: (Rule) => Rule.required(),
+      name: 'eventDetails',
+      title: 'Event Details',
+      type: 'blockContent',
     }),
+    // array of images
     defineField({
-      name: 'link',
-      title: 'Outbound Link',
-      type: 'url',
-    }),
-    defineField({
-      name: 'tag',
-      title: 'Tag',
+      name: 'content',
+      title: 'Exhibition images',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'tag'}]}],
+      of: [{type: 'image'}],
+    }),
+    defineField({
+      name: 'works',
+      title: 'Works',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'artwork'}]}],
+    }),
+    // array of object with Title (blockContent), credits text, and link
+    defineField({
+      name: 'additionalInfo',
+      title: 'Additional Information',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'blockContent',
+            },
+            {
+              name: 'credits',
+              title: 'Credits',
+              type: 'string',
+            },
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'url',
+            },
+          ],
+        },
+      ],
     }),
   ],
   preview: {

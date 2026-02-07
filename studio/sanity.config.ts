@@ -4,8 +4,6 @@ import {structureTool} from 'sanity/structure'
 import {presentationTool} from 'sanity/presentation'
 import {colorInput} from '@sanity/color-input'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
-import {muxInput} from 'sanity-plugin-mux-input'
-
 import {schemaTypes} from './schemas'
 
 const projectId = 'gx8jk9ov'
@@ -24,7 +22,7 @@ export default defineConfig({
           .items([
             // Minimum required configuration
             orderableDocumentListDeskItem({type: 'tag', S, context}),
-            orderableDocumentListDeskItem({type: 'project', S, context}),
+            orderableDocumentListDeskItem({type: 'exhibition', S, context}),
 
             // singleton settings document
             S.listItem().title('Settings').id('settings').child(
@@ -38,7 +36,7 @@ export default defineConfig({
 
             // filter tag and settings from default list
             ...S.documentTypeListItems().filter(
-              (listItem) => !['tag', 'settings', 'project'].includes(listItem.getId()),
+              (listItem) => !['tag', 'settings', 'exhibition'].includes(listItem.getId()),
             ),
           ])
       },
@@ -52,8 +50,6 @@ export default defineConfig({
         },
       },
     }),
-    muxInput(),
-
     visionTool(),
     colorInput(),
   ],
