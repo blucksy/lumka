@@ -3,12 +3,7 @@ body {
 	touch-action: manipulation;
 }
 /* import satoshi fonts url(fonts/Satoshi-Medium.woff) url(fonts/Satoshi-Medium.woff2) url(fonts/Satoshi-Regular.woff) url(fonts/Satoshi-Regular.woff2) url(lib) url(routes) url(app.css)*/
-:root {
-	font-synthesis: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background-color: #f0f0f0;
-}
+
 @font-face {
 	font-family: 'Satoshi';
 	src:
@@ -40,6 +35,12 @@ body {
 	/* weights */
 	--weight-regular: 400;
 	--weight-medium: 500;
+
+	--xxl: 144px;
+	--xl: 96px;
+	--l: 48px;
+	--m: 24px;
+	--s: 18px;
 }
 @utility type-lg {
 	font-family: var(--font-satoshi);
@@ -47,11 +48,11 @@ body {
 	font-weight: var(--weight-medium);
 	line-height: var(--leading-140);
 }
-@utility type-md {
-	font-family: var(--font-satoshi);
-	font-size: var(--text-medium);
-	line-height: var(--leading-140);
-	font-weight: var(--weight-medium);
+@utility type-link-serif {
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 106.3%;
 }
 @layer utilities {
 	.type-xl {
@@ -70,6 +71,7 @@ body {
 	.mobile-grid {
 		@apply grid grid-cols-12 px-5 gap-1.25;
 	}
+
 	.pt-nav {
 		@apply pt-[72px] md:pt-[53px];
 	}
@@ -107,17 +109,19 @@ body {
 		font-family: var(--font-satoshi);
 	}
 }
-
+.site-grid {
+	@apply grid grid-cols-15 px-[var(--s)] gap-[var(--m)];
+}
 p:empty {
 	display: none;
 }
 
 @utility section-title {
-	@apply type-md md:type-lg  pb-3.75;
+	@apply text-lg md:type-lg  pb-3.75;
 }
 
 @utility section-body {
-	@apply type-md md:type-lg;
+	@apply text-lg md:type-lg;
 }
 
 @utility px-page {

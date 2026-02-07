@@ -223,13 +223,13 @@
 				href={post.project.link}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="type-md max-w-[80vw] md:type-lg link z-20"
+				class="text-lg max-w-[80vw] md:type-lg link z-20"
 				style={`--hover-color: ${post.project.color.hex}`}>{post.project.title}</a
 			>
 		{:else}
-			<p class="type-md md:type-lg z-20">{post.project.title}</p>
+			<p class="text-lg md:type-lg z-20">{post.project.title}</p>
 		{/if}
-		<p class="type-md md:type-lg z-20">{currentIndex + 1} / {contentLength}</p>
+		<p class="text-lg md:type-lg z-20">{currentIndex + 1} / {contentLength}</p>
 
 		<div
 			class="h-[20vh] z-10 w-full pointer-events-none"

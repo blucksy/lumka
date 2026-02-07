@@ -22,7 +22,7 @@ export const projectQuery = groq`
 }
 `;
 
-export const homeQuery = groq`*[_type == "settings" ][0] {homepage[]->{color,content,title, slug}}`;
+export const homeQuery = groq`*[_type == "settings" ][0] {publications[]{...}}`;
 
 export const projectsQuery = groq`*[_type == "exhibition"] | order(orderRank asc) {
   "color": color.hex,

@@ -43,7 +43,7 @@ export default defineConfig({
     }),
     presentationTool({
       previewUrl: {
-        origin: 'https://amir-hamja-app.vercel.app/',
+        origin: 'https://lumkea-app.vercel.app/',
         previewMode: {
           enable: '/preview/enable',
           disable: '/preview/disable',

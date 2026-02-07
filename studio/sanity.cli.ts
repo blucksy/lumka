@@ -7,7 +7,6 @@
 
 import {defineCliConfig} from 'sanity/cli'
 
-const projectId = 'gx8jk9ov'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 export default defineCliConfig({
