@@ -28,7 +28,7 @@
 		if (window.innerWidth < 768) {
 			// if tag is clear break
 			if (tag === 'clear') {
-				goto('/projects', { invalidateAll: true });
+				goto('/exhibitions', { invalidateAll: true });
 			}
 			return;
 		}
@@ -45,7 +45,7 @@
 		}
 
 		const queryString = params.toString();
-		const url = queryString ? `/projects?${queryString}` : '/projects';
+		const url = queryString ? `/exhibitions?${queryString}` : '/exhibitions';
 
 		setTimeout(() => {
 			goto(url, { invalidateAll: true });

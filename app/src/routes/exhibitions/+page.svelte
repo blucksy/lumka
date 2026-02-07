@@ -115,10 +115,9 @@
 				{@const randomIndex = Math.floor(Math.random() * project.content.length)}
 				<a
 					on:click={() => {
-						// wait 300ms then navigate
 						gridFading = true;
 						setTimeout(() => {
-							goto(`/projects/${project.slug}`);
+							goto(`/exhibitions/${project.slug}`);
 						}, 500);
 					}}
 					class="relative cursor-pointer cell"

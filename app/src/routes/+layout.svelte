@@ -31,11 +31,10 @@
 			<a href="/">LUmkA</a>
 		</h1>
 		<div class="md:flex flex-row gap-20 hidden">
-			<a class="type-lg trim-lg" href="/projects">Index</a>
+			<a class="type-lg trim-lg" href="/exhibitions">Index</a>
 			<a class="type-lg trim-lg" href="/info">Info</a>
 			<a class="type-lg trim-lg" href="https://substack.com/home" target="_blank">Journal</a>
 		</div>
-		<div class="flex md:hidden z-40"></div>
 	</header>
 	<main>
 		<slot />

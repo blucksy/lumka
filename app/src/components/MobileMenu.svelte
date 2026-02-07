@@ -44,7 +44,7 @@
 		}
 
 		const queryString = params.toString();
-		const url = queryString ? `/projects?${queryString}` : '/projects';
+		const url = queryString ? `/exhibitions?${queryString}` : '/exhibitions';
 
 		mobileNavOpen = false;
 		setTimeout(() => {
@@ -64,7 +64,7 @@
 		const queryString = params.toString();
 		const slug = $page.url.pathname.split('/')[2];
 
-		const url = queryString ? `/projects/${slug}?${queryString}` : `/projects/${slug}`;
+		const url = queryString ? `/exhibitions/${slug}?${queryString}` : `/exhibitions/${slug}`;
 
 		mobileNavOpen = false;
 		setTimeout(() => {
@@ -78,11 +78,11 @@
 <div
 	class={`h-screen flex flex-col gap-7.5 anim-opacity pt-nav fixed px-page z-30 bg-neutral opacity-0 inset-0 left-0 ${mobileNavOpen ? 'opacity-100 h-screen pointer-events-auto' : 'h-0  opacity-0 pointer-events-none'}`}
 >
-	<a href="/projects" class="type-xl trim-xl block">Index</a>
+	<a href="/exhibitions" class="type-xl trim-xl block">Index</a>
 	<a href="/info" class="type-xl trim-xl block">Info</a>
 	<a href="https://substack.com/home" target="_blank" class="type-xl trim-xl block">Journal</a>
 	{#key $page.url.search}
-		{#if $page.url.pathname === '/projects'}
+		{#if $page.url.pathname === '/exhibitions'}
 			<div class="w-full h-[1px] bg-black/30"></div>
 
 			<div class="!px-0 grid grid-cols-6 gap-2.5 px-5">
@@ -100,31 +100,6 @@
 				</div>
 			</div>
 		{/if}
-		<!-- if page is /projects/[slug] -->
-		<!-- {#if $page.url.pathname.startsWith('/projects/') && $page.url.pathname !== '/projects'}
-			<div class="w-full h-[1px] bg-black/30"></div>
-
-			<div class="!px-0 grid grid-cols-6 gap-2.5 px-5">
-				<div class="col-span-3"><p class="type-sm trim-sm">Grid View</p></div>
-				<div class="col-span-3 flex flex-col gap-[10px]">
-					<button
-						class={`trim-sm text-left type-sm ${gridItemClass('single')}`}
-						aria-pressed={ariaPressedForGrid('single')}
-						on:click|preventDefault={() => redirectToGrid('single')}
-					>
-						Single
-					</button>
-
-					<button
-						class={`trim-sm text-left type-sm ${gridItemClass('multi')}`}
-						aria-pressed={ariaPressedForGrid('multi')}
-						on:click|preventDefault={() => redirectToGrid('multi')}
-					>
-						Multi
-					</button>
-				</div>
-			</div>
-		{/if} -->
 	{/key}
 
 	{#if settings?.siteSettings.mobileSettings}
