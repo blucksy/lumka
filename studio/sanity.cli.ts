@@ -7,12 +7,12 @@
 
 import {defineCliConfig} from 'sanity/cli'
 
-const projectId = 'uc7agiu3'
+const projectId = 'gx8jk9ov'
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 export default defineCliConfig({
   api: {
-    projectId: 'uc7agiu3',
+    projectId: 'gx8jk9ov',
     dataset,
   },
   studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || '', // Visit https://www.sanity.io/docs/environment-variables to leanr more about using environment variables for local & production.

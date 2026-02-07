@@ -2,8 +2,8 @@ import {defineField, defineType} from 'sanity'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
-  name: 'project',
-  title: 'Project',
+  name: 'exhibition',
+  title: 'Exhibition',
   type: 'document',
   fields: [
     defineField({
@@ -12,8 +12,7 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       type: 'string',
     }),
-    orderRankField({type: 'project', newItemPosition: 'after'}),
-
+    orderRankField({type: 'exhibition', newItemPosition: 'after'}),
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -52,6 +51,13 @@ export default defineType({
           },
         },
       ],
+    }),
+    // artists reference
+    defineField({
+      name: 'artist',
+      title: 'Artist',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'artist'}]}],
     }),
     defineField({
       name: 'color',

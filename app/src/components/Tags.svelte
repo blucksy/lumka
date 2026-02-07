@@ -7,9 +7,9 @@
 	export let slug = '';
 
 	let url = 'https://amirhamja.com';
-	let name = 'Amir Hamja';
+	let name = 'LUmkA';
 	let defaultDesc =
-		'Explore work from Amir Hamja, an award-winning photographer based in New York City.';
+		'Explore work from LUmkA, an award-winning photographer based in New York City.';
 
 	title = title ? title + ' | ' + name : name;
 	description = description || defaultDesc;

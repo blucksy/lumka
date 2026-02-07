@@ -16,7 +16,7 @@ export const load: PageServerLoad = async (event) => {
 	{
   "projects":
 	*[
-		_type == "project" &&
+		_type == "exhibition" &&
 		 ${tags.length ? tags.map((tag) => `tag[]->name match "${tag}"`).join(' || ') : 'true'}
 ]| order(orderRank asc)   {
 		"color": color.hex,

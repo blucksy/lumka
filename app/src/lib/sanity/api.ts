@@ -1,5 +1,5 @@
 let publicSanityDataset = 'production';
-let publicSanityProjectId = 'uc7agiu3';
+let publicSanityProjectId = 'gx8jk9ov';
 
 export function assertEnvVar<T>(value: T | undefined, name: string): T {
 	if (value === undefined) {
@@ -14,4 +14,4 @@ export const projectId = assertEnvVar(publicSanityProjectId, 'PUBLIC_SANITY_PROJ
 
 export const apiVersion = '2024-03-15';
 
-export const studioUrl = 'https://amirhamja.sanity.studio/';
+export const studioUrl = 'https://lumka.sanity.studio/';

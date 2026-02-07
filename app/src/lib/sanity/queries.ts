@@ -4,7 +4,7 @@ import groq from 'groq';
 
 export const projectQuery = groq`
 {
-  "project": *[_type == "project" && slug.current == $slug][0] {
+  "project": *[_type == "exhibition" && slug.current == $slug][0] {
     ...,
     content[] {
       "mediaType": select(
@@ -24,7 +24,7 @@ export const projectQuery = groq`
 
 export const homeQuery = groq`*[_type == "settings" ][0] {homepage[]->{color,content,title, slug}}`;
 
-export const projectsQuery = groq`*[_type == "project"] | order(orderRank asc) {
+export const projectsQuery = groq`*[_type == "exhibition"] | order(orderRank asc) {
   "color": color.hex,
   "content": content[0..3],
   "slug": slug.current

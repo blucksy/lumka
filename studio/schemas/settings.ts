@@ -21,12 +21,6 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'homepage',
-      title: 'Homepage Projects',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'project'}]}],
-    }),
-    defineField({
       name: 'highlight',
       description: 'Highlight color for links',
       title: 'Highlight Color',

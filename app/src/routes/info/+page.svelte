@@ -69,7 +69,7 @@
 	</div>
 </div>
 <div class=" pt-[60px] md:pt-0 pb-5 flex flex-col justify-between w-full">
-	<img src="/footer-logo.svg" alt="Amir Hamja Logo" class="h-7.5 w-min mb-5" />
+	<img src="/footer-logo.svg" alt="LUmkA Logo" class="h-7.5 w-min mb-5" />
 	<p class="type-sm">© {new Date().getFullYear()} All Rights Reserved</p>
 	<p class="type-sm md:w-1/2 text-balance">
 		Web Design by <a href="https://arianagupta.com" target="_blank" rel="noopener noreferrer"

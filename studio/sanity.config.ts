@@ -8,12 +8,12 @@ import {muxInput} from 'sanity-plugin-mux-input'
 
 import {schemaTypes} from './schemas'
 
-const projectId = 'uc7agiu3'
+const projectId = 'gx8jk9ov'
 const dataset = 'production'
 
 export default defineConfig({
   name: 'sanity-template-sveltekit-clean',
-  title: 'Amir Hamja',
+  title: 'LUmkA',
   projectId,
   dataset,
   plugins: [

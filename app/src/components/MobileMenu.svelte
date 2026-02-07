@@ -149,10 +149,10 @@
 		</div>
 	{/if}
 	<div class="flex fixed bottom-[25px] flex-row gap-4 w-full s-PT7ZfvsUVUBV">
-		<img src="/footer-logo.svg" alt="Amir Hamja Logo" class="h-[25px] w-min my-auto" />
+		<img src="/footer-logo.svg" alt="LUmkA Logo" class="h-[25px] w-min my-auto" />
 		<div class="flex flex-col">
 			<p class="type-sm">
-				© {new Date().getFullYear()} Amir Hamja
+				© {new Date().getFullYear()} LUmkA
 			</p>
 			<p class="type-sm">All Rights Reserved</p>
 		</div>
