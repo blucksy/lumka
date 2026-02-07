@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+body {
+	touch-action: manipulation;
+}
+/* import satoshi fonts url(fonts/Satoshi-Medium.woff) url(fonts/Satoshi-Medium.woff2) url(fonts/Satoshi-Regular.woff) url(fonts/Satoshi-Regular.woff2) url(lib) url(routes) url(app.css)*/
+:root {
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #f0f0f0;
+}
+@font-face {
+	font-family: 'Satoshi';
+	src:
+		url('./fonts/Satoshi-Regular.woff2') format('woff2'),
+		url('./fonts/Satoshi-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Satoshi';
+	src:
+		url('./fonts/Satoshi-Medium.woff2') format('woff2'),
+		url('./fonts/Satoshi-Medium.woff') format('woff');
+	font-weight: 500;
+}
+
+@theme {
+	--font-satoshi: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+
+	--text-xl: 2.25rem;
+	--text-large: 1.125rem;
+	--text-medium: 1rem;
+	--text-small: 0.75rem;
+
+	/* line heights */
+	--leading-140: 1.4;
+	--leading-120: 1.2;
+
+	/* weights */
+	--weight-regular: 400;
+	--weight-medium: 500;
+}
+@utility type-lg {
+	font-family: var(--font-satoshi);
+	font-size: var(--text-large);
+	font-weight: var(--weight-medium);
+	line-height: var(--leading-140);
+}
+@utility type-md {
+	font-family: var(--font-satoshi);
+	font-size: var(--text-medium);
+	line-height: var(--leading-140);
+	font-weight: var(--weight-medium);
+}
+@layer utilities {
+	.type-xl {
+		font-family: var(--font-satoshi);
+		font-size: var(--text-xl);
+		line-height: var(--leading-140);
+		font-weight: var(--weight-regular);
+	}
+
+	.type-sm {
+		font-family: var(--font-satoshi);
+		font-size: var(--text-small);
+		line-height: var(--leading-120);
+		font-weight: var(--weight-medium);
+	}
+	.mobile-grid {
+		@apply grid grid-cols-12 px-5 gap-1.25;
+	}
+	.pt-nav {
+		@apply pt-[72px] md:pt-[53px];
+	}
+	.anim-opacity {
+		@apply transition-opacity duration-350 ease-in-out;
+	}
+	.bg-neutral {
+		@apply bg-[#F0F0F0];
+	}
+	.trim-sm {
+		line-height: 9px;
+		height: 9px;
+	}
+	.trim-md {
+		line-height: 13px;
+		height: 13px;
+	}
+	.trim-lg {
+		line-height: 13px;
+		height: 13px;
+	}
+	.trim-xl {
+		line-height: 23px;
+		height: 23px;
+	}
+	.h-screen {
+		height: 100svh;
+	}
+	.dynamic-h-screen {
+		height: 100dvh;
+	}
+}
+@layer base {
+	body {
+		font-family: var(--font-satoshi);
+	}
+}
+
+p:empty {
+	display: none;
+}
+
+@utility section-title {
+	@apply type-md md:type-lg  pb-3.75;
+}
+
+@utility section-body {
+	@apply type-md md:type-lg;
+}
+
+@utility px-page {
+	@apply px-5 md:px-12.5;
+}
