@@ -66,6 +66,7 @@
 </div>
 <div>
 	<PortableText value={post?.artist.longBio} />
+	<!-- d -->
 </div>
 <div>
 	{#if post.artist.content}
