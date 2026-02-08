@@ -1,15 +1,18 @@
-import { infoQuery as query } from '$lib/sanity/queries';
+import groq from 'groq';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	const { loadQuery } = event.locals;
+
+	const query = groq`*[_type == "press" && pressPage] | order(date desc) {
+		...,
+		"pdf": pdf.asset->url
+	}`;
 	const initial = await loadQuery(query);
 
-	// We pass the data in a format that is easy for `useQuery` to consume in the
-	// corresponding `+page.svelte` file, but you can return the data in any
-	// format you like.
 	return {
 		query,
+		params: event.params,
 		options: { initial }
 	};
 };

@@ -8,7 +8,7 @@
 }
 
 @utility title {
-	@apply font-serif text-[54px] leading-[1.05] italic tracking-normal;
+	@apply font-serif text-[54px] leading-[1.05]  tracking-normal;
 }
 
 @utility link-serif {
@@ -40,8 +40,8 @@
 	@apply font-serif text-[15px] font-normal leading-[1.16] tracking-normal;
 }
 
-@utility mobile-link-text {
-	@apply font-sans text-[23px] font-normal leading-[1.063] tracking-normal;
+@utility mobile-link {
+	@apply font-serif text-[23px] font-normal leading-[1.063] tracking-normal;
 }
 
 @utility mobile-small-sans {

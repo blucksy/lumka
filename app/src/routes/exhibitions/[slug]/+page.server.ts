@@ -33,7 +33,6 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		projectQuery,
-		params,
 		options: { initial }
 	};
 };
