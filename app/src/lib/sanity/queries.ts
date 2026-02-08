@@ -15,6 +15,13 @@ export const projectQuery = groq`
   },
 }
 `;
+export const artistQuery = groq`
+{
+  "artist": *[_type == "artist" && slug.current == $slug][0] {
+	...
+  },
+}
+`;
 export const homeQuery = groq`*[_type == "settings" ][0] {publications[]{...}}`;
 
 export const projectsQuery = groq`*[_type == "exhibition"] | order(orderRank asc) {
