@@ -1,3 +1,9 @@
+html {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 @theme {
 	--font-serif: 'Sharp Serif Text PE', sans-serif;
 	--font-sans: 'Untitled Sans', sans-serif;
@@ -5,45 +11,67 @@
 
 @utility body {
 	@apply font-serif text-[17px] font-normal leading-[1.16] tracking-normal;
+	margin-top: -5px;
+	margin-bottom: -4px;
 }
 
 @utility title {
 	@apply font-serif text-[54px] leading-[1.05]  tracking-normal;
+	margin-top: -12px;
+	margin-bottom: -9px;
 }
 
 @utility link-serif {
 	@apply font-serif text-[32px] font-normal leading-[1.063] tracking-normal;
+	margin-top: -7px;
+	margin-bottom: -6px;
 }
 
 @utility small-serif {
 	@apply font-serif text-[11px] font-normal tracking-[0.03em] leading-[1.0909];
+	margin-top: -3px;
+	margin-bottom: -2px;
 }
 
 @utility small-caps {
 	@apply font-serif text-[11px] font-normal tracking-[0.03em] leading-[1.0909] uppercase;
 	font-variant: all-small-caps;
+	margin-top: -3px;
+	margin-bottom: -2px;
 }
 
 @utility sans {
 	@apply font-sans text-[11px] font-normal leading-[1.16] tracking-normal;
+	margin-top: -2px;
+	margin-bottom: -2px;
 }
 
 @utility small-sans {
 	@apply font-sans text-[10px] font-normal leading-[1.2] tracking-normal;
+	margin-top: -2px;
+	margin-bottom: -3px;
 }
 
 @utility mobile-title {
 	@apply font-serif text-[42px] leading-[1.05] tracking-normal;
+	margin-top: -9px;
+	margin-bottom: -7px;
 }
 
 @utility mobile-body {
 	@apply font-serif text-[15px] font-normal leading-[1.16] tracking-normal;
+	margin-top: -4px;
+	margin-bottom: -4px;
 }
 
 @utility mobile-link {
 	@apply font-serif text-[23px] font-normal leading-[1.063] tracking-normal;
+	margin-top: -5px;
+	margin-bottom: -5px;
 }
 
-@utility mobile-small-sans {
+@utility mobile-sans {
 	@apply font-sans text-[12px] font-normal tracking-[0.03em] leading-[1.0833];
+	margin-top: -2px;
+	margin-bottom: -2px;
 }
