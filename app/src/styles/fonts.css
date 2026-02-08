@@ -1,0 +1,48 @@
+@theme {
+	--font-serif: 'Sharp Serif Text PE', sans-serif;
+	--font-sans: 'Untitled Sans', sans-serif;
+}
+
+@utility body {
+	@apply font-serif text-[17px] font-normal leading-[1.16];
+}
+
+@utility title {
+	@apply font-serif text-[54px] leading-[1.05];
+}
+
+@utility link-serif {
+	@apply font-serif text-[32px] font-normal leading-[1.063];
+}
+
+@utility small-serif {
+	@apply font-serif text-[11px] font-normal tracking-[0.03em] leading-[1.0909];
+}
+
+@utility small-caps {
+	@apply font-serif text-[11px] font-normal tracking-[0.03em] leading-[1.0909] uppercase;
+}
+
+@utility sans {
+	@apply font-sans text-[11px] font-normal leading-[1.16];
+}
+
+@utility small-sans {
+	@apply font-sans text-[10px] font-normal leading-[1.2];
+}
+
+@utility mobile-title {
+	@apply font-serif text-[42px] leading-[1.05];
+}
+
+@utility mobile-body {
+	@apply font-serif text-[15px] font-normal leading-[1.16];
+}
+
+@utility mobile-link-text {
+	@apply font-sans text-[23px] font-normal leading-[1.063];
+}
+
+@utility mobile-small-sans {
+	@apply font-sans text-[12px] font-normal tracking-[0.03em] leading-[1.0833];
+}

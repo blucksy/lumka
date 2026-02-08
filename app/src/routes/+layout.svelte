@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
-	import { page } from '$app/stores';
-	import MobileMenu from '../components/MobileMenu.svelte';
-	import { beforeNavigate } from '$app/navigation';
 	import { useQuery } from '@sanity/svelte-loader';
+	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 
 	import LiveMode from '../components/LiveMode.svelte';
-	import '../app.css';
+	import Nav from '../components/Nav.svelte';
+	import '../styles/app.css';
 
 	export let data;
 
@@ -25,21 +23,9 @@
 	</a>
 {/if} -->
 
-<div class="px-page pt-[var(--xl)]">
-	<header class="px-page flex flex-row fixed top-0 left-0 w-screen z-40 justify-between py-7.5">
-		<h1 class="md:trim-lg z-40">
-			<a href="/">LUmkA</a>
-		</h1>
-		<div class="md:flex flex-row gap-20 hidden">
-			<a href="/exhibitions">Index</a>
-			<a href="/info">Info</a>
-			<a href="https://substack.com/home" target="_blank">Journal</a>
-		</div>
-	</header>
-	<main>
-		<slot />
-	</main>
-</div>
+<Nav />
+
+<slot />
 
 {#if $isPreviewing}
 	<VisualEditing />

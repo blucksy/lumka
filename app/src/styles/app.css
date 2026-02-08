@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+@theme {
+	--color-lumka: #d5decf;
+}
+
+.main-grid {
+	@apply grid grid-cols-10 gap-[12px] md:grid-cols-15  md:gap-[24px];
+}
+
+.px-page {
+	@apply px-[12px] md:px-[18px];
+}
