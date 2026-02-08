@@ -8,7 +8,7 @@
 }
 
 @utility title {
-	@apply font-serif text-[54px] leading-[1.05];
+	@apply font-serif text-[54px] leading-[1.05] italic;
 }
 
 @utility link-serif {

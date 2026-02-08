@@ -1,4 +1,5 @@
 import { projectQuery } from '$lib/sanity/queries';
+import groq from 'groq';
 import type { PageServerLoad } from './$types';
 
 // TO DO: Remove alltags and refactor page template to fetch tags from layout
@@ -8,7 +9,20 @@ export const load: PageServerLoad = async (event) => {
 
 	const params = { slug };
 
-	const initial = await loadQuery(projectQuery, params);
+	const initial = await loadQuery(
+		groq`
+		 *[_type == "exhibition" && slug.current == $slug][0] {
+			...,
+			artist[]->{
+				...,
+			},
+			content[] {
+				...,
+			}
+		}
+		`,
+		params
+	);
 
 	return {
 		projectQuery,

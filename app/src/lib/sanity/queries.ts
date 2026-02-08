@@ -2,19 +2,6 @@ import type { PortableTextBlock } from '@portabletext/types';
 import type { ImageAsset, Slug } from '@sanity/types';
 import groq from 'groq';
 
-export const projectQuery = groq`
-{
-  "project": *[_type == "exhibition" && slug.current == $slug][0] {
-    ...,
-    artist[]->{
-      ...,
-    },
-    content[] {
-      ...,
-    }
-  },
-}
-`;
 export const artistQuery = groq`
 {
   "artist": *[_type == "artist" && slug.current == $slug][0] {
