@@ -1,8 +1,9 @@
-import blockContent from './blockContent'
-import exhibition from './exhibition'
-import tag from './tag'
-import settings from './settings'
 import artist from './artist'
 import artwork from './artwork'
+import blockContent from './blockContent'
+import exhibition from './exhibition'
+import press from './press'
+import settings from './settings'
+import tag from './tag'
 
-export const schemaTypes = [exhibition, blockContent, tag, settings, artist, artwork]
+export const schemaTypes = [exhibition, blockContent, tag, settings, artist, artwork, press]

@@ -1,9 +1,8 @@
+import {colorInput} from '@sanity/color-input'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
 import {presentationTool} from 'sanity/presentation'
-import {colorInput} from '@sanity/color-input'
-import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
+import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemas'
 
 const projectId = 'gx8jk9ov'
@@ -20,24 +19,20 @@ export default defineConfig({
         return S.list()
           .title('Content')
           .items([
-            // Minimum required configuration
-
-            orderableDocumentListDeskItem({type: 'exhibition', S, context}),
+            S.documentTypeListItem('exhibition').title('Exhibitions'),
+            S.documentTypeListItem('artist').title('Artists'),
+            S.documentTypeListItem('artwork').title('Artworks'),
+            S.documentTypeListItem('press').title('Press'),
 
             // singleton settings document
-            S.listItem().title('Settings').id('settings').child(
-              // Instead of rendering a list of documents, we render a single
-              // document, specifying the `documentId` manually to ensure
-              // that we're editing the single instance of the document
-              S.document()
-                .schemaType('settings')
-                .documentId('a82ec31e-8431-4635-8ca5-d50a80a5297a'),
-            ),
-
-            // filter tag and settings from default list
-            ...S.documentTypeListItems().filter(
-              (listItem) => !['tag', 'settings', 'exhibition'].includes(listItem.getId()),
-            ),
+            S.listItem()
+              .title('Settings')
+              .id('settings')
+              .child(
+                S.document()
+                  .schemaType('settings')
+                  .documentId('a82ec31e-8431-4635-8ca5-d50a80a5297a'),
+              ),
           ])
       },
     }),

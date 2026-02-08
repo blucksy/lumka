@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'exhibition',
   title: 'Exhibition',
   type: 'document',
+  icon: () => '🏛️',
   fields: [
     defineField({
       name: 'title',
@@ -18,8 +18,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       type: 'image',
     }),
-
-    orderRankField({type: 'exhibition', newItemPosition: 'after'}),
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -37,14 +35,61 @@ export default defineType({
       of: [{type: 'reference', to: [{type: 'artist'}]}],
     }),
     defineField({
-      name: 'eventDetails',
-      title: 'Event Details',
-      type: 'blockContent',
+      name: 'startDate',
+      title: 'Start Date',
+      type: 'date',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'endDate',
+      title: 'End Date',
+      type: 'date',
+    }),
+    defineField({
+      name: 'venue',
+      title: 'Venue + Address',
+      type: 'string',
+      description: 'As short as possible',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'extraLinks',
+      title: 'Extra links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'label',
+              title: 'Label',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+            },
+            {
+              name: 'file',
+              title: 'File',
+              type: 'file',
+            },
+          ],
+          validation: (Rule) =>
+            Rule.custom((fields) =>
+              fields.url || fields.file ? true : 'Must have either a URL or a file',
+            ),
+        },
+      ],
     }),
     defineField({
       name: 'writeup',
       title: 'Writeup',
-      type: 'blockContent',
+      type: 'text',
+      description: 'Works and exhibition titles in quotation marks.',
+      validation: (Rule) => Rule.required(),
     }),
     // array of images
     defineField({
@@ -59,33 +104,11 @@ export default defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'artwork'}]}],
     }),
-    // array of object with Title (blockContent), credits text, and link
     defineField({
-      name: 'additionalInfo',
-      title: 'Additional Information',
+      name: 'press',
+      title: 'Press',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'title',
-              title: 'Title',
-              type: 'blockContent',
-            },
-            {
-              name: 'credits',
-              title: 'Credits',
-              type: 'string',
-            },
-            {
-              name: 'link',
-              title: 'Link',
-              type: 'url',
-            },
-          ],
-        },
-      ],
+      of: [{type: 'reference', to: [{type: 'press'}]}],
     }),
   ],
   preview: {
