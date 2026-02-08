@@ -1,6 +1,6 @@
 <script lang="ts">
-	import sanitySrcset from '$lib/sanity/sanitySrcset';
 	import { urlFor } from '$lib/sanity/image';
+	import sanitySrcset from '$lib/sanity/sanitySrcset';
 	import { onMount } from 'svelte';
 
 	export let image: string;
@@ -13,7 +13,6 @@
 	export let hotspot;
 	export let loading: 'eager' | 'lazy' = 'eager';
 	export let objectFit: boolean;
-	export let quality: number = 50;
 	let imgRef;
 	let newSrcSet = '';
 
@@ -32,9 +31,9 @@
 
 	$: if (typeof image === 'object') {
 		if (hotspot) {
-			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').quality(quality).url();
+			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').url();
 		} else {
-			image = urlFor(image).auto('format').quality(quality).url();
+			image = urlFor(image).auto('format').url();
 		}
 	}
 
