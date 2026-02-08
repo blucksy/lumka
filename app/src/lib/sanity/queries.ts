@@ -6,22 +6,15 @@ export const projectQuery = groq`
 {
   "project": *[_type == "exhibition" && slug.current == $slug][0] {
     ...,
+    artist[]->{
+      ...,
+    },
     content[] {
-      "mediaType": select(
-        asset->_type == "sanity.imageAsset" => "image",
-        asset->_type == "mux.videoAsset" => "video"
-      ),
-
-      "asset": select(
-        asset->_type == "mux.videoAsset" => asset->,
-        true => asset
-      )
+      ...,
     }
   },
-  "label": *[_type == "settings"][0]{thumbnailLabel}
 }
 `;
-
 export const homeQuery = groq`*[_type == "settings" ][0] {publications[]{...}}`;
 
 export const projectsQuery = groq`*[_type == "exhibition"] | order(orderRank asc) {

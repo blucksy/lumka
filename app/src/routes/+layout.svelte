@@ -25,15 +25,15 @@
 	</a>
 {/if} -->
 
-<div class="px-page">
+<div class="px-page pt-[var(--xl)]">
 	<header class="px-page flex flex-row fixed top-0 left-0 w-screen z-40 justify-between py-7.5">
-		<h1 class="text-lg trim-md md:type-lg md:trim-lg z-40">
+		<h1 class="md:trim-lg z-40">
 			<a href="/">LUmkA</a>
 		</h1>
 		<div class="md:flex flex-row gap-20 hidden">
-			<a class="type-lg trim-lg" href="/exhibitions">Index</a>
-			<a class="type-lg trim-lg" href="/info">Info</a>
-			<a class="type-lg trim-lg" href="https://substack.com/home" target="_blank">Journal</a>
+			<a href="/exhibitions">Index</a>
+			<a href="/info">Info</a>
+			<a href="https://substack.com/home" target="_blank">Journal</a>
 		</div>
 	</header>
 	<main>

@@ -27,40 +27,40 @@
 	id="info-page"
 >
 	<div class="col-span-5">
-		<div class="type-lg">
+		<div class="type-title">
 			<p class="section-title">Biography</p>
 			<div class="section-body">
 				<PortableText value={settings.biography} />
 			</div>
 		</div>
-		<div class="type-lg pt-15 md:pt-20">
+		<div class="type-title pt-15 md:pt-20">
 			<p class="section-title">Contact</p>
 			<div class="section-body flex flex-col gap-10">
 				<PortableText value={settings.contact} />
 			</div>
 		</div>
 	</div>
-	<div class="col-span-3 col-start-7 type-lg pt-[60px] md:pt-0">
+	<div class="col-span-3 col-start-7 type-title pt-[60px] md:pt-0">
 		<p class="section-title">Fellowships, Honors & Awards</p>
 		<div class="section-body flex flex-col gap-10">
 			<PortableText value={settings.fellowshipHonorsAwards} />
 		</div>
 	</div>
 	<div class="col-span-3 col-start-10 flex flex-col gap-15 md:gap-20 pt-[60px] md:pt-0">
-		<div class="type-lg">
+		<div class="type-title">
 			<p class="section-title">Selected Publications & Clients</p>
 			<div class="section-body">
 				<PortableText value={settings.selectedPublicationsClients} />
 			</div>
 		</div>
-		<div class="type-lg">
+		<div class="type-title">
 			<p class="section-title">Selected Press</p>
 			<div class="section-body">
 				<PortableText value={settings.selectedPress} />
 			</div>
 		</div>
 
-		<div class="type-lg">
+		<div class="type-title">
 			<p class="section-title">Exhibitions</p>
 			<div class="section-body">
 				<PortableText value={settings.exhibitions} />

@@ -1,36 +1,18 @@
-import type { LayoutServerLoad } from './$types';
+import { projectQuery } from '$lib/sanity/queries';
+import type { PageServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async (event) => {
-	const { preview, loadQuery } = event.locals;
+// TO DO: Remove alltags and refactor page template to fetch tags from layout
+export const load: PageServerLoad = async (event) => {
+	const { loadQuery } = event.locals;
+	const { slug } = event.params;
 
-	const query = `
-	{
-		"allTags": array::unique(
-			*[_type == "tag"]{ name, orderRank }
-		) | order(orderRank asc),
+	const params = { slug };
 
-		"siteSettings": *[_type == "settings"][0]{
-			highlight { hex },
-			mobileSettings {
-				...
-			}
-		}
-	}
-	`;
-
-	const initial = await loadQuery(
-		query,
-		{},
-		{
-			preview
-		}
-	);
+	const initial = await loadQuery(projectQuery, params);
 
 	return {
-		preview,
-		query,
-		options: {
-			initial
-		}
+		projectQuery,
+		params,
+		options: { initial }
 	};
 };

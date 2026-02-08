@@ -11,10 +11,10 @@
 		<div class="text-center type-link-serif">
 			<PortableText value={publication.title} />
 		</div>
-		<div class="child:text-center">
+		<div class="!text-center">
 			<PortableText value={publication.subtitle} />
 		</div>
-		<div class="text-center w-min">
+		<div class="text-center w-min first:!text-center">
 			<PortableText value={publication.description} />
 		</div>
 	</div>

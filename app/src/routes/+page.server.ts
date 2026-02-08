@@ -1,15 +1,23 @@
-import { homeQuery as query } from '$lib/sanity/queries';
-import type { PageServerLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
+import { homeQuery } from '$lib/sanity/queries';
+export const load: LayoutServerLoad = async (event) => {
+	const { preview, loadQuery } = event.locals;
 
-export const load: PageServerLoad = async (event) => {
-	const { loadQuery } = event.locals;
-	const initial = await loadQuery(query);
+	const query = homeQuery;
 
-	// We pass the data in a format that is easy for `useQuery` to consume in the
-	// corresponding `+page.svelte` file, but you can return the data in any
-	// format you like.
-	return {
+	const initial = await loadQuery(
 		query,
-		options: { initial }
+		{},
+		{
+			preview
+		}
+	);
+
+	return {
+		preview,
+		query,
+		options: {
+			initial
+		}
 	};
 };

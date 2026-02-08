@@ -41,6 +41,11 @@ export default defineType({
       title: 'Event Details',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'writeup',
+      title: 'Writeup',
+      type: 'blockContent',
+    }),
     // array of images
     defineField({
       name: 'content',

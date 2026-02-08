@@ -21,7 +21,7 @@ export default defineConfig({
           .title('Content')
           .items([
             // Minimum required configuration
-            orderableDocumentListDeskItem({type: 'tag', S, context}),
+
             orderableDocumentListDeskItem({type: 'exhibition', S, context}),
 
             // singleton settings document
