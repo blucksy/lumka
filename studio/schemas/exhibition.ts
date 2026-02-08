@@ -22,6 +22,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description: 'For SEO, use the slug from the old website if it exists.',
       validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
@@ -87,8 +88,8 @@ export default defineType({
     defineField({
       name: 'writeup',
       title: 'Writeup',
-      type: 'text',
-      description: 'Works and exhibition titles in quotation marks.',
+      type: 'blockContent',
+      description: 'Works and exhibition titles in italics.',
       validation: (Rule) => Rule.required(),
     }),
     // array of images

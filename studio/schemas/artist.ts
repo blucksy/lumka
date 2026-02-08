@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'artist',
   title: 'Artist',
   type: 'document',
+  icon: () => '🧑‍🎨',
   fields: [
     defineField({
       name: 'title',
@@ -12,13 +12,26 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       type: 'string',
     }),
+
+    defineField({
+      name: 'represented',
+      title: 'Represented Artist',
+      type: 'boolean',
+      initialValue: false,
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'schooling',
-      title: 'School Information',
+      title: 'School + General Information',
       validation: (Rule) => Rule.required(),
       type: 'text',
     }),
-    // links (array of url and title)
+    defineField({
+      name: 'year',
+      title: 'Birth Year',
+      type: 'number',
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       name: 'links',
       title: 'Links',
@@ -55,7 +68,6 @@ export default defineType({
       description: 'Biography to be displayed on other pages',
       type: 'blockContent',
     }),
-    orderRankField({type: 'exhibition', newItemPosition: 'after'}),
 
     defineField({
       name: 'slug',
@@ -68,16 +80,4 @@ export default defineType({
       },
     }),
   ],
-  preview: {
-    select: {
-      title: 'title',
-      media: 'content.0.asset',
-    },
-    prepare({title, media}: {title: string; media: any}) {
-      return {
-        title: title || 'Untitled Project',
-        media,
-      }
-    },
-  },
 })

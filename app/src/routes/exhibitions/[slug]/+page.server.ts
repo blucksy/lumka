@@ -24,6 +24,13 @@ export const load: PageServerLoad = async (event) => {
 		params
 	);
 
+	if (!initial) {
+		return {
+			status: 404,
+			error: new Error('Exhibition not found')
+		};
+	}
+
 	return {
 		projectQuery,
 		params,
