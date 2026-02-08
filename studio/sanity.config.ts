@@ -18,21 +18,24 @@ export default defineConfig({
       structure: (S, context) => {
         return S.list()
           .title('Content')
+
           .items([
+            S.listItem()
+              .title('Homepage')
+              .id('homepage')
+              .child(S.document().schemaType('homepage').documentId('homepage'))
+              .icon(() => '🏠'),
+
             S.documentTypeListItem('exhibition').title('Exhibitions'),
             S.documentTypeListItem('artist').title('Artists'),
             S.documentTypeListItem('artwork').title('Artworks'),
             S.documentTypeListItem('press').title('Press'),
 
-            // singleton settings document
             S.listItem()
               .title('Settings')
               .id('settings')
-              .child(
-                S.document()
-                  .schemaType('settings')
-                  .documentId('a82ec31e-8431-4635-8ca5-d50a80a5297a'),
-              ),
+              .child(S.document().schemaType('settings').documentId('siteSettings'))
+              .icon(() => '⚙️'),
           ])
       },
     }),

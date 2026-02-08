@@ -10,12 +10,14 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
+		"@mux/mux-video": "^0.29.2",
 		"@sanity/client": "^6.15.4",
 		"@sanity/image-url": "^1.0.2",
 		"@sanity/svelte-loader": "^1.11.1",
 		"@sanity/visual-editing": "^2.0.0",
 		"@tailwindcss/postcss": "^4.1.18",
 		"@tailwindcss/vite": "^4.1.18",
+		"clsx": "^2.1.1",
 		"groq": "^3.33.0",
 		"tailwindcss": "^4.1.18"
 	},

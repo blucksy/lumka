@@ -3,35 +3,42 @@ import type { PageServerLoad } from './$types';
 // TO DO: Remove alltags and refactor page template to fetch tags from layout
 export const load: PageServerLoad = async (event) => {
 	const { loadQuery } = event.locals;
-	const { slug } = event.params;
-
-	const params = { slug };
-	let tags: string[] = [];
-
-	if (event.url.searchParams) {
-		tags = event.url.searchParams.getAll('tag');
-	}
 
 	let query = `
 	{
-  "allTags": array::unique(
-    *[_type == "tag"]{name, orderRank}
-  ) | order(orderRank asc) ,
-	"siteSettings" : *[_type == "settings"][0]{
-		highlight {hex},
-		mobileSettings {
-		...
-		}	
-}
-  }
-  
+		"settings": *[_id == "siteSettings"][0]{ 
+			about,
+			announcement,
+		},
+
+		"artists": {
+			"represented": *[_type == "artist" && represented == true] | order(title asc){
+				title,
+				slug,
+				represented
+			},
+			"exhibited": *[_type == "artist" && represented != true] | order(title asc){
+				title,
+				slug,
+				represented
+			}
+		},
+
+		"exhibitions": *[_type == "exhibition"] | order(startDate desc){
+			title,
+			slug,
+			startDate,
+			endDate,
+			venue,
+			"artists": artist[]->title
+		}
+	}
 	`;
 
-	const initial = await loadQuery(query, params);
+	const initial = await loadQuery(query);
 
 	return {
 		query,
-		params,
 		options: { initial }
 	};
 };

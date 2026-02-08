@@ -3,14 +3,16 @@
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 
 	import LiveMode from '../components/LiveMode.svelte';
-	import Nav from '../components/Nav.svelte';
+	import Nav from '../components/Nav/Nav.svelte';
 	import '../styles/app.css';
 
 	export let data;
 
 	const q = useQuery(data);
 
-	$: ({ data: settings } = $q);
+	$: ({ data: siteData } = $q);
+
+	$: console.log(siteData);
 </script>
 
 <!-- {#if $isPreviewing}
@@ -23,7 +25,7 @@
 	</a>
 {/if} -->
 
-<Nav />
+<Nav data={siteData} />
 
 <slot />
 
