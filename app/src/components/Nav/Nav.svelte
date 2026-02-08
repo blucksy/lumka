@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
 	import Artists from './Artists.svelte';
 	import Exhibitions from './Exhibitions.svelte';
@@ -18,11 +18,11 @@
 
 	$: activeTab =
 		open ||
-		(page.route.id === '/press'
+		($page.url.pathname === '/press'
 			? 'press'
-			: page.route.id?.includes('/exhibitions/')
+			: $page.url.pathname.includes('/exhibitions/')
 				? 'exhibitions'
-				: page.route.id?.includes('/artists')
+				: $page.url.pathname.includes('/artists')
 					? 'artists'
 					: 'main');
 
@@ -52,12 +52,8 @@
 		<button on:click={() => toggleTab('artists')} data-active={activeTab === 'artists'}
 			>Artists</button
 		>
-		<div
-			class="flex h-full w-full items-center justify-center"
-			data-active={activeTab === 'press'}
-			on:click={() => (open = '')}
-		>
-			<a href="/press"> Press</a>
-		</div>
+		<a href="/press" class="" data-active={activeTab === 'press'} on:click={() => (open = '')}>
+			<div class="flex h-full w-full items-center justify-center pointer-cursor">Press</div>
+		</a>
 	</div>
 </div>
