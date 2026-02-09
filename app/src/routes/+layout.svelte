@@ -2,6 +2,7 @@
 	import { useQuery } from '@sanity/svelte-loader';
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 
+	import Footer from '../components/Footer.svelte';
 	import LiveMode from '../components/LiveMode.svelte';
 	import Nav from '../components/Nav/Nav.svelte';
 	import '../styles/app.css';
@@ -33,3 +34,5 @@
 	<VisualEditing />
 	<LiveMode />
 {/if}
+
+<Footer data={siteData} />
