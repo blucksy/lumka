@@ -6,9 +6,13 @@
 }
 
 .main-grid {
-	@apply grid grid-cols-10 gap-[12px] md:grid-cols-15  md:gap-[24px];
+	@apply grid grid-cols-10 gap-[12px] sm:grid-cols-15  sm:gap-[24px];
 }
 
 .px-page {
-	@apply px-[12px] md:px-[18px];
+	@apply px-[12px] sm:px-[18px];
+}
+
+p:empty {
+	@apply hidden;
 }

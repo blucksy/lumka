@@ -1,5 +1,5 @@
 <script>
-	import dateConverter from '$lib/utils/dateConverter';
+	import formatDate from '$lib/utils/formatDate';
 	import { slide } from 'svelte/transition';
 
 	export let exhibitions;
@@ -17,7 +17,7 @@
 				</div>
 				<div class="pl-[24px]">
 					<p class="text-balance">{exhibition.artists.join(', ')}</p>
-					<p>{dateConverter(exhibition.startDate, exhibition.endDate)}</p>
+					<p>{formatDate(exhibition.startDate, exhibition.endDate)}</p>
 				</div>
 			</div>
 		</a>

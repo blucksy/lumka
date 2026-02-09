@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity/image';
+	import formatDate from '$lib/utils/formatDate';
+	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
+	import ImageWrapper from '../../../components/ImageWrapper.svelte';
+	import MediaEntry from '../../../components/MediaEntry.svelte';
+	import Press from '../../../components/Press.svelte';
 	import Tags from '../../../components/Tags.svelte';
 
 	export let data;
@@ -20,6 +25,100 @@
 		: ''}
 />
 
-<div class="pt-[96px] flex flex-col gap-[144px] items-center">
-	<h1 class="title">{show?.title}</h1>
+<div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
+	<!-- Main	-->
+	<div>
+		<h1 class="title italic text-center">{show?.title}</h1>
+		<div class="main-grid mt-[48px]">
+			<div
+				class="col-span-11 sm:col-start-3 md:col-span-9 md:col-start-4 lg:col-span-7 lg:col-start-5"
+			>
+				<ImageWrapper className="aspect-5/3 object-cover" image={show?.exhibitionImage} />
+			</div>
+		</div>
+		<div class="mt-[18px] text-center">
+			<p class="sans">
+				{#each show?.artist as artist, i}
+					<a class="hover:opacity-60 transition-opacity" href="/artists/{artist.slug.current}"
+						>{artist.title}</a
+					>{#if i < show.artist.length - 1},&nbsp;{/if}
+				{/each}
+				<br />
+				{show.venue}
+				<br />
+				{formatDate(show.startDate, show.endDate)}
+			</p>
+		</div>
+		<div
+			class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
+		>
+			<a href="#works">Works</a>
+
+			<a href="#press">Press</a>
+			{#each show?.extraLinks as link}
+				<a href={link?.url} target="_blank" rel="noopener noreferrer">
+					{link?.label}
+				</a>
+			{/each}
+		</div>
+
+		<div class="mt-[96px] main-grid">
+			<div
+				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 *:mobile-body sm:*:body *:indent-[48px] *:first:indent-0 flex flex-col gap-[24px]"
+			>
+				<PortableText value={show?.writeup} />
+			</div>
+		</div>
+	</div>
+
+	<!-- Artists -->
+	<div
+		class="flex flex-col gap-[48px] sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))]"
+	>
+		{#each show?.artist as artist}
+			<a
+				href="/artists/{artist.slug.current}"
+				class="sm:w-[calc(((100vw-(36px+24px*14))/15*5+24px*4))] hover:opacity-60 transition-opacity flex flex-col gap-[18px] h-fit"
+			>
+				<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
+				<div class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px]">
+					<PortableText value={artist.shortBio} />
+				</div>
+			</a>
+		{/each}
+	</div>
+
+	<!-- Media -->
+	{#each show?.content as media}
+		<MediaEntry entry={media} />
+	{/each}
+
+	<!-- Works -->
+	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
+		<p class="small-caps small-serif text-center" id="works">Works</p>
+
+		{#each show?.works as work}
+			<div class="flex flex-col gap-[96px]">
+				<MediaEntry entry={work} />
+			</div>
+		{/each}
+	</div>
+
+	<!-- Press -->
+
+	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
+		<p class="small-caps small-serif text-center" id="press">Press</p>
+
+		<div class="main-grid">
+			<div
+				class="
+			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
+			flex flex-col gap-[48px]"
+			>
+				{#each show?.press as press}
+					<Press item={press} />
+				{/each}
+			</div>
+		</div>
+	</div>
 </div>

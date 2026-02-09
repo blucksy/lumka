@@ -92,12 +92,32 @@ export default defineType({
       description: 'Works and exhibition titles in italics.',
       validation: (Rule) => Rule.required(),
     }),
-    // array of images
     defineField({
       name: 'content',
-      title: 'Exhibition images',
+      title: 'Exhibition Media',
       type: 'array',
-      of: [{type: 'image'}],
+      of: [
+        {type: 'image'},
+        {
+          type: 'object',
+          title: 'Embed',
+          fields: [
+            {name: 'embed', title: 'Embed Code', type: 'text'},
+            {name: 'title', title: 'Embed Title', type: 'blockContent'},
+            {name: 'credit', title: 'Embed Credit', type: 'string'},
+          ],
+          preview: {
+            select: {
+              title: 'title',
+            },
+            prepare({title, media}: {title: any; media: any}) {
+              return {
+                title: title ? `${title[0].children[0].text} (Embed)` : 'Embed',
+              }
+            },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'works',

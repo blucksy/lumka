@@ -6,7 +6,7 @@ export const load: PageServerLoad = async (event) => {
 
 	const query = groq`*[_type == "press" && pressPage] | order(date desc) {
 		...,
-		"pdf": pdf.asset->url
+		"link": coalesce(pdf.asset->url, link),
 	}`;
 	const initial = await loadQuery(query);
 

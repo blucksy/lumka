@@ -13,12 +13,36 @@ export const load: PageServerLoad = async (event) => {
 		groq`
 		 *[_type == "exhibition" && slug.current == $slug][0] {
 			...,
+			"extraLinks": extraLinks[] {
+				label,
+				"url": coalesce(file.asset->url, url),
+			},
+
 			artist[]->{
 				...,
 			},
 			content[] {
+				"aspectRatio": asset->metadata.dimensions.aspectRatio,
 				...,
-			}
+			},
+			works[]-> {
+				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,
+				description,
+				image,
+				title,
+				year,
+				artist-> {
+					title,
+					slug
+				}
+			},
+			press[]-> {
+				title,
+				"link": coalesce(pdf.asset->url, link),
+				author,
+				publication,
+				date
+			},
 		}
 		`,
 		params

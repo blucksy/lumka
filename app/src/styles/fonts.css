@@ -33,13 +33,6 @@ html {
 	margin-bottom: -2px;
 }
 
-@utility small-caps {
-	@apply font-serif text-[11px] font-normal tracking-[0.03em] leading-[1.0909] uppercase;
-	font-variant: all-small-caps;
-	margin-top: -3px;
-	margin-bottom: -2px;
-}
-
 @utility sans {
 	@apply font-sans text-[11px] font-normal leading-[1.16] tracking-normal;
 	margin-top: -2px;
@@ -70,8 +63,12 @@ html {
 	margin-bottom: -5px;
 }
 
-@utility mobile-sans {
-	@apply font-sans text-[12px] font-normal tracking-[0.03em] leading-[1.0833];
-	margin-top: -2px;
+@utility mobile-small-serif {
+	@apply font-serif text-[12px] font-normal tracking-[0.03em] leading-[1.0833];
+	margin-top: -3px;
 	margin-bottom: -2px;
+}
+
+.small-caps {
+	font-variant: all-small-caps;
 }

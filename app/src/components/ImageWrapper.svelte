@@ -82,7 +82,7 @@
 		{loading}
 		{sizes}
 		{alt}
-		class={`w-full opacity-0 object-cover h-full !shadow-none anim-opacity  ${className}`}
+		class={`w-full opacity-0 object-cover  !shadow-none anim-opacity  ${className}`}
 		srcset={newSrcSet}
 	/>
 {/if}
