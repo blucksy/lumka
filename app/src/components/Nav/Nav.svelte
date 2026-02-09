@@ -30,7 +30,7 @@
 </script>
 
 <div
-	class="fixed bg-lumka w-[468px] small-serif top-[6px] left-[18px]"
+	class="fixed bg-lumka w-[468px] small-serif top-[6px] left-[18px] z-40"
 	use:clickOutside={() => (open = '')}
 >
 	{#if open === 'main'}
