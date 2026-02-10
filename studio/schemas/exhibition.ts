@@ -31,9 +31,10 @@ export default defineType({
     }),
     defineField({
       name: 'artist',
-      title: 'Artist',
+      title: 'Artists',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'artist'}]}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'startDate',
@@ -135,13 +136,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'content.0.asset',
-    },
-    prepare({title, media}: {title: string; media: any}) {
-      return {
-        title: title || 'Untitled Project',
-        media,
-      }
+      media: 'exhibitionImage',
     },
   },
 })
