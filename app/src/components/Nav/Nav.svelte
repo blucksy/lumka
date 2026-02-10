@@ -51,7 +51,7 @@
 </script>
 
 <div
-	class="fixed bg-lumka w-[468px] small-serif top-[6px] left-[18px] z-40"
+	class="fixed bg-lumka w-[468px] small-serif top-[6px] left-[18px] z-40 nav"
 	use:clickOutside={() => (open = '')}
 >
 	{#if open === 'main'}
@@ -78,3 +78,9 @@
 		</a>
 	</div>
 </div>
+
+<style>
+	.nav {
+		box-shadow: 0px 0px 15px rgba(138, 147, 132, 0.1);
+	}
+</style>
