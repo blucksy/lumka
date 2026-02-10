@@ -5,10 +5,12 @@
 	import { useQuery } from '@sanity/svelte-loader';
 	import mediumZoom from 'medium-zoom';
 	import { onMount } from 'svelte';
+	import Anchor from '../../../components/Anchor.svelte';
 	import ImageWrapper from '../../../components/ImageWrapper.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
 	import Tags from '../../../components/Tags.svelte';
+	import Body from '../../../components/Text/Body.svelte';
 
 	export let data;
 	const q = useQuery(data);
@@ -80,12 +82,8 @@
 			{/each}
 		</div>
 
-		<div class="mt-[96px] main-grid">
-			<div
-				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 *:mobile-body sm:*:body *:indent-[48px] *:first:indent-0 flex flex-col gap-[24px]"
-			>
-				<PortableText value={show?.writeup} />
-			</div>
+		<div class="mt-[96px]">
+			<Body text={show?.writeup} />
 		</div>
 	</div>
 
@@ -112,21 +110,16 @@
 	{/each}
 
 	<!-- Works -->
-	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
-		<p class="small-caps small-serif text-center" id="works">Works</p>
-
-		{#each show?.works as work}
-			<div class="flex flex-col gap-[96px]">
+	<Anchor title="Works">
+		<div class="flex flex-col gap-[96px]">
+			{#each show?.works as work}
 				<MediaEntry entry={work} />
-			</div>
-		{/each}
-	</div>
+			{/each}
+		</div>
+	</Anchor>
 
 	<!-- Press -->
-
-	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
-		<p class="small-caps small-serif text-center" id="press">Press</p>
-
+	<Anchor title="Press">
 		<div class="main-grid">
 			<div
 				class="
@@ -138,5 +131,5 @@
 				{/each}
 			</div>
 		</div>
-	</div>
+	</Anchor>
 </div>

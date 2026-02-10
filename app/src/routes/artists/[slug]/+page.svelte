@@ -5,8 +5,10 @@
 	import { useQuery } from '@sanity/svelte-loader';
 	import mediumZoom from 'medium-zoom';
 	import { onMount } from 'svelte';
+	import Anchor from '../../../components/Anchor.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
+	import Body from '../../../components/Text/Body.svelte';
 	import TextRotate from '../../../components/Text/TextRotate.svelte';
 
 	export let data;
@@ -56,19 +58,13 @@
 			{/each}
 		</div>
 
-		<div class="mt-[96px] md:mt-[48px] main-grid">
-			<div
-				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 *:mobile-body sm:*:body *:indent-[48px] *:first:indent-0 flex flex-col gap-[24px]"
-			>
-				<PortableText value={artist?.longBio} />
-			</div>
+		<div class="mt-[96px] md:mt-[48px]">
+			<Body text={artist?.longBio} />
 		</div>
 	</div>
 
 	<!-- Exhibitions -->
-
-	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
-		<p class="small-caps small-serif text-center" id="exhibitions">Exhibitions</p>
+	<Anchor title="Exhibitions">
 		<div class="main-grid">
 			<div
 				class="
@@ -96,34 +92,29 @@
 				{/each}
 			</div>
 		</div>
-	</div>
+	</Anchor>
 
 	<!-- Works -->
-	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
-		<p class="small-caps small-serif text-center" id="works">Works</p>
-
-		{#each artist?.works ?? [] as work}
-			<div class="flex flex-col gap-[96px]">
+	<Anchor title="Works">
+		<div class="flex flex-col gap-[96px]">
+			{#each artist?.works ?? [] as work}
 				<MediaEntry entry={work} />
-			</div>
-		{/each}
-	</div>
+			{/each}
+		</div>
+	</Anchor>
 
 	<!-- Press -->
-
-	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
-		<p class="small-caps small-serif text-center" id="press">Press</p>
-
+	<Anchor title="Press">
 		<div class="main-grid">
 			<div
 				class="
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 			>
-				{#each artist?.press ?? [] as press}
+				{#each artist?.press as press}
 					<Press item={press} />
 				{/each}
 			</div>
 		</div>
-	</div>
+	</Anchor>
 </div>
