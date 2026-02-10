@@ -1,8 +1,7 @@
 <script lang="ts">
 	import formatDate from '$lib/utils/formatDate';
-	import { PortableText } from '@portabletext/svelte';
 	import clsx from 'clsx';
-	import Quote from './Quote.svelte';
+	import TextRotate from './Text/TextRotate.svelte';
 
 	export let item;
 	export let pressPage = false;
@@ -12,17 +11,10 @@
 	href={item.link}
 	target="_blank"
 	rel="noopener noreferrer"
-	class={clsx('text-center flex flex-col gap-[18px] ', pressPage && 'sm:gap-[24px]')}
+	class={clsx('text-center flex flex-col gap-[18px] group', pressPage && 'sm:gap-[24px]')}
 >
 	<p class={clsx(pressPage ? 'sm:title' : 'sm:link-serif', 'mobile-link')}>
-		<PortableText
-			value={item.title}
-			components={{
-				block: {
-					normal: Quote
-				}
-			}}
-		/>
+		“<TextRotate item={item.title} />”
 	</p>
 	<p class="sans">
 		{item.author ? `${item.author}, ${item.publication}` : item.publication}

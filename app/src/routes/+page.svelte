@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import ImageWrapper from '../components/ImageWrapper.svelte';
 	import Tags from '../components/Tags.svelte';
+	import TextRotate from '../components/Text/TextRotate.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -29,7 +30,13 @@
 			>
 				<ImageWrapper image={item.image} className="aspect-5/3 " />
 				<p class="small-serif small-caps">{item.category}</p>
-				<p class="mobile-link sm:link-serif"><PortableText value={item.title} /></p>
+				<p class="mobile-link sm:link-serif">
+					{#if item.link}
+						<TextRotate item={item.title} />
+					{:else}
+						<PortableText value={item.title} />
+					{/if}
+				</p>
 				{#if item.subtitle}
 					<p class="sans"><PortableText value={item.subtitle} /></p>
 				{/if}

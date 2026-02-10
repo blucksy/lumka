@@ -5,6 +5,7 @@
 	import { useQuery } from '@sanity/svelte-loader';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
+	import TextRotate from '../../../components/Text/TextRotate.svelte';
 
 	export let data;
 	const q = useQuery(data);
@@ -63,9 +64,9 @@
 				{#each artist?.exhibitions ?? [] as exhibition}
 					<a
 						href="/exhibitions/{exhibition.slug.current}"
-						class="text-center flex flex-col gap-[18px]"
+						class="text-center flex flex-col gap-[18px] group"
 					>
-						<p class="sm:link-serif mobile-link italic">{exhibition.title}</p>
+						<p class="sm:link-serif mobile-link italic"><TextRotate item={exhibition.title} /></p>
 						<p class="sans">
 							{#if exhibition?.artists?.length > 1}
 								{#each exhibition?.artists as artist, i}
