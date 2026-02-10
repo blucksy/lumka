@@ -8,10 +8,12 @@
 	import Anchor from '../../../components/Anchor.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
+	import Tabber from '../../../components/Tabber.svelte';
 	import Body from '../../../components/Text/Body.svelte';
 	import TextRotate from '../../../components/Text/TextRotate.svelte';
 
 	export let data;
+	console.log(data);
 	const q = useQuery(data);
 
 	let artist;
@@ -31,6 +33,24 @@
 			zoom.detach();
 		};
 	});
+
+	let nextArtist, previousArtist;
+	$: {
+		const currentArray = artist.exhibited
+			? artist.allArtists.exhibited
+			: artist.allArtists.represented;
+		const otherArray = artist.exhibited
+			? artist.allArtists.represented
+			: artist.allArtists.exhibited;
+
+		const currentIndex = currentArray.findIndex((a) => a.slug.current === artist.slug.current);
+
+		previousArtist =
+			currentIndex > 0 ? currentArray[currentIndex - 1] : otherArray[otherArray.length - 1];
+
+		nextArtist =
+			currentIndex < currentArray.length - 1 ? currentArray[currentIndex + 1] : otherArray[0];
+	}
 </script>
 
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
@@ -111,10 +131,33 @@
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 			>
-				{#each artist?.press as press}
+				{#each artist?.press || [] as press}
 					<Press item={press} />
 				{/each}
 			</div>
 		</div>
 	</Anchor>
+
+	<div class="flex items-center">
+		<button
+			on:click={() => {
+				window.scrollTo({ behavior: 'smooth', top: 0 });
+			}}
+			class="hover:opacity-60 transition-opacity w-fit mx-auto sans cursor-pointer"
+			>Return to Top</button
+		>
+	</div>
+
+	<Tabber
+		next={{
+			link: `/artists/${nextArtist?.slug.current}`,
+			title: nextArtist?.title,
+			details: `${nextArtist?.represented ? 'Represented' : 'Exhibited'} Artist\n${nextArtist?.workCount} works with LUmkA`
+		}}
+		previous={{
+			link: `/artists/${previousArtist?.slug.current}`,
+			title: previousArtist?.title,
+			details: `${previousArtist?.represented ? 'Represented' : 'Exhibited'} Artist\n${previousArtist?.workCount} works with LUmkA`
+		}}
+	/>
 </div>

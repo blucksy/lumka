@@ -1,3 +1,4 @@
+import getLastName from '$lib/utils/getLastName';
 import groq from 'groq';
 import type { PageServerLoad } from './$types';
 
@@ -37,10 +38,31 @@ export const load: PageServerLoad = async (event) => {
 				endDate,
 				venue,
 			},
+			"allArtists": {
+				"represented": *[_type == "artist" && represented == true] {
+					title,
+					slug,
+					represented,
+					"workCount": count(*[_type == "artwork" && references(^._id)])
+				},
+				"exhibited": *[_type == "artist" && represented != true] {
+					title,
+					slug,
+					represented,
+					"workCount": count(*[_type == "artwork" && references(^._id)])
+				},
+			},
 		}
 		`;
 
-	const initial = await loadQuery(artistQuery, params);
+	let initial = await loadQuery(artistQuery, params);
+
+	initial.data.allArtists.represented.sort((a, b) =>
+		getLastName(a.title).localeCompare(getLastName(b.title))
+	);
+	initial.data.allArtists.exhibited.sort((a, b) =>
+		getLastName(a.title).localeCompare(getLastName(b.title))
+	);
 
 	if (!initial) {
 		return {

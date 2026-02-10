@@ -9,6 +9,7 @@
 	import ImageWrapper from '../../../components/ImageWrapper.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
+	import Tabber from '../../../components/Tabber.svelte';
 	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
 
@@ -32,6 +33,21 @@
 			zoom.detach();
 		};
 	});
+
+	let nextExhibition, previousExhibition;
+	$: {
+		const currentIndex = show.allExhibitions.findIndex((e) => e.slug.current === show.slug.current);
+
+		previousExhibition =
+			currentIndex > 0
+				? show.allExhibitions[currentIndex - 1]
+				: show.allExhibitions[show.allExhibitions.length - 1];
+
+		nextExhibition =
+			currentIndex < show.allExhibitions.length - 1
+				? show.allExhibitions[currentIndex + 1]
+				: show.allExhibitions[0];
+	}
 </script>
 
 <Tags
@@ -58,7 +74,7 @@
 		</div>
 		<div class="mt-[18px] text-center">
 			<p class="sans">
-				{#each show?.artist as artist, i}
+				{#each show?.artist || [] as artist, i}
 					<a class="hover:opacity-60 transition-opacity" href="/artists/{artist.slug.current}"
 						>{artist.title}</a
 					>{#if i < show.artist.length - 1},&nbsp;{/if}
@@ -75,7 +91,7 @@
 			<a href="#works">Works</a>
 
 			<a href="#press">Press</a>
-			{#each show?.extraLinks as link}
+			{#each show?.extraLinks || [] as link}
 				<a href={link?.url} target="_blank" rel="noopener noreferrer">
 					{link?.label}
 				</a>
@@ -91,7 +107,7 @@
 	<div
 		class="flex flex-col gap-[48px] sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))]"
 	>
-		{#each show?.artist as artist}
+		{#each show?.artist || [] as artist}
 			<a
 				href="/artists/{artist.slug.current}"
 				class="sm:w-[calc(((100vw-(36px+24px*14))/15*5+24px*4))] hover:opacity-60 transition-opacity flex flex-col gap-[18px] h-fit"
@@ -105,14 +121,14 @@
 	</div>
 
 	<!-- Media -->
-	{#each show?.content as media}
+	{#each show?.content || [] as media}
 		<MediaEntry entry={media} />
 	{/each}
 
 	<!-- Works -->
 	<Anchor title="Works">
 		<div class="flex flex-col gap-[96px]">
-			{#each show?.works as work}
+			{#each show?.works || [] as work}
 				<MediaEntry entry={work} />
 			{/each}
 		</div>
@@ -126,10 +142,33 @@
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 			>
-				{#each show?.press as press}
+				{#each show?.press || [] as press}
 					<Press item={press} />
 				{/each}
 			</div>
 		</div>
 	</Anchor>
+
+	<div class="flex items-center">
+		<button
+			on:click={() => {
+				window.scrollTo({ behavior: 'smooth', top: 0 });
+			}}
+			class="hover:opacity-60 transition-opacity w-fit mx-auto sans cursor-pointer"
+			>Return to Top</button
+		>
+	</div>
+
+	<Tabber
+		next={{
+			link: `/exhibitions/${nextExhibition?.slug.current}`,
+			title: nextExhibition?.title,
+			details: `${nextExhibition.venue}\n${formatDate(nextExhibition.startDate, nextExhibition.endDate)}`
+		}}
+		previous={{
+			link: `/exhibitions/${previousExhibition?.slug.current}`,
+			title: previousExhibition?.title,
+			details: `${previousExhibition.venue}\n${formatDate(previousExhibition.startDate, previousExhibition.endDate)}`
+		}}
+	/>
 </div>

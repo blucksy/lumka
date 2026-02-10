@@ -69,12 +69,14 @@ export default defineType({
       title: 'Long Biography',
       description: 'Biography to be displayed on artist page',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'shortBio',
       title: 'Short Biography',
       description: 'Biography to be displayed on other pages',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({

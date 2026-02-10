@@ -28,7 +28,7 @@
 			</div>
 			<div class="flex gap-[9px]">
 				<p class="opacity-60 small-sans">© {new Date().getFullYear()} LUmkA</p>
-				{#each data.legal as legal}
+				{#each data?.legal || [] as legal}
 					<a
 						href="/legal/{legal.slug.current}"
 						class="hover:opacity-100 opacity-60 transition-opacity small-sans">{legal.title}</a
@@ -87,7 +87,7 @@
 		</div>
 
 		<div class="">
-			{#each data.legal as legal}
+			{#each data?.legal || [] as legal}
 				<a
 					href="/legal/{legal.slug.current}"
 					class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">{legal.title}</a

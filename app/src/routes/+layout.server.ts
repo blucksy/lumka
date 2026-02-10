@@ -1,3 +1,4 @@
+import getLastName from '$lib/utils/getLastName';
 import type { PageServerLoad } from './$types';
 
 // TO DO: Remove alltags and refactor page template to fetch tags from layout
@@ -40,7 +41,16 @@ export const load: PageServerLoad = async (event) => {
 	}
 	`;
 
-	const initial = await loadQuery(query);
+	let initial = await loadQuery(query);
+
+	console.log('Initial data:', initial);
+
+	initial.data.artists.represented.sort((a, b) =>
+		getLastName(a.title).localeCompare(getLastName(b.title))
+	);
+	initial.data.artists.exhibited.sort((a, b) =>
+		getLastName(a.title).localeCompare(getLastName(b.title))
+	);
 
 	return {
 		query,
