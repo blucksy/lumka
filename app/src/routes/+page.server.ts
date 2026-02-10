@@ -1,9 +1,9 @@
+import groq from 'groq';
 import type { LayoutServerLoad } from './$types';
-import { homeQuery } from '$lib/sanity/queries';
 export const load: LayoutServerLoad = async (event) => {
 	const { preview, loadQuery } = event.locals;
 
-	const query = homeQuery;
+	const query = groq`*[_type == "homepage" ][0] {publications[]{...}}`;
 
 	const initial = await loadQuery(
 		query,
