@@ -5,7 +5,7 @@
 	export let exhibitions;
 </script>
 
-<div transition:slide class="px-[12px] py-[18px]">
+<div transition:slide class="px-[12px] py-[18px] flex flex-col gap-[18px]">
 	{#each exhibitions as exhibition}
 		<a
 			class="grid grid-cols-3 gap-[12px] hover:italic"
