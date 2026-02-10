@@ -28,12 +28,10 @@
 			</div>
 			<div class="flex gap-[9px]">
 				<p class="opacity-60 small-sans">© {new Date().getFullYear()} LUmkA</p>
-				{#each socials as social}
+				{#each data.legal as legal}
 					<a
-						href={social.url}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="hover:opacity-100 opacity-60 transition-opacity small-sans">{social.name}</a
+						href="/legal/{legal.slug.current}"
+						class="hover:opacity-100 opacity-60 transition-opacity small-sans">{legal.title}</a
 					>
 				{/each}
 			</div>
@@ -89,12 +87,10 @@
 		</div>
 
 		<div class="">
-			{#each socials as social}
+			{#each data.legal as legal}
 				<a
-					href={social.url}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">{social.name}</a
+					href="/legal/{legal.slug.current}"
+					class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">{legal.title}</a
 				>
 			{/each}
 		</div>

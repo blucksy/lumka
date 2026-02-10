@@ -31,6 +31,11 @@ export const load: PageServerLoad = async (event) => {
 			endDate,
 			venue,
 			"artists": artist[]->title
+		},
+
+		"legal": *[_type == "legal"]{
+			title,
+			slug,
 		}
 	}
 	`;

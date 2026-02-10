@@ -30,6 +30,7 @@ export default defineConfig({
             S.documentTypeListItem('artist').title('Artists'),
             S.documentTypeListItem('artwork').title('Artworks'),
             S.documentTypeListItem('press').title('Press'),
+            S.documentTypeListItem('legal').title('Legal'),
 
             S.listItem()
               .title('Settings')
