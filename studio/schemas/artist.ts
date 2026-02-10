@@ -41,8 +41,8 @@ export default defineType({
           type: 'object',
           fields: [
             {
-              name: 'title',
-              title: 'Link Title',
+              name: 'label',
+              title: 'Label',
               type: 'string',
               validation: (Rule) => Rule.required(),
             },
@@ -50,9 +50,17 @@ export default defineType({
               name: 'url',
               title: 'URL',
               type: 'url',
-              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'file',
+              title: 'File',
+              type: 'file',
             },
           ],
+          validation: (Rule) =>
+            Rule.custom((fields) =>
+              fields.url || fields.file ? true : 'Must have either a URL or a file',
+            ),
         },
       ],
     }),
@@ -69,6 +77,17 @@ export default defineType({
       type: 'blockContent',
     }),
 
+    defineField({
+      name: 'press',
+      title: 'Press',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'press'}],
+        },
+      ],
+    }),
     defineField({
       name: 'slug',
       title: 'Slug',

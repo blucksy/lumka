@@ -1,86 +1,105 @@
 <script lang="ts">
-	import { useQuery } from '@sanity/svelte-loader';
-	import ImageWrapper from '../../../components/ImageWrapper.svelte';
-	import { urlFor } from '$lib/sanity/image';
-	import { fade } from 'svelte/transition';
-	import { cubicInOut } from 'svelte/easing';
-	import Tags from '../../../components/Tags.svelte';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
-	import { onMount, onDestroy } from 'svelte';
-	import VideoWrapper from '../../../components/VideoWrapper.svelte';
+	import formatDate from '$lib/utils/formatDate';
 	import { PortableText } from '@portabletext/svelte';
-	import { projectId } from '$lib/sanity/api';
-
-	export type Artist = {
-		_id: string;
-		_type: 'artist';
-		_createdAt: string;
-		_updatedAt: string;
-		_rev: string;
-
-		title: string;
-
-		slug: {
-			current: string;
-		};
-
-		orderRank: string;
-
-		schooling: string;
-
-		shortBio: any[];
-		longBio: any[];
-	};
+	import { useQuery } from '@sanity/svelte-loader';
+	import MediaEntry from '../../../components/MediaEntry.svelte';
+	import Press from '../../../components/Press.svelte';
 
 	export let data;
 	const q = useQuery(data);
 
-	let gridView = false;
+	let artist;
 
-	let post: Artist | null = null;
+	$: ({ data: artist } = $q);
 
-	$: ({ data: post } = $q);
-
-	let currentIndex = 0;
-
-	$: isDesktop = false;
-	$: console.log(post?.artist);
-	// onMount, set isDesktop based on window width
-
-	// listen for urlChange to set gridView
+	$: console.log(artist);
 </script>
 
-<div class="flex flex-col gap-[var(--xxl)] justify-center">
+<div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
+	<!-- Main	-->
 	<div>
-		<h1 class="type-title text-center">{post?.artist.title}</h1>
+		<h1 class="title italic text-center">{artist?.title}</h1>
 
-		<ImageWrapper
-			image={post?.artist.exhibitionImage}
-			alt={post?.artist.title}
-			srcset={[128, 256, 384, 512]}
-		/>
-		<div class="flex mx-auto w-full">{post?.artist.schooling}</div>
+		{#if artist?.links?.length > 0}
+			<div
+				class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
+			>
+				{#each artist?.links as link}
+					<a href={link?.url} target="_blank" rel="noopener noreferrer">
+						{link?.label}
+					</a>
+				{/each}
+			</div>
+		{/if}
+
+		<div class="mt-[96px] main-grid">
+			<div
+				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 *:mobile-body sm:*:body *:indent-[48px] *:first:indent-0 flex flex-col gap-[24px]"
+			>
+				<PortableText value={artist?.longBio} />
+			</div>
+		</div>
 	</div>
-</div>
-<div>
-	<PortableText value={post?.artist.longBio} />
-	<!-- d -->
-</div>
-<div>
-	{#if post.artist.content}
-		{#each post?.artist.content as item}
-			{#if item._type === 'image'}
-				<ImageWrapper image={item.asset} alt={post?.artist.title} srcset={[128, 256, 384, 512]} />
-			{/if}
+
+	<!-- Exhibitions -->
+
+	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
+		<p class="small-caps small-serif text-center" id="exhibitions">Exhibitions</p>
+		<div class="main-grid">
+			<div
+				class="
+			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
+			flex flex-col gap-[48px]"
+			>
+				{#each artist?.exhibitions as exhibition}
+					<a
+						href="/exhibitions/{exhibition.slug.current}"
+						class="text-center flex flex-col gap-[18px]"
+					>
+						<p class="sm:link-serif mobile-link italic">{exhibition.title}</p>
+						<p class="sans">
+							{#if exhibition?.artists > 1}
+								{#each exhibition?.artists as artist, i}
+									{artist}{#if i < exhibition.artists.length - 1},&nbsp;{/if}
+								{/each}
+								<br />
+							{/if}
+							{formatDate(exhibition.startDate, exhibition.endDate)}
+							<br />
+							{exhibition?.venue}
+						</p>
+					</a>
+				{/each}
+			</div>
+		</div>
+	</div>
+
+	<!-- Works -->
+	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
+		<p class="small-caps small-serif text-center" id="works">Works</p>
+
+		{#each artist?.works as work}
+			<div class="flex flex-col gap-[96px]">
+				<MediaEntry entry={work} />
+			</div>
 		{/each}
-	{/if}
-</div>
-<div>
-	{#if post.artist.work}
-		{#each post?.artist.works as work}
-			{work}
-		{/each}
-	{/if}
+	</div>
+
+	<!-- Press -->
+
+	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
+		<p class="small-caps small-serif text-center" id="press">Press</p>
+
+		<div class="main-grid">
+			<div
+				class="
+			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
+			flex flex-col gap-[48px]"
+			>
+				{#each artist?.press as press}
+					<Press item={press} />
+				{/each}
+			</div>
+		</div>
+	</div>
 </div>
