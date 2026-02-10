@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
-	import Artists from './Artists.svelte';
-	import Exhibitions from './Exhibitions.svelte';
-	import Main from './Main.svelte';
+	import ArtistView from './ArtistView.svelte';
+	import ExhibitionView from './ExhibitionView.svelte';
+	import MainView from './MainView.svelte';
 
 	export let data;
 	console.log(data);
@@ -34,11 +34,11 @@
 	use:clickOutside={() => (open = '')}
 >
 	{#if open === 'main'}
-		<Main about={data?.settings.about} announcement={data?.settings.announcement} />
+		<MainView about={data?.settings.about} announcement={data?.settings.announcement} />
 	{:else if open === 'exhibitions'}
-		<Exhibitions exhibitions={data?.exhibitions} />
+		<ExhibitionView exhibitions={data?.exhibitions} />
 	{:else if open === 'artists'}
-		<Artists represented={data?.artists.represented} exhibited={data?.artists.exhibited} />
+		<ArtistView represented={data?.artists.represented} exhibited={data?.artists.exhibited} />
 	{/if}
 	<div
 		class="flex *:flex-1 h-[27px]
