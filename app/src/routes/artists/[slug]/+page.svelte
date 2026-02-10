@@ -1,5 +1,6 @@
 <script lang="ts">
 	import formatDate from '$lib/utils/formatDate';
+	import removeEmptyPortableTextBlocks from '$lib/utils/removeEmptyPortableTextBlocks';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
@@ -20,19 +21,27 @@
 	<div>
 		<h1 class="title italic text-center">{artist?.title}</h1>
 
-		{#if artist?.links?.length > 0}
-			<div
-				class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
-			>
-				{#each artist?.links as link}
-					<a href={link?.url} target="_blank" rel="noopener noreferrer">
-						{link?.label}
-					</a>
-				{/each}
-			</div>
-		{/if}
+		<div class="whitespace-pre-line text-center mt-[24px]">
+			<p class="small-sans">
+				<PortableText value={removeEmptyPortableTextBlocks(artist?.schooling)} />
+			</p>
+		</div>
 
-		<div class="mt-[96px] main-grid">
+		<div
+			class="mt-[24px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
+		>
+			<a href="#exhibitions">Exhibitions</a>
+			<a href="#works">Works</a>
+			<a href="#press">Press</a>
+
+			{#each artist?.extraLinks ?? [] as link}
+				<a href={link?.url} target="_blank" rel="noopener noreferrer">
+					{link?.label}
+				</a>
+			{/each}
+		</div>
+
+		<div class="mt-[96px] md:mt-[48px] main-grid">
 			<div
 				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 *:mobile-body sm:*:body *:indent-[48px] *:first:indent-0 flex flex-col gap-[24px]"
 			>
@@ -51,14 +60,14 @@
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 			>
-				{#each artist?.exhibitions as exhibition}
+				{#each artist?.exhibitions ?? [] as exhibition}
 					<a
 						href="/exhibitions/{exhibition.slug.current}"
 						class="text-center flex flex-col gap-[18px]"
 					>
 						<p class="sm:link-serif mobile-link italic">{exhibition.title}</p>
 						<p class="sans">
-							{#if exhibition?.artists > 1}
+							{#if exhibition?.artists?.length > 1}
 								{#each exhibition?.artists as artist, i}
 									{artist}{#if i < exhibition.artists.length - 1},&nbsp;{/if}
 								{/each}
@@ -78,7 +87,7 @@
 	<div class="flex flex-col gap-[24px] sm:gap-[48px]">
 		<p class="small-caps small-serif text-center" id="works">Works</p>
 
-		{#each artist?.works as work}
+		{#each artist?.works ?? [] as work}
 			<div class="flex flex-col gap-[96px]">
 				<MediaEntry entry={work} />
 			</div>
@@ -96,7 +105,7 @@
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 			>
-				{#each artist?.press as press}
+				{#each artist?.press ?? [] as press}
 					<Press item={press} />
 				{/each}
 			</div>

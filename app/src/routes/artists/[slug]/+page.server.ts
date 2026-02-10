@@ -10,7 +10,7 @@ export const load: PageServerLoad = async (event) => {
 	const artistQuery = groq`
 		 *[_type == "artist" && slug.current == $slug][0] {
 			...,
-			"links": links[] {
+			"extraLinks": links[] {
 				label,
 				"url": coalesce(file.asset->url, url),
 			},

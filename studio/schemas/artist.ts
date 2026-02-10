@@ -24,7 +24,7 @@ export default defineType({
       name: 'schooling',
       title: 'School + General Information',
       validation: (Rule) => Rule.required(),
-      type: 'text',
+      type: 'blockContent',
     }),
     defineField({
       name: 'year',
