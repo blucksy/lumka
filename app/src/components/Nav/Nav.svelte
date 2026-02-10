@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
+	import { onDestroy } from 'svelte';
 	import ArtistView from './ArtistView.svelte';
 	import ExhibitionView from './ExhibitionView.svelte';
 	import MainView from './MainView.svelte';
 
 	export let data;
-	console.log(data);
 
 	let open = '';
 
@@ -26,7 +26,28 @@
 					? 'artists'
 					: 'main');
 
-	console.log(activeTab);
+	// --- CLOSE ON PAGE CHANGE ---
+	const unsubscribePage = page.subscribe(() => {
+		open = '';
+	});
+
+	// --- CLOSE ON SCROLL ONLY WHEN OPEN ---
+	let handleScroll: () => void;
+
+	$: {
+		if (open) {
+			handleScroll = () => (open = '');
+			window.addEventListener('scroll', handleScroll, { passive: true });
+		} else if (handleScroll) {
+			window.removeEventListener('scroll', handleScroll);
+			handleScroll = null;
+		}
+	}
+
+	onDestroy(() => {
+		unsubscribePage();
+		if (handleScroll) window.removeEventListener('scroll', handleScroll);
+	});
 </script>
 
 <div
