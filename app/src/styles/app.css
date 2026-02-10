@@ -16,3 +16,11 @@
 p:empty {
 	@apply hidden;
 }
+
+.medium-zoom-image--opened {
+	z-index: 99999;
+}
+
+.medium-zoom-overlay {
+	z-index: 99998;
+}

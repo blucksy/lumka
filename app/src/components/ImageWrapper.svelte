@@ -13,6 +13,7 @@
 	export let hotspot;
 	export let loading: 'eager' | 'lazy' = 'eager';
 	export let objectFit: boolean;
+	export let zoomable: boolean = false;
 	let imgRef;
 	let newSrcSet = '';
 
@@ -84,5 +85,6 @@
 		{alt}
 		class={`w-full opacity-0 object-cover  !shadow-none anim-opacity  ${className}`}
 		srcset={newSrcSet}
+		data-zoomable={zoomable || undefined}
 	/>
 {/if}

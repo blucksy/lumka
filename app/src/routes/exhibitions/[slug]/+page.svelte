@@ -3,6 +3,8 @@
 	import formatDate from '$lib/utils/formatDate';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
+	import mediumZoom from 'medium-zoom';
+	import { onMount } from 'svelte';
 	import ImageWrapper from '../../../components/ImageWrapper.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
@@ -16,6 +18,18 @@
 	$: ({ data: show } = $q);
 
 	$: console.log(show);
+
+	onMount(() => {
+		const zoom = mediumZoom('[data-zoomable]', {
+			margin: 24,
+			background: 'rgba(256, 256, 256, 0.75)',
+			scrollOffset: 0
+		});
+
+		return () => {
+			zoom.detach();
+		};
+	});
 </script>
 
 <Tags
@@ -33,7 +47,11 @@
 			<div
 				class="col-span-11 sm:col-start-3 md:col-span-9 md:col-start-4 lg:col-span-7 lg:col-start-5"
 			>
-				<ImageWrapper className="aspect-5/3 object-cover" image={show?.exhibitionImage} />
+				<ImageWrapper
+					className="aspect-5/3 object-cover"
+					image={show?.exhibitionImage}
+					zoomable={true}
+				/>
 			</div>
 		</div>
 		<div class="mt-[18px] text-center">

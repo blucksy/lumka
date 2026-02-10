@@ -3,6 +3,8 @@
 	import removeEmptyPortableTextBlocks from '$lib/utils/removeEmptyPortableTextBlocks';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
+	import mediumZoom from 'medium-zoom';
+	import { onMount } from 'svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
 	import TextRotate from '../../../components/Text/TextRotate.svelte';
@@ -15,6 +17,18 @@
 	$: ({ data: artist } = $q);
 
 	$: console.log(artist);
+
+	onMount(() => {
+		const zoom = mediumZoom('[data-zoomable]', {
+			margin: 24,
+			background: 'rgba(256, 256, 256, 0.75)',
+			scrollOffset: 0
+		});
+
+		return () => {
+			zoom.detach();
+		};
+	});
 </script>
 
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">

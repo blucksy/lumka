@@ -23,7 +23,7 @@
 				{@html entry.embed}
 			</div>
 		{:else if image}
-			<ImageWrapper className="w-full" {image} />
+			<ImageWrapper className="w-full" {image} zoomable={true} />
 		{/if}
 		{#if entry.title}
 			<div class="mt-[18px] sm:mt-[24px] flex flex-col gap-[12px] text-center">
