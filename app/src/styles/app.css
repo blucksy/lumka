@@ -24,3 +24,7 @@ p:empty {
 .medium-zoom-overlay {
 	z-index: 99998;
 }
+
+* {
+	transition-timing-function: cubic-bezier(0.45, 0, 0.05, 1) !important;
+}

@@ -1,17 +1,27 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
 	import { onDestroy } from 'svelte';
 	import ArtistView from './ArtistView.svelte';
 	import ExhibitionView from './ExhibitionView.svelte';
 	import MainView from './MainView.svelte';
+	import NewsletterView from './NewsletterView.svelte';
 
 	export let data;
 
 	let open = '';
 
-	function toggleTab(tab: string) {
+	export function toggleTab(tab: string) {
 		open = open === tab ? '' : tab;
+		if (open) {
+			document.getElementById('nav-holder').style.height =
+				document.getElementById(`nav-${tab}`)?.scrollHeight + 'px';
+		}
+	}
+
+	$: if (!open && browser) {
+		document.getElementById('nav-holder').style.height = '0px';
 	}
 
 	let activeTab;
@@ -54,26 +64,45 @@
 	class="fixed bg-lumka w-[468px] top-[6px] left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
-	{#if open === 'main'}
-		<MainView about={data?.settings.about} announcement={data?.settings.announcement} />
-	{:else if open === 'exhibitions'}
-		<ExhibitionView exhibitions={data?.exhibitions} />
-	{:else if open === 'artists'}
-		<ArtistView represented={data?.artists.represented} exhibited={data?.artists.exhibited} />
-	{/if}
+	<div
+		id="nav-holder"
+		class="relative overflow-hidden transition-[height] duration-300 h-0
+		*:absolute *:aria-hidden:opacity-0 *:aria-hidden:pointer-events-none *:transition-opacity *:w-full"
+	>
+		<div id="nav-main" aria-hidden={activeTab !== 'main' || !open}>
+			<MainView
+				{toggleTab}
+				about={data?.settings.about}
+				announcement={data?.settings.announcement}
+			/>
+		</div>
+		<div id="nav-exhibitions" aria-hidden={activeTab !== 'exhibitions' || !open}>
+			<ExhibitionView exhibitions={data?.exhibitions} />
+		</div>
+		<div id="nav-artists" aria-hidden={activeTab !== 'artists' || !open}>
+			<ArtistView represented={data?.artists.represented} exhibited={data?.artists.exhibited} />
+		</div>
+		<div id="nav-newsletter" aria-hidden={activeTab !== 'newsletter' || !open}>
+			<NewsletterView />
+		</div>
+	</div>
+
 	<div
 		class="flex *:flex-1 h-[27px]
 					*:cursor-pointer *:transition-colors *:bg-black/0 *:duration-300
 					*:data-[active=true]:italic *:data-[active=false]:bg-black/5 *:small-serif *:my-0!"
 	>
-		<button on:click={() => toggleTab('main')} data-active={activeTab === 'main'}>LUmkA</button>
+		<button
+			on:click={() => toggleTab('main')}
+			data-active={activeTab === 'main' || activeTab === 'newsletter'}>LUmkA</button
+		>
 		<button on:click={() => toggleTab('exhibitions')} data-active={activeTab === 'exhibitions'}
 			>Exhibitions</button
 		>
 		<button on:click={() => toggleTab('artists')} data-active={activeTab === 'artists'}
 			>Artists</button
 		>
-		<a href="/press" class="" data-active={activeTab === 'press'} on:click={() => (open = '')}>
+		<a href="/press" class="" data-active={activeTab === 'press'} on:click={() => toggleTab('')}>
 			<div class="flex h-full w-full items-center justify-center pointer-cursor">Press</div>
 		</a>
 	</div>

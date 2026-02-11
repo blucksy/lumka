@@ -1,13 +1,12 @@
 <script>
 	import formatDate from '$lib/utils/formatDate';
-	import { slide } from 'svelte/transition';
 	import Halftone from '../Halftone.svelte';
 
 	export let exhibitions;
 </script>
 
-<div transition:slide class="px-[12px] py-[18px] flex flex-col gap-[18px]">
-	{#each exhibitions as exhibition}
+<div class="px-[12px] py-[18px] flex flex-col gap-[18px]">
+	{#each exhibitions ?? [] as exhibition}
 		<div class=" w-full group relative">
 			<a
 				href={`/exhibitions/${exhibition.slug.current}`}
