@@ -10,7 +10,7 @@
 	];
 </script>
 
-<div class="bg-lumka main-grid px-page py-[24px] hidden! md:grid!">
+<div class="bg-[#ededed] main-grid px-page py-[24px] hidden! md:grid!">
 	<div class="sm:col-span-7 md:col-span-6 lg:col-span-5 flex flex-col justify-between">
 		<div class="small-serif">
 			{data?.settings?.about}
@@ -41,7 +41,7 @@
 	<div
 		class="sm:col-span-7 md:col-span-6 lg:col-span-5 sm:col-start-9 md:col-start-10 lg:col-start-11 flex flex-col gap-[96px] items-end"
 	>
-		<div class="text-right flex flex-col gap-[24px]">
+		<div class="text-right flex flex-col gap-[18px]">
 			<div class="small-serif">
 				For a behind-the-scenes look at our gallery, news about exhibitions, artists, projects,
 				along with a word from our editor, subscribe to LUmkA’s newsletter:
@@ -63,8 +63,8 @@
 </div>
 
 <!-- Mobile Footer -->
-<div class="bg-lumka flex flex-col gap-[48px] px-page py-[24px] md:hidden!">
-	<div class="flex flex-col gap-[24px]">
+<div class="bg-[#ededed] flex flex-col gap-[48px] px-page py-[18px] md:hidden!">
+	<div class="flex flex-col gap-[18px]">
 		<div class="small-serif">
 			For a behind-the-scenes look at our gallery, news about exhibitions, artists, projects, along
 			with a word from our editor, subscribe to LUmkA’s newsletter:
