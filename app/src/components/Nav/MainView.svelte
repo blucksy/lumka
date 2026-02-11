@@ -30,11 +30,11 @@
 				<button on:click={() => (newsletter = true)}>Newsletter</button>
 				<a href="mailto:info@lumka.com">Contact</a>
 			</div>
-			<div>{about}</div>
+			<div class="small-serif">{about}</div>
 			{#if announcement}
 				<div class="flex gap-[12px]">
-					<div class="small-caps opacity-60">Announcement</div>
-					<div>{announcement}</div>
+					<div class="small-caps small-serif opacity-60">Announcement</div>
+					<div class="small-serif">{announcement}</div>
 				</div>
 			{/if}
 		</div>

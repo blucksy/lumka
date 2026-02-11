@@ -51,7 +51,7 @@
 </script>
 
 <div
-	class="fixed bg-lumka w-[468px] small-serif top-[6px] left-[18px] z-20 nav"
+	class="fixed bg-lumka w-[468px] top-[6px] left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
 	{#if open === 'main'}
@@ -64,7 +64,7 @@
 	<div
 		class="flex *:flex-1 h-[27px]
 					*:cursor-pointer *:transition-colors *:bg-black/0 *:duration-300
-					*:data-[active=true]:italic *:data-[active=false]:bg-black/5"
+					*:data-[active=true]:italic *:data-[active=false]:bg-black/5 *:small-serif *:my-0!"
 	>
 		<button on:click={() => toggleTab('main')} data-active={activeTab === 'main'}>LUmkA</button>
 		<button on:click={() => toggleTab('exhibitions')} data-active={activeTab === 'exhibitions'}

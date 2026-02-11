@@ -16,12 +16,14 @@ export const load: PageServerLoad = async (event) => {
 			"represented": *[_type == "artist" && represented == true] | order(title asc){
 				title,
 				slug,
-				represented
+				represented,
+				"image": *[_type == "artwork" && references(^._id)][0].artworkImage.asset->url
 			},
 			"exhibited": *[_type == "artist" && represented != true] | order(title asc){
 				title,
 				slug,
-				represented
+				represented,
+				"image": *[_type == "artwork" && references(^._id)][0].artworkImage.asset->url
 			}
 		},
 
@@ -31,7 +33,8 @@ export const load: PageServerLoad = async (event) => {
 			startDate,
 			endDate,
 			venue,
-			"artists": artist[]->title
+			"artists": artist[]->title,
+			"image": exhibitionImage.asset->url,
 		},
 
 		"legal": *[_type == "legal"]{
