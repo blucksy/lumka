@@ -14,7 +14,8 @@
 
 	export let data;
 	console.log(data);
-	const q = useQuery(data);
+	let q;
+	$: q = useQuery(data);
 
 	let artist;
 

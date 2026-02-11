@@ -14,7 +14,8 @@
 	import Body from '../../../components/Text/Body.svelte';
 
 	export let data;
-	const q = useQuery(data);
+	let q;
+	$: q = useQuery(data);
 
 	let show;
 
