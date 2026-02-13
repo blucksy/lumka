@@ -7,7 +7,7 @@ export default function removeEmptyPortableTextBlocks(blocks) {
 		// Keep blocks with children that include at least one non-whitespace span
 		if (Array.isArray(block.children)) {
 			return block.children.some(
-				(child) => typeof child.text === 'string' && child.text.trim().length > 0
+				(child) => typeof child.text === 'string' && child.text.trim().length > 1
 			);
 		}
 

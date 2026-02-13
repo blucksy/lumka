@@ -35,8 +35,6 @@
 	}
 
 	const space = ' ';
-
-	console.log(spans);
 </script>
 
 {#each spans as span}
