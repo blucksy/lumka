@@ -12,16 +12,26 @@
 
 	let open = '';
 
-	export function toggleTab(tab: string) {
+	function recalcHeight() {
+		if (open) {
+			const el = document.getElementById(`nav-${open}`);
+			document.getElementById('nav-holder').style.height = el ? el.scrollHeight + 'px' : '0px';
+
+			console.log('recalc', el ? el.scrollHeight : 'no element');
+		} else {
+			document.getElementById('nav-holder').style.height = '0px';
+		}
+	}
+
+	function toggleTab(tab: string) {
 		open = open === tab ? '' : tab;
 		if (open) {
-			document.getElementById('nav-holder').style.height =
-				document.getElementById(`nav-${tab}`)?.scrollHeight + 'px';
+			recalcHeight();
 		}
 	}
 
 	$: if (!open && browser) {
-		document.getElementById('nav-holder').style.height = '0px';
+		recalcHeight();
 	}
 
 	let activeTab;
@@ -77,7 +87,7 @@
 			/>
 		</div>
 		<div id="nav-exhibitions" aria-hidden={activeTab !== 'exhibitions' || !open}>
-			<ExhibitionView exhibitions={data?.exhibitions} />
+			<ExhibitionView {recalcHeight} exhibitions={data?.exhibitions} />
 		</div>
 		<div id="nav-artists" aria-hidden={activeTab !== 'artists' || !open}>
 			<ArtistView represented={data?.artists.represented} exhibited={data?.artists.exhibited} />
