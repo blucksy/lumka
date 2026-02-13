@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity/image';
 	import formatDate from '$lib/utils/formatDate';
+	import getLastName from '$lib/utils/getLastName';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
 	import mediumZoom from 'medium-zoom';
@@ -75,7 +76,7 @@
 		</div>
 		<div class="mt-[18px] text-center">
 			<p class="sans">
-				{#each show?.artist || [] as artist, i}
+				{#each show?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
 					<a class="hover:opacity-60 transition-opacity" href="/artists/{artist.slug.current}"
 						>{artist.title}</a
 					>{#if i < show.artist.length - 1},&nbsp;{/if}
@@ -91,7 +92,9 @@
 		>
 			<a href="#works">Works</a>
 
-			<a href="#press">Press</a>
+			{#if show?.press && show.press.length > 0}
+				<a href="#press">Press</a>
+			{/if}
 			{#each show?.extraLinks || [] as link}
 				<a href={link?.url} target="_blank" rel="noopener noreferrer">
 					{link?.label}
@@ -106,9 +109,9 @@
 
 	<!-- Artists -->
 	<div
-		class="flex flex-col gap-[48px] sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))]"
+		class="flex flex-col gap-[48px] justify-center sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))]"
 	>
-		{#each show?.artist || [] as artist}
+		{#each show?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
 			<a
 				href="/artists/{artist.slug.current}"
 				class="sm:w-[calc(((100vw-(36px+24px*14))/15*5+24px*4))] hover:opacity-60 transition-opacity flex flex-col gap-[18px] h-fit"

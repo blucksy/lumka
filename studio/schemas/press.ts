@@ -40,17 +40,6 @@ export default defineType({
       name: 'pdf',
       title: 'PDF of article',
       type: 'file',
-      validation: (Rule) =>
-        Rule.custom((file) => {
-          if (file && file.asset && file.asset._ref) {
-            const ref = file.asset._ref
-            const extension = ref.split('.').pop().toLowerCase()
-            if (extension !== 'pdf') {
-              return 'Only PDF files are allowed.'
-            }
-          }
-          return true
-        }),
     }),
     defineField({
       name: 'pressPage',

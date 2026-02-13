@@ -125,6 +125,7 @@ export default defineType({
       title: 'Works',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'artwork'}]}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'press',
