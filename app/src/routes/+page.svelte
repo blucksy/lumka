@@ -1,4 +1,5 @@
 <script lang="ts">
+	import removeEmptyPortableTextBlocks from '$lib/utils/removeEmptyPortableTextBlocks';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
 	import { onMount } from 'svelte';
@@ -34,7 +35,7 @@
 					{#if item.link}
 						<TextRotate item={item.title} />
 					{:else}
-						<PortableText value={item.title} />
+						<PortableText value={removeEmptyPortableTextBlocks(item.title)} />
 					{/if}
 				</p>
 				{#if item.subtitle}

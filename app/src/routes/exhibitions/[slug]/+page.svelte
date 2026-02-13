@@ -136,19 +136,21 @@
 	</Anchor>
 
 	<!-- Press -->
-	<Anchor title="Press">
-		<div class="main-grid">
-			<div
-				class="
+	{#if show?.press && show.press.length > 0}
+		<Anchor title="Press">
+			<div class="main-grid">
+				<div
+					class="
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
-			>
-				{#each show?.press || [] as press}
-					<Press item={press} />
-				{/each}
+				>
+					{#each show?.press as press}
+						<Press item={press} />
+					{/each}
+				</div>
 			</div>
-		</div>
-	</Anchor>
+		</Anchor>
+	{/if}
 
 	<div class="flex items-center">
 		<button

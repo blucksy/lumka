@@ -1,4 +1,6 @@
 <script>
+	import removeEmptyPortableTextBlocks from '$lib/utils/removeEmptyPortableTextBlocks';
+
 	export let item;
 
 	// Precompute a random rotation for each character, once
@@ -23,6 +25,7 @@
 			}
 		];
 	} else {
+		item = removeEmptyPortableTextBlocks(item);
 		spans = item[0].children.map((child) => ({
 			marks: child.marks,
 			words: child.text.split(' ').map((word) => ({
