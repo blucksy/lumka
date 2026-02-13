@@ -28,3 +28,33 @@ p:empty {
 * {
 	transition-timing-function: cubic-bezier(0.45, 0, 0.05, 1) !important;
 }
+
+:root {
+	--col-count: 15;
+	--gap: 24px;
+	--margin: 18px;
+}
+
+.col-span {
+	width: calc(
+		(100vw - (var(--col-count) - 1) * var(--gap) - var(--margin) * 2) / var(--col-count) *
+			var(--span) + (var(--span) - 1) * var(--gap)
+	) !important;
+}
+
+.embla__viewport {
+	overflow: hidden;
+}
+
+.swiper-slide {
+	--span: 0;
+	--slide-spacing: max(
+		calc(
+			(100vw - (var(--col-count) - 1) * var(--gap) - var(--margin) * 2) / var(--col-count) *
+				var(--span) + (var(--span) + 1) * var(--gap)
+		),
+		24px
+	);
+	margin-left: calc((var(--slide-spacing)) / 2);
+	margin-right: calc((var(--slide-spacing)) / 2);
+}

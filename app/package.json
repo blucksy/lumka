@@ -18,8 +18,11 @@
 		"@tailwindcss/postcss": "^4.1.18",
 		"@tailwindcss/vite": "^4.1.18",
 		"clsx": "^2.1.1",
+		"embla-carousel-svelte": "^8.6.0",
+		"embla-carousel-wheel-gestures": "^8.1.0",
 		"groq": "^3.33.0",
 		"medium-zoom": "^1.1.0",
+		"swiper": "^12.1.0",
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {

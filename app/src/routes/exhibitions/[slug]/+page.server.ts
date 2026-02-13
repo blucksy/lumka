@@ -8,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
 	const params = { slug };
 
 	const projectQuery = groq`
-		 *[_type == "exhibition" && slug.current == $slug][0] {
+		 *[_type == "exhibition"] | order(startDate desc) {
 			...,
 			"extraLinks": extraLinks[] {
 				label,
@@ -52,7 +52,13 @@ export const load: PageServerLoad = async (event) => {
 
 	const initial = await loadQuery(projectQuery, params);
 
-	if (!initial) {
+	console.log('initial', initial);
+
+	if (
+		!initial ||
+		initial.data.length === 0 ||
+		initial.data.findIndex((item) => item.slug.current === slug) === -1
+	) {
 		return {
 			status: 404,
 			error: new Error('Exhibition not found')
@@ -61,6 +67,6 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		projectQuery,
-		options: { initial }
+		options: { initial, slug }
 	};
 };

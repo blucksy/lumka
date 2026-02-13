@@ -1,30 +1,67 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { urlFor } from '$lib/sanity/image';
-	import formatDate from '$lib/utils/formatDate';
-	import getLastName from '$lib/utils/getLastName';
+	import formatDate from '$lib/utils/formatDate.js';
+	import getLastName from '$lib/utils/getLastName.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
 	import mediumZoom from 'medium-zoom';
 	import { onMount } from 'svelte';
+	import Swiper from 'swiper';
+	import { Mousewheel } from 'swiper/modules';
 	import Anchor from '../../../components/Anchor.svelte';
 	import ImageWrapper from '../../../components/ImageWrapper.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
 	import Press from '../../../components/Press.svelte';
 	import Tabber from '../../../components/Tabber.svelte';
+
 	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
+
+	import 'swiper/css';
+	import 'swiper/css/mousewheel';
 
 	export let data;
 	let q;
 	$: q = useQuery(data);
 
-	let show;
+	let shows;
+	let currentShow;
 
-	$: ({ data: show } = $q);
+	$: ({ data: shows } = $q);
 
-	$: console.log(show);
+	$: currentShow = shows?.find((s) => s.slug.current === data.options.slug);
+
+	let swiper;
 
 	onMount(() => {
+		const initialIndex = shows?.findIndex((s) => s.slug.current === data.options.slug) || 0;
+		swiper = new Swiper('.swiper', {
+			modules: [Mousewheel],
+			loop: true,
+			speed: 750,
+			slidesPerView: 'auto',
+			spaceBetween: 0,
+			centeredSlides: true,
+			mousewheel: {
+				forceToAxis: true
+			},
+			initialSlide: initialIndex,
+			autoHeight: true
+		});
+
+		swiper.on('slideChange', () => {
+			// Figure out the real index in your `shows` array
+			const realIndex = swiper.realIndex;
+			const show = shows[realIndex];
+			if (show && show.slug.current !== currentShow?.slug.current) {
+				currentShow = show;
+
+				// Shallow update the route
+				goto(`/exhibitions/${show.slug.current}`, { replaceState: true, noScroll: true });
+			}
+		});
+
 		const zoom = mediumZoom('[data-zoomable]', {
 			margin: 24,
 			background: 'rgba(256, 256, 256, 0.75)',
@@ -38,72 +75,80 @@
 
 	let nextExhibition, previousExhibition;
 	$: {
-		const currentIndex = show.allExhibitions.findIndex((e) => e.slug.current === show.slug.current);
+		const currentIndex = shows.findIndex((e) => e.slug.current === currentShow.slug.current);
 
-		previousExhibition =
-			currentIndex > 0
-				? show.allExhibitions[currentIndex - 1]
-				: show.allExhibitions[show.allExhibitions.length - 1];
+		previousExhibition = currentIndex > 0 ? shows[currentIndex - 1] : shows[shows.length - 1];
 
-		nextExhibition =
-			currentIndex < show.allExhibitions.length - 1
-				? show.allExhibitions[currentIndex + 1]
-				: show.allExhibitions[0];
+		nextExhibition = currentIndex < shows.length - 1 ? shows[currentIndex + 1] : shows[0];
 	}
 </script>
 
 <Tags
-	title={show?.title || 'Exhibition'}
-	image={show?.exhibitionImage
-		? urlFor(show.exhibitionImage.asset).width(1600).quality(100).auto('format').url()
+	title={currentShow?.title || 'Exhibition'}
+	image={currentShow?.exhibitionImage
+		? urlFor(currentShow.exhibitionImage.asset).width(1600).quality(100).auto('format').url()
 		: ''}
 />
 
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
 	<!-- Main	-->
-	<div>
-		<h1 class="title italic text-center">{show?.title}</h1>
-		<div class="main-grid mt-[48px]">
-			<div
-				class="col-span-11 sm:col-start-3 md:col-span-9 md:col-start-4 lg:col-span-7 lg:col-start-5"
-			>
-				<ImageWrapper
-					className="aspect-5/3 object-cover"
-					image={show?.exhibitionImage}
-					zoomable={true}
-				/>
-			</div>
-		</div>
-		<div class="mt-[18px] text-center">
-			<p class="sans">
-				{#each show?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
-					<a class="hover:opacity-60 transition-opacity" href="/artists/{artist.slug.current}"
-						>{artist.title}</a
-					>{#if i < show.artist.length - 1},&nbsp;{/if}
-				{/each}
-				<br />
-				{show.venue}
-				<br />
-				{formatDate(show.startDate, show.endDate)}
-			</p>
-		</div>
+
+	<div class="swiper w-screen -mx-[36px]! -mb-[18px] relative">
 		<div
-			class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
-		>
-			<a href="#works">Works</a>
+			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"
+		></div>
+		<div class="swiper-wrapper will-change-transform">
+			{#each shows as item, i}
+				<div
+					id="slide-{i}"
+					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! pb-[18px]"
+				>
+					<div
+						class="col-span [--span:13] md:[--span:11] lg:[--span:9] transition-opacity duration-500"
+					>
+						<h1 class="title italic text-center">{item?.title}</h1>
+						<div class="col-span [--span:11] md:[--span:9] lg:[--span:7] mx-auto mt-[48px]">
+							<ImageWrapper
+								className="aspect-5/3 object-cover"
+								image={item?.exhibitionImage}
+								zoomable={true}
+							/>
+						</div>
+						<div class="mt-[18px] text-center">
+							<p class="sans">
+								{#each item?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
+									<a
+										class="hover:opacity-60 transition-opacity"
+										href="/artists/{artist.slug.current}">{artist.title}</a
+									>{#if i < item.artist.length - 1},&nbsp;{/if}
+								{/each}
+								<br />
+								{item.venue}
+								<br />
+								{formatDate(item.startDate, item.endDate)}
+							</p>
+						</div>
+						<div
+							class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
+						>
+							<a href="#works">Works</a>
 
-			{#if show?.press && show.press.length > 0}
-				<a href="#press">Press</a>
-			{/if}
-			{#each show?.extraLinks || [] as link}
-				<a href={link?.url} target="_blank" rel="noopener noreferrer">
-					{link?.label}
-				</a>
+							{#if item?.press && item.press.length > 0}
+								<a href="#press">Press</a>
+							{/if}
+							{#each item?.extraLinks || [] as link}
+								<a href={link?.url} target="_blank" rel="noopener noreferrer">
+									{link?.label}
+								</a>
+							{/each}
+						</div>
+
+						<div class="mt-[96px] *:block!">
+							<Body text={item?.writeup} />
+						</div>
+					</div>
+				</div>
 			{/each}
-		</div>
-
-		<div class="mt-[96px]">
-			<Body text={show?.writeup} />
 		</div>
 	</div>
 
@@ -111,7 +156,7 @@
 	<div
 		class="flex flex-col gap-[48px] justify-center sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))]"
 	>
-		{#each show?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
+		{#each currentShow?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
 			<a
 				href="/artists/{artist.slug.current}"
 				class="sm:w-[calc(((100vw-(36px+24px*14))/15*5+24px*4))] hover:opacity-60 transition-opacity flex flex-col gap-[18px] h-fit"
@@ -125,21 +170,21 @@
 	</div>
 
 	<!-- Media -->
-	{#each show?.content || [] as media}
+	{#each currentShow?.content || [] as media}
 		<MediaEntry entry={media} />
 	{/each}
 
 	<!-- Works -->
 	<Anchor title="Works">
 		<div class="flex flex-col gap-[96px]">
-			{#each show?.works || [] as work}
+			{#each currentShow?.works || [] as work}
 				<MediaEntry entry={work} />
 			{/each}
 		</div>
 	</Anchor>
 
 	<!-- Press -->
-	{#if show?.press && show.press.length > 0}
+	{#if currentShow?.press && currentShow.press.length > 0}
 		<Anchor title="Press">
 			<div class="main-grid">
 				<div
@@ -147,7 +192,7 @@
 			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 			flex flex-col gap-[48px]"
 				>
-					{#each show?.press as press}
+					{#each currentShow?.press as press}
 						<Press item={press} />
 					{/each}
 				</div>
