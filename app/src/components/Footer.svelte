@@ -63,7 +63,7 @@
 </div>
 
 <!-- Mobile Footer -->
-<div class="bg-[#ededed] flex flex-col gap-[48px] px-page py-[18px] md:hidden!">
+<div id="footer" class="bg-[#ededed] flex flex-col gap-[48px] px-page py-[18px] md:hidden!">
 	<div class="flex flex-col gap-[18px]">
 		<div class="small-serif">
 			For a behind-the-scenes look at our gallery, news about exhibitions, artists, projects, along

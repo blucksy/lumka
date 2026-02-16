@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import ArtistView from './ArtistView.svelte';
 	import ExhibitionView from './ExhibitionView.svelte';
 	import MainView from './MainView.svelte';
@@ -12,6 +12,25 @@
 	export let data;
 
 	let open = '';
+
+	let navEl: HTMLElement;
+	let footerEl: HTMLElement;
+
+	function checkOverlap() {
+		if (!navEl || !footerEl) return;
+
+		console.log('checking overlap', {
+			nav: navEl.getBoundingClientRect(),
+			footer: footerEl.getBoundingClientRect()
+		});
+
+		const navRect = navEl.getBoundingClientRect();
+		const footerRect = footerEl.getBoundingClientRect();
+
+		const isOverlapping = navRect.bottom > footerRect.top && navRect.top < footerRect.bottom;
+
+		navEl.setAttribute('aria-hidden', isOverlapping ? 'true' : 'false');
+	}
 
 	function recalcHeight() {
 		if (open) {
@@ -71,10 +90,25 @@
 		unsubscribePage();
 		if (handleScroll) window.removeEventListener('scroll', handleScroll);
 	});
+
+	onMount(() => {
+		navEl = document.getElementById('nav');
+		footerEl = document.getElementById('footer');
+
+		checkOverlap();
+		window.addEventListener('resize', checkOverlap);
+		window.addEventListener('scroll', checkOverlap, { passive: true });
+
+		return () => {
+			window.removeEventListener('resize', checkOverlap);
+			window.removeEventListener('scroll', checkOverlap);
+		};
+	});
 </script>
 
 <div
-	class="fixed bg-lumka bottom-[6px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
+	id="nav"
+	class="fixed duration-300 aria-hidden:opacity-0 aria-hidden:pointer-events-none transition-opacity bg-lumka bottom-[6px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
 	<div
