@@ -58,3 +58,8 @@ p:empty {
 	margin-left: calc((var(--slide-spacing)) / 2);
 	margin-right: calc((var(--slide-spacing)) / 2);
 }
+
+.h-dvh {
+	height: 100vh;
+	height: 100dvh;
+}
