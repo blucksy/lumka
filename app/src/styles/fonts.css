@@ -4,8 +4,26 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+	font-family: 'Sharp Serif Text';
+	src:
+		url('/fonts/SharpSerifText-Regular.woff2') format('woff2'),
+		url('/fonts/SharpSerifText-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Sharp Serif Text';
+	src:
+		url('/fonts/SharpSerifText-Italic.woff2') format('woff2'),
+		url('/fonts/SharpSerifText-Italic.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+}
+
 @theme {
-	--font-serif: 'Sharp Serif Text PE', sans-serif;
+	--font-serif: 'Sharp Serif Text', sans-serif;
 	--font-sans: 'Untitled Sans', sans-serif;
 }
 
