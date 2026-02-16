@@ -4,13 +4,13 @@
 	import getLastName from '$lib/utils/getLastName.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
-	import Anchor from '../../../components/Anchor.svelte';
 	import CarouselPage from '../../../components/CarouselPage.svelte';
 	import ImageWrapper from '../../../components/ImageWrapper.svelte';
 	import MediaEntry from '../../../components/MediaEntry.svelte';
-	import Press from '../../../components/Press.svelte';
+	import PressSection from '../../../components/PressSection.svelte';
 	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
+	import WorksSection from '../../../components/WorksSection.svelte';
 
 	export let data;
 	let q;
@@ -21,13 +21,6 @@
 
 	let currentShow;
 	$: currentShow = shows?.find((s) => s.slug.current === data.options.slug);
-
-	let nextExhibition, previousExhibition;
-	$: {
-		const currentIndex = shows.findIndex((e) => e.slug.current === currentShow.slug.current);
-		previousExhibition = currentIndex > 0 ? shows[currentIndex - 1] : shows[shows.length - 1];
-		nextExhibition = currentIndex < shows.length - 1 ? shows[currentIndex + 1] : shows[0];
-	}
 </script>
 
 <Tags
@@ -41,16 +34,7 @@
 	items={shows}
 	currentSlug={data.options.slug}
 	routeBase="/exhibitions"
-	tabberNext={{
-		link: `/exhibitions/${nextExhibition?.slug.current}`,
-		title: nextExhibition?.title,
-		details: `${nextExhibition.venue}\n${formatDate(nextExhibition.startDate, nextExhibition.endDate)}`
-	}}
-	tabberPrevious={{
-		link: `/exhibitions/${previousExhibition?.slug.current}`,
-		title: previousExhibition?.title,
-		details: `${previousExhibition.venue}\n${formatDate(previousExhibition.startDate, previousExhibition.endDate)}`
-	}}
+	getDetails={(item) => `${item.venue}\n${formatDate(item.startDate, item.endDate)}`}
 >
 	<svelte:fragment slot="slide" let:item>
 		<h1 class="title italic text-center" tabindex="-1">{item?.title}</h1>
@@ -78,11 +62,14 @@
 		<div
 			class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
 		>
-			<a href="#works">Works</a>
+			{#if item?.works && item.works.length > 0}
+				<a href="#works">Works</a>
+			{/if}
 
 			{#if item?.press && item.press.length > 0}
 				<a href="#press">Press</a>
 			{/if}
+
 			{#each item?.extraLinks || [] as link}
 				<a href={link?.url} target="_blank" rel="noopener noreferrer">
 					{link?.label}
@@ -119,29 +106,13 @@
 		{/each}
 
 		<!-- Works -->
-		<Anchor title="Works">
-			<div class="flex flex-col gap-[96px]">
-				{#each currentItem?.works || [] as work}
-					<MediaEntry entry={work} />
-				{/each}
-			</div>
-		</Anchor>
+		{#if currentItem?.works && currentItem.works.length > 0}
+			<WorksSection works={currentItem.works} />
+		{/if}
 
 		<!-- Press -->
 		{#if currentItem?.press && currentItem.press.length > 0}
-			<Anchor title="Press">
-				<div class="main-grid">
-					<div
-						class="
-			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
-			flex flex-col gap-[48px]"
-					>
-						{#each currentItem?.press as press}
-							<Press item={press} />
-						{/each}
-					</div>
-				</div>
-			</Anchor>
+			<PressSection pressItems={currentItem.press} />
 		{/if}
 	</svelte:fragment>
 </CarouselPage>

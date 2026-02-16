@@ -12,8 +12,7 @@
 	export let items: any[];
 	export let currentSlug: string;
 	export let routeBase: string; // e.g., '/artists' or '/exhibitions'
-	export let tabberNext: { link: string; title: string; details: string };
-	export let tabberPrevious: { link: string; title: string; details: string };
+	export let getDetails: (item: any) => string;
 
 	let swiper;
 	let currentItem;
@@ -55,6 +54,13 @@
 			zoom.detach();
 		};
 	});
+
+	let next, previous;
+	$: {
+		const currentIndex = items?.findIndex((item) => item.slug.current === currentSlug) ?? -1;
+		next = currentIndex < items.length - 1 ? items[currentIndex + 1] : items[0];
+		previous = currentIndex > 0 ? items[currentIndex - 1] : items[items.length - 1];
+	}
 </script>
 
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
@@ -100,5 +106,16 @@
 	</div>
 
 	<!-- Navigation -->
-	<Tabber next={tabberNext} previous={tabberPrevious} />
+	<Tabber
+		next={{
+			link: routeBase + '/' + next?.slug.current,
+			title: next?.title,
+			details: getDetails(next)
+		}}
+		previous={{
+			link: routeBase + '/' + previous?.slug.current,
+			title: previous?.title,
+			details: getDetails(previous)
+		}}
+	/>
 </div>
