@@ -93,7 +93,12 @@
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
 	<!-- Main	-->
 
-	<div class="swiper w-screen -mx-[36px]! -mb-[18px] relative">
+	<div
+		class="swiper w-screen -mx-[36px]! -mb-[18px] relative"
+		role="region"
+		aria-roledescription="carousel"
+		aria-label="Exhibitions"
+	>
 		<div
 			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"
 		></div>
@@ -102,16 +107,18 @@
 				<div
 					id="slide-{i}"
 					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! pb-[18px]"
+					aria-hidden={item.slug.current !== currentShow.slug.current}
 				>
 					<div
 						class="col-span [--span:13] md:[--span:11] lg:[--span:9] transition-opacity duration-500"
 					>
-						<h1 class="title italic text-center">{item?.title}</h1>
+						<h1 class="title italic text-center" tabindex="-1">{item?.title}</h1>
 						<div class="col-span [--span:11] md:[--span:9] lg:[--span:7] mx-auto mt-[48px]">
 							<ImageWrapper
 								className="aspect-5/3 object-cover"
 								image={item?.exhibitionImage}
 								zoomable={true}
+								alt={item?.exhibitionImage?.alt || item?.title + ' from LUmkA'}
 							/>
 						</div>
 						<div class="mt-[18px] text-center">
@@ -202,6 +209,7 @@
 
 	<div class="flex items-center">
 		<button
+			aria-label="Scroll back to top"
 			on:click={() => {
 				window.scrollTo({ behavior: 'smooth', top: 0 });
 			}}
