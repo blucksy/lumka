@@ -22,9 +22,18 @@ html {
 	font-style: italic;
 }
 
+@font-face {
+	font-family: 'TeX Gyre Heros';
+	src:
+		url('/fonts/TeXGyreHeros-Regular.woff2') format('woff2'),
+		url('/fonts/TeXGyreHeros-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
 @theme {
 	--font-serif: 'Sharp Serif Text', sans-serif;
-	--font-sans: 'Untitled Sans', sans-serif;
+	--font-sans: 'TeX Gyre Heros', sans-serif;
 }
 
 @utility body {
