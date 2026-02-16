@@ -64,12 +64,14 @@ html {
 	@apply font-sans text-[11px] font-normal leading-[1.16] tracking-normal;
 	margin-top: -2px;
 	margin-bottom: -2px;
+	letter-spacing: 0.01em;
 }
 
 @utility small-sans {
 	@apply font-sans text-[10px] font-normal leading-[1.2] tracking-normal;
 	margin-top: -2px;
 	margin-bottom: -3px;
+	letter-spacing: 0.01em;
 }
 
 @utility mobile-title {

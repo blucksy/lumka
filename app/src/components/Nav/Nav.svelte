@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { clickOutside } from '$lib/utils/clickOutside';
 	import { onDestroy } from 'svelte';
@@ -48,7 +49,9 @@
 
 	// --- CLOSE ON PAGE CHANGE ---
 	const unsubscribePage = page.subscribe(() => {
-		open = '';
+		if ($page.url.pathname !== '/') {
+			open = '';
+		}
 	});
 
 	// --- CLOSE ON SCROLL ONLY WHEN OPEN ---
@@ -103,7 +106,12 @@
 					*:data-[active=true]:italic *:data-[active=false]:bg-black/5 *:small-serif *:my-0!"
 	>
 		<button
-			on:click={() => toggleTab('main')}
+			on:click={() => {
+				if (open === '') {
+					goto('/');
+				}
+				toggleTab('main');
+			}}
 			data-active={activeTab === 'main' || activeTab === 'newsletter'}>LUmkA</button
 		>
 		<button on:click={() => toggleTab('exhibitions')} data-active={activeTab === 'exhibitions'}
