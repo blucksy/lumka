@@ -17,13 +17,13 @@ export const load: PageServerLoad = async (event) => {
 				title,
 				slug,
 				represented,
-				"image": *[_type == "artwork" && references(^._id)][0].artworkImage.asset->url
+				"image": *[_type == "artwork" && references(^._id)][0].image.asset->url
 			},
 			"exhibited": *[_type == "artist" && represented != true] | order(title asc){
 				title,
 				slug,
 				represented,
-				"image": *[_type == "artwork" && references(^._id)][0].artworkImage.asset->url
+				"image": *[_type == "artwork" && references(^._id)][0].image.asset->url
 			}
 		},
 

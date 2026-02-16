@@ -90,8 +90,9 @@
 					<div
 						class={clsx(
 							'absolute right-[12px] w-[calc((100%-24px)/3)] -translate-y-1/2 top-1/2 group-first:translate-y-0 group-first:top-0 opacity-0 peer-hover:opacity-100 transition-opacity mix-blend-multiply',
-							filtered.length > 1 &&
-								'group-last:bottom-0 group-last:translate-y-0 group-last:top-auto'
+							filtered.length > 1
+								? 'group-last:bottom-0 group-last:translate-y-0 group-last:top-auto'
+								: 'top-0 bottom-0 *:h-full *:*:h-full *:*:*:h-full'
 						)}
 					>
 						<Halftone src={exhibition.image} />
