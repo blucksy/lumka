@@ -66,7 +66,7 @@
 <div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
 	<!-- Carousel -->
 	<div
-		class="swiper w-screen -mx-[36px]! -mb-[18px] relative"
+		class="swiper w-screen -mx-[36px]! -my-[18px] relative"
 		role="region"
 		aria-roledescription="carousel"
 	>
@@ -77,7 +77,7 @@
 			{#each items as item, i}
 				<div
 					id="slide-{i}"
-					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! pb-[18px]"
+					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! py-[18px]"
 					aria-hidden={item.slug.current !== currentItem?.slug.current}
 				>
 					<div
