@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import mediumZoom from 'medium-zoom';
 	import { onMount } from 'svelte';
 	import Swiper from 'swiper';
@@ -19,6 +18,15 @@
 
 	$: currentItem = items?.find((item) => item.slug.current === currentSlug);
 
+	let oldRealIndex = 0;
+
+	$: if (swiper && currentItem) {
+		const index = items.findIndex((item) => item.slug.current === currentItem.slug.current);
+		if (index !== -1 && index !== swiper.realIndex) {
+			swiper.slideToLoop(index); // <-- slide to the new index in loop mode
+		}
+	}
+
 	onMount(() => {
 		const initialIndex = items?.findIndex((item) => item.slug.current === currentSlug) || 0;
 		swiper = new Swiper('.swiper', {
@@ -35,12 +43,18 @@
 			autoHeight: true
 		});
 
+		oldRealIndex = swiper.realIndex;
+
 		swiper.on('slideChange', () => {
 			const realIndex = swiper.realIndex;
-			const item = items[realIndex];
-			if (item && item.slug.current !== currentItem?.slug.current) {
-				currentItem = item;
-				goto(`${routeBase}/${item.slug.current}`, { replaceState: true, noScroll: true });
+			if (realIndex !== oldRealIndex) {
+				const item = items[realIndex];
+				if (item && item.slug.current !== currentItem?.slug.current) {
+					currentItem = item;
+					const url = `${routeBase}/${item.slug.current}`;
+					history.replaceState({}, '', url);
+				}
+				oldRealIndex = realIndex;
 			}
 		});
 
@@ -65,11 +79,7 @@
 
 <div class="py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
 	<!-- Carousel -->
-	<div
-		class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!"
-		role="region"
-		aria-roledescription="carousel"
-	>
+	<div class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!">
 		<div
 			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"
 		></div>
