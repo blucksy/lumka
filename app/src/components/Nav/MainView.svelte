@@ -14,11 +14,11 @@
 		<button on:click={() => toggleTab('newsletter')}>Newsletter</button>
 		<a href="mailto:info@lumka.com">Contact</a>
 	</div>
-	<div class="small-serif">{about}</div>
+	<div class="mobile-small-serif sm:small-serif">{about}</div>
 	{#if announcement}
 		<div class="flex gap-[12px]">
-			<div class="small-caps small-serif opacity-60">Announcement</div>
-			<div class="small-serif">{announcement}</div>
+			<div class="small-caps mobile-small-serif sm:small-serif opacity-60">Announcement</div>
+			<div class="mobile-small-serif sm:small-serif">{announcement}</div>
 		</div>
 	{/if}
 </div>

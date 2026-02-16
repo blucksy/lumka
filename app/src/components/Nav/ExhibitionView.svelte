@@ -47,11 +47,11 @@
 		!showFilter || !current ? withStatus : withStatus.filter((e) => e.status === current);
 </script>
 
-<div class="px-[12px] py-[18px] flex flex-col gap-[18px]">
+<div class="px-[12px] py-[18px] flex flex-col gap-[24px] sm:gap-[18px]">
 	{#if showFilter}
 		<div
 			class="flex gap-[12px]
-		*:small-sans *:opacity-60 *:aria-pressed:opacity-100 *:transition-opacity *:hover:opacity-100 *:cursor-pointer *:aria-pressed:cursor-default"
+*:small-sans *:opacity-60 *:aria-pressed:opacity-100 *:transition-opacity *:hover:opacity-100 *:cursor-pointer *:aria-pressed:cursor-default"
 		>
 			{#if statuses.has('forthcoming')}
 				<button on:click={() => (current = 'forthcoming')} aria-pressed={current === 'forthcoming'}>
@@ -77,7 +77,7 @@
 			<div class="w-full group relative">
 				<a
 					href={`/exhibitions/${exhibition.slug.current}`}
-					class="w-fit max-w-[calc((100%-24px)/3*2+12px)] block hover:italic peer small-serif"
+					class="w-fit sm:max-w-[calc((100%-24px)/3*2+12px)] block hover:italic peer mobile-small-serif sm:small-serif"
 				>
 					<div>{exhibition.title}</div>
 					<div class="pl-[24px]">
@@ -89,7 +89,7 @@
 				{#if exhibition.image}
 					<div
 						class={clsx(
-							'absolute right-[12px] w-[calc((100%-24px)/3)] -translate-y-1/2 top-1/2 group-first:translate-y-0 group-first:top-0 opacity-0 peer-hover:opacity-100 transition-opacity mix-blend-multiply',
+							'hidden sm:block absolute right-[12px] w-[calc((100%-24px)/3)] -translate-y-1/2 top-1/2 group-first:translate-y-0 group-first:top-0 opacity-0 peer-hover:opacity-100 transition-opacity mix-blend-multiply',
 							filtered.length > 1
 								? 'group-last:bottom-0 group-last:translate-y-0 group-last:top-auto'
 								: 'top-0 bottom-0 *:h-full *:*:h-full *:*:*:h-full'

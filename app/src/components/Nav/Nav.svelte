@@ -74,7 +74,7 @@
 </script>
 
 <div
-	class="fixed bg-lumka w-[468px] top-[6px] left-[18px] z-20 nav"
+	class="fixed bg-lumka bottom-[6px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
 	<div
@@ -101,9 +101,9 @@
 	</div>
 
 	<div
-		class="flex *:flex-1 h-[27px]
+		class="flex *:flex-1 h-[33px] sm:h-[27px]
 					*:cursor-pointer *:transition-colors *:bg-black/0 *:duration-300
-					*:data-[active=true]:italic *:data-[active=false]:bg-black/5 *:small-serif *:my-0!"
+					*:data-[active=true]:italic *:data-[active=false]:bg-black/5 *:mobile-small-serif *:sm:small-serif *:my-0!"
 	>
 		<button
 			on:click={() => {
