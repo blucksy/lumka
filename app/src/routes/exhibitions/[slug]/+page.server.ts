@@ -40,13 +40,6 @@ export const load: PageServerLoad = async (event) => {
 				publication,
 				date
 			},
-			"allExhibitions": *[_type == "exhibition"] | order(startDate desc) {
-				title,
-				slug,
-				startDate,
-				endDate,
-				venue
-			},
 			}
 		`;
 

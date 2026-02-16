@@ -97,7 +97,6 @@
 		class="swiper w-screen -mx-[36px]! -mb-[18px] relative"
 		role="region"
 		aria-roledescription="carousel"
-		aria-label="Exhibitions"
 	>
 		<div
 			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"

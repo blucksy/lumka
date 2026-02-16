@@ -1,4 +1,3 @@
-import getLastName from '$lib/utils/getLastName';
 import groq from 'groq';
 import type { PageServerLoad } from './$types';
 
@@ -9,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
 	const params = { slug };
 
 	const artistQuery = groq`
-		 *[_type == "artist" && slug.current == $slug][0] {
+		 *[_type == "artist"] | order(represented desc, exhibited desc) {
 			...,
 			"extraLinks": links[] {
 				label,
@@ -38,31 +37,10 @@ export const load: PageServerLoad = async (event) => {
 				endDate,
 				venue,
 			},
-			"allArtists": {
-				"represented": *[_type == "artist" && represented == true] {
-					title,
-					slug,
-					represented,
-					"workCount": count(*[_type == "artwork" && references(^._id)])
-				},
-				"exhibited": *[_type == "artist" && represented != true] {
-					title,
-					slug,
-					represented,
-					"workCount": count(*[_type == "artwork" && references(^._id)])
-				},
-			},
 		}
 		`;
 
 	let initial = await loadQuery(artistQuery, params);
-
-	initial.data.allArtists.represented.sort((a, b) =>
-		getLastName(a.title).localeCompare(getLastName(b.title))
-	);
-	initial.data.allArtists.exhibited.sort((a, b) =>
-		getLastName(a.title).localeCompare(getLastName(b.title))
-	);
 
 	if (!initial) {
 		return {
@@ -73,6 +51,6 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		artistQuery,
-		options: { initial }
+		options: { initial, slug }
 	};
 };
