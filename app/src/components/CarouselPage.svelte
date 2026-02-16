@@ -63,10 +63,10 @@
 	}
 </script>
 
-<div class="py-[96px] flex flex-col gap-[144px] items-center px-page">
+<div class="py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
 	<!-- Carousel -->
 	<div
-		class="swiper w-screen -mx-[36px]! -my-[18px] relative"
+		class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!"
 		role="region"
 		aria-roledescription="carousel"
 	>
@@ -88,6 +88,10 @@
 				</div>
 			{/each}
 		</div>
+	</div>
+
+	<div class="sm:hidden">
+		<slot name="slide" item={currentItem} />
 	</div>
 
 	<!-- Page Content -->
