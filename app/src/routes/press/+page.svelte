@@ -15,7 +15,7 @@
 
 <Tags title={'Press'} />
 
-<div class="py-[96px] flex flex-col gap-[48px] sm:gap-[96px]">
+<div class="py-[48px] sm:py-[96px] flex flex-col gap-[48px] sm:gap-[96px]">
 	{#each press as item}
 		<div class="px-page main-grid">
 			<div
