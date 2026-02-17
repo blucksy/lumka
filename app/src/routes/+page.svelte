@@ -26,7 +26,7 @@
 	{#each publications.publications as item}
 		<div class="main-grid px-page text-center">
 			<div
-				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
+				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 2xl:col-span-7 2xl:col-start-5
 				flex flex-col gap-[18px] sm:gap-[24px]"
 			>
 				<ImageWrapper alt={item.title || 'LUmkA'} image={item.image} className="aspect-5/3 " />
@@ -40,7 +40,7 @@
 				</p>
 				{#if item.subtitle}
 					<p
-						class="sans max-w-[320px] sm:max-w-none sm:col-span sm:[--span:7] lg:[--span:5] mx-auto"
+						class="sans max-w-[320px] sm:max-w-none sm:col-span sm:[--span:7] lg:[--span:5] 2xl:[--span:3] mx-auto"
 					>
 						<PortableText value={item.subtitle} />
 					</p>

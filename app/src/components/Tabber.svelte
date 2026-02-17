@@ -15,7 +15,7 @@
 				*:gap-[18px] *sm::gap-[12px]"
 >
 	<a
-		class="col-span-1 sm:col-span-4 sm:col-start-2 md:col-start-3 lg:col-start-4
+		class="col-span-1 sm:col-span-4 sm:col-start-2 md:col-start-3 lg:col-start-4 2xl:col-start-5 2xl:col-span-3
 		text-center sm:text-left"
 		href={previous.link}
 	>
@@ -26,7 +26,7 @@
 		<p class="small-sans whitespace-pre-line">{previous.details}</p>
 	</a>
 	<a
-		class="col-span-1 sm:col-span-4 sm:col-start-11 md:col-start-10 lg:col-start-9
+		class="col-span-1 sm:col-span-4 sm:col-start-11 md:col-start-10 lg:col-start-9 2xl:col-start-8
 		text-center sm:text-right"
 		href={next.link}
 	>

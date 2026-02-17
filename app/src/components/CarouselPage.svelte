@@ -95,7 +95,7 @@
 					}}
 				>
 					<div
-						class="col-span [--span:13] md:[--span:11] lg:[--span:9] transition-opacity duration-500"
+						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] transition-opacity duration-500"
 					>
 						<slot name="slide" {item} />
 					</div>
