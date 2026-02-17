@@ -74,7 +74,7 @@
 	{/if}
 	<div class="flex flex-col gap-[18px]">
 		{#each filtered as exhibition}
-			<div class="w-full group relative">
+			<div class={clsx('w-full group relative', filtered.length === 1 && 'sm:pb-[18px]')}>
 				<a
 					href={`/exhibitions/${exhibition.slug.current}`}
 					class="w-fit sm:max-w-[calc((100%-24px)/3*2+12px)] block hover:italic peer mobile-small-serif sm:small-serif"
