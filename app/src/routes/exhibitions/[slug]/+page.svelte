@@ -41,6 +41,8 @@
 		<div class="col-span [--span:11] md:[--span:9] lg:[--span:7] mx-auto mt-[48px]">
 			<ImageWrapper
 				className="aspect-5/3 object-cover"
+				sizes={'(max-width: 658px) 95vw, 60vw'}
+				srcset={[768, 1280, 2000]}
 				image={item?.exhibitionImage}
 				zoomable={true}
 				alt={item?.exhibitionImage?.alt || item?.title + ' from LUmkA'}

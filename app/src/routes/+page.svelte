@@ -30,7 +30,7 @@
 				flex flex-col gap-[18px] sm:gap-[24px]"
 			>
 				<ImageWrapper
-					sizes={'(max-width: 1650px) 95vw, 60vw'}
+					sizes={'(max-width: 658px) 95vw, 60vw'}
 					srcset={[768, 1280, 2000, 3000]}
 					alt={item.title[0]?.children[0]?.text || 'LUmkA'}
 					image={item.image}
