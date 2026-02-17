@@ -32,7 +32,7 @@
 
 	$: if (typeof image === 'object') {
 		if (hotspot) {
-			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').url();
+			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').quality(100).url();
 		} else {
 			image = urlFor(image).auto('format').url();
 		}

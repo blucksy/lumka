@@ -144,7 +144,7 @@
 	>
 		<button
 			on:click={() => {
-				if (open === '') {
+				if (open === '' && $page.url.pathname !== '/') {
 					goto('/');
 				}
 				toggleTab('main');

@@ -71,7 +71,7 @@ html {
 	@apply font-sans text-[10px] font-normal leading-[1.2] tracking-normal;
 	margin-top: -2px;
 	margin-bottom: -3px;
-	letter-spacing: 0.01em;
+	letter-spacing: 0.02em;
 }
 
 @utility mobile-title {

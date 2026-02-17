@@ -7,7 +7,7 @@
 		For a behind-the-scenes look at our gallery, news about exhibitions, artists, projects, along
 		with a word from our editor, subscribe to LUmkA’s newsletter:
 	</p>
-	<div class="text-center">
+	<div class="">
 		<Newsletter />
 	</div>
 </div>

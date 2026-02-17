@@ -69,7 +69,7 @@
 			For a behind-the-scenes look at our gallery, news about exhibitions, artists, projects, along
 			with a word from our editor, subscribe to LUmkA’s newsletter:
 		</div>
-		<div class="text-center">
+		<div class="sm:text-center">
 			<Newsletter />
 		</div>
 	</div>

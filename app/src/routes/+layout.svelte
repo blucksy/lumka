@@ -53,7 +53,7 @@
 		class="fixed top-0 left-0 w-screen h-dvh z-999999999999 bg-white main-grid px-page items-center justify-center"
 	>
 		<svg
-			class="col-span-6 col-start-3 sm:col-span-5 sm:col-start-6 lg:col-span-3 lg:col-start-7"
+			class="col-span-6 col-start-3 sm:col-span-5 sm:col-start-6 lg:col-span-3 lg:col-start-7 w-full"
 			viewBox="0 0 242 83"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

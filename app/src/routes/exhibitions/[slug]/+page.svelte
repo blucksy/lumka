@@ -60,7 +60,7 @@
 			</p>
 		</div>
 		<div
-			class="mt-[18px] flex gap-[9px] *:sans *:hover:opacity-60 *:transition-opacity justify-center"
+			class="mt-[18px] flex gap-[9px] *:small-sans *:hover:opacity-60 *:transition-opacity justify-center"
 		>
 			{#if item?.works && item.works.length > 0}
 				<a href="#works">Works</a>
