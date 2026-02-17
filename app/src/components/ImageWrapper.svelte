@@ -14,6 +14,8 @@
 	export let loading: 'eager' | 'lazy' = 'eager';
 	export let objectFit: boolean;
 	export let zoomable: boolean = false;
+
+	let imageAssetRef = image;
 	let imgRef;
 	let newSrcSet = '';
 
@@ -32,9 +34,9 @@
 
 	$: if (typeof image === 'object') {
 		if (hotspot) {
-			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').quality(100).url();
+			image = urlFor(image).focalPoint(hotspot.x, hotspot.y).auto('format').quality(80).url();
 		} else {
-			image = urlFor(image).auto('format').url();
+			image = urlFor(image).quality(90).auto('format').url();
 		}
 	}
 
