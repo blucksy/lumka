@@ -27,7 +27,7 @@
 			<ImageWrapper
 				className="w-full"
 				sizes={'(max-width: 658px) 95vw, 60vw'}
-				srcset={[768, 1280, 2000]}
+				srcset={[768, 1280, 1800, 2300]}
 				{image}
 				zoomable={true}
 				alt={entry?.title || fallbackTitle}
