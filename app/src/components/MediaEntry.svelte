@@ -26,6 +26,8 @@
 		{:else if image}
 			<ImageWrapper
 				className="w-full"
+				sizes={'(max-width: 658px) 95vw, 60vw'}
+				srcset={[768, 1280, 2000]}
 				{image}
 				zoomable={true}
 				alt={entry?.title || fallbackTitle}

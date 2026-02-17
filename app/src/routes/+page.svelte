@@ -29,7 +29,13 @@
 				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 2xl:col-span-7 2xl:col-start-5
 				flex flex-col gap-[18px] sm:gap-[24px]"
 			>
-				<ImageWrapper alt={item.title || 'LUmkA'} image={item.image} className="aspect-5/3 " />
+				<ImageWrapper
+					sizes={'(max-width: 658px) 95vw, 60vw'}
+					srcset={[768, 1280, 2000, 3000]}
+					alt={item.title[0]?.children[0]?.text || 'LUmkA'}
+					image={item.image}
+					className="aspect-5/3 "
+				/>
 				<p class="small-serif small-caps">{item.category}</p>
 				<p class="mobile-link sm:link-serif col-span xl:[--span:7] 2xl:[--span:5] mx-auto">
 					{#if item.link}
