@@ -11,7 +11,14 @@
 		<a href="https://www.instagram.com/l_u_m_k_a" target="_blank" rel="noopener noreferrer"
 			>Instagram</a
 		>
-		<button on:click={() => toggleTab('newsletter')}>Newsletter</button>
+		<button
+			on:click={() => {
+				toggleTab('newsletter');
+				setTimeout(() => {
+					document.getElementById('email')?.focus();
+				}, 50);
+			}}>Newsletter</button
+		>
 		<a href="mailto:info@lumka.com">Contact</a>
 	</div>
 	<div class="mobile-small-serif sm:small-serif">{about}</div>

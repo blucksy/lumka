@@ -44,6 +44,9 @@
 	}
 
 	function toggleTab(tab: string) {
+		// remove current focus
+		document.activeElement?.blur();
+
 		open = open === tab ? '' : tab;
 		if (open) {
 			recalcHeight();
