@@ -50,8 +50,8 @@ html {
 
 @utility link-serif {
 	@apply font-serif text-[32px] font-normal leading-[1.063] tracking-normal;
-	margin-top: -7px;
-	margin-bottom: -6px;
+	margin-top: -10px;
+	margin-bottom: -12px;
 }
 
 @utility small-serif {

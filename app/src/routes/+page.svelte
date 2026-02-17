@@ -22,7 +22,7 @@
 
 <Tags />
 
-<div class="pt-[18px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px]">
+<div class="pb-[96px] pt-[18px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px]">
 	{#each publications.publications as item}
 		<div class="main-grid px-page text-center">
 			<div
@@ -31,7 +31,7 @@
 			>
 				<ImageWrapper image={item.image} className="aspect-5/3 " />
 				<p class="small-serif small-caps">{item.category}</p>
-				<p class="mobile-link sm:link-serif">
+				<p class="mobile-link sm:link-serif col-span xl:[--span:7] mx-auto">
 					{#if item.link}
 						<TextRotate item={item.title} />
 					{:else}
@@ -39,7 +39,11 @@
 					{/if}
 				</p>
 				{#if item.subtitle}
-					<p class="sans"><PortableText value={item.subtitle} /></p>
+					<p
+						class="sans max-w-[320px] sm:max-w-none sm:col-span sm:[--span:7] lg:[--span:5] mx-auto"
+					>
+						<PortableText value={item.subtitle} />
+					</p>
 				{/if}
 			</div>
 		</div>

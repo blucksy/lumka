@@ -35,7 +35,7 @@ p:empty {
 	--margin: 18px;
 }
 
-.col-span {
+@utility col-span {
 	width: calc(
 		(100vw - (var(--col-count) - 1) * var(--gap) - var(--margin) * 2) / var(--col-count) *
 			var(--span) + (var(--span) - 1) * var(--gap)
