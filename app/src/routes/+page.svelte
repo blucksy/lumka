@@ -37,7 +37,7 @@
 					className="aspect-5/3 "
 				/>
 				<p class="small-serif small-caps">{item.category}</p>
-				<p class="mobile-link sm:link-serif col-span xl:[--span:7] mx-auto">
+				<p class="mobile-link sm:link-serif col-span xl:[--span:7] 2xl:[--span:5] mx-auto">
 					{#if item.link}
 						<TextRotate item={item.title} />
 					{:else}
