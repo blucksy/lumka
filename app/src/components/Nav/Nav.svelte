@@ -111,13 +111,13 @@
 
 <div
 	id="nav"
-	class="fixed opacity-95 duration-300 aria-hidden:opacity-0 aria-hidden:pointer-events-none transition-opacity bg-lumka bottom-[12px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
+	class="fixed opacity-95 duration-300 aria-hidden:opacity-0 aria-hidden:pointer-events-none anim-opacity bg-lumka bottom-[12px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
 	<div
 		id="nav-holder"
 		class="relative overflow-hidden transition-[height] duration-300 h-0
-		*:absolute *:aria-hidden:opacity-0 *:aria-hidden:pointer-events-none *:transition-opacity *:w-full"
+		*:absolute *:aria-hidden:opacity-0 *:aria-hidden:pointer-events-none *:anim-opacity *:w-full"
 	>
 		<div id="nav-main" aria-hidden={activeTab !== 'main' || !open}>
 			<MainView

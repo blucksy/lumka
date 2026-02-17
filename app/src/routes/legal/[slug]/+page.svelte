@@ -21,6 +21,6 @@
 		<Body text={legal?.content} />
 	</div>
 	<div class="mt-[96px] sm:mt-[144px] flex items-center">
-		<a href="/" class="hover:opacity-60 transition-opacity w-fit mx-auto sans">Return to Home</a>
+		<a href="/" class="hover:opacity-60 anim-opacity w-fit mx-auto sans">Return to Home</a>
 	</div>
 </div>

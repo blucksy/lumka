@@ -37,10 +37,7 @@
 				class="w-full pl-[9px] outline-none!"
 				bind:value={email}
 			/>
-			<button
-				type="submit"
-				class="pr-[9px] h-full cursor-pointer hover:opacity-60 transition-opacity"
-			>
+			<button type="submit" class="pr-[9px] h-full cursor-pointer hover:opacity-60 anim-opacity">
 				Subscribe
 			</button>
 		</form>

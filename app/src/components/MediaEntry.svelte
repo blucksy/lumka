@@ -39,7 +39,7 @@
 					{#if entry.year}
 						{#if entry.artist}<a
 								href="/artists/{entry.artist.slug.current}"
-								class="hover:opacity-60 transition-opacity">{entry.artist.title}</a
+								class="hover:opacity-60 anim-opacity">{entry.artist.title}</a
 							>,{/if}
 						<span class="italic">{entry.title}</span>, {entry.year}
 					{:else}

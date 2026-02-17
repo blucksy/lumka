@@ -51,7 +51,7 @@
 		<div class="mt-[18px] text-center">
 			<p class="sans">
 				{#each item?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
-					<a class="hover:opacity-60 transition-opacity" href="/artists/{artist.slug.current}"
+					<a class="hover:opacity-60 anim-opacity" href="/artists/{artist.slug.current}"
 						>{artist.title}</a
 					>{#if i < item.artist.length - 1},&nbsp;{/if}
 				{/each}
@@ -62,7 +62,7 @@
 			</p>
 		</div>
 		<div
-			class="mt-[18px] flex gap-[9px] *:small-sans *:hover:opacity-60 *:transition-opacity justify-center"
+			class="mt-[18px] flex gap-[9px] *:small-sans *:hover:opacity-60 *:anim-opacity justify-center"
 		>
 			{#if item?.works && item.works.length > 0}
 				<a href="#works">Works</a>
@@ -92,7 +92,7 @@
 			{#each currentItem?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
 				<a
 					href="/artists/{artist.slug.current}"
-					class="col-span sm:[--span:5] 2xl:[--span:4] hover:opacity-60 transition-opacity flex flex-col gap-[18px] h-fit"
+					class="col-span sm:[--span:5] 2xl:[--span:4] hover:opacity-60 anim-opacity flex flex-col gap-[18px] h-fit"
 				>
 					<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
 					<div class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px]">

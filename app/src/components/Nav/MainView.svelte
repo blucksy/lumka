@@ -6,7 +6,7 @@
 
 <div class="px-[12px] py-[18px] flex flex-col gap-[18px]">
 	<div
-		class="small-sans *:opacity-60 *:hover:opacity-100 *:cursor-pointer *:transition-opacity flex gap-[9px]"
+		class="small-sans *:opacity-60 *:hover:opacity-100 *:cursor-pointer *:anim-opacity flex gap-[9px]"
 	>
 		<a href="https://www.instagram.com/l_u_m_k_a" target="_blank" rel="noopener noreferrer"
 			>Instagram</a

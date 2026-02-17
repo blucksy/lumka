@@ -24,7 +24,7 @@
 						href={social.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="hover:opacity-100 opacity-60 transition-opacity small-sans">{social.name}</a
+						class="hover:opacity-100 opacity-60 anim-opacity small-sans">{social.name}</a
 					>
 				{/each}
 			</div>
@@ -33,7 +33,7 @@
 				{#each data?.legal || [] as legal}
 					<a
 						href="/legal/{legal.slug.current}"
-						class="hover:opacity-100 opacity-60 transition-opacity small-sans">{legal.title}</a
+						class="hover:opacity-100 opacity-60 anim-opacity small-sans">{legal.title}</a
 					>
 				{/each}
 			</div>
@@ -60,7 +60,7 @@
 			href="https://taw.vision"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="hover:opacity-100 opacity-60 transition-opacity small-sans">Site Credit</a
+			class="hover:opacity-100 opacity-60 anim-opacity small-sans">Site Credit</a
 		>
 	</div>
 </div>
@@ -84,7 +84,7 @@
 					href={social.url}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">{social.name}</a
+					class="hover:opacity-100 opacity-60 anim-opacity small-sans w-fit">{social.name}</a
 				>
 			{/each}
 		</div>
@@ -93,7 +93,7 @@
 			{#each data?.legal || [] as legal}
 				<a
 					href="/legal/{legal.slug.current}"
-					class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">{legal.title}</a
+					class="hover:opacity-100 opacity-60 anim-opacity small-sans w-fit">{legal.title}</a
 				>
 			{/each}
 		</div>
@@ -105,7 +105,7 @@
 				href="https://taw.vision"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="hover:opacity-100 opacity-60 transition-opacity small-sans w-fit">Site Credit</a
+				class="hover:opacity-100 opacity-60 anim-opacity small-sans w-fit">Site Credit</a
 			>
 		</div>
 		<p class="opacity-60 small-sans">© {new Date().getFullYear()} LUmkA</p>

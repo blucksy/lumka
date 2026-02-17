@@ -40,7 +40,7 @@
 	{#each [...(represented ?? []), ...(exhibited ?? [])] as artist}
 		{#if artist.image}
 			<div
-				class="hidden sm:block aria-hidden:opacity-0 absolute top-[18px] bottom-[18px] right-[12px] w-[calc((100%-24px)/3)] transition-opacity mix-blend-multiply
+				class="hidden sm:block aria-hidden:opacity-0 absolute top-[18px] bottom-[18px] right-[12px] w-[calc((100%-24px)/3)] anim-opacity mix-blend-multiply
 					*:h-full *:*:h-full *:*:*:h-full"
 				aria-hidden={hoveredArtist !== artist.slug.current}
 			>

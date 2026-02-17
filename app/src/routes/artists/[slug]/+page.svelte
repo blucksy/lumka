@@ -35,7 +35,7 @@
 		</div>
 
 		<div
-			class="mt-[24px] flex gap-[9px] *:small-sans *:hover:opacity-60 *:transition-opacity justify-center"
+			class="mt-[24px] flex gap-[9px] *:small-sans *:hover:opacity-60 *:anim-opacity justify-center"
 		>
 			{#if item?.exhibitions && item.exhibitions.length > 0}
 				<a href="#exhibitions">Exhibitions</a>

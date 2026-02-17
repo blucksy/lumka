@@ -63,3 +63,6 @@ p:empty {
 	height: 100vh;
 	height: 100dvh;
 }
+.anim-opacity {
+	@apply transition-opacity duration-[400ms] ease-in-out;
+}

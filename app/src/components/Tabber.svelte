@@ -11,7 +11,7 @@
 
 <div
 	class="main-grid grid-cols-1! sm:grid-cols-15! w-full gap-[96px]! sm:gap-[24px]! items-center w-full
-				*:flex *:flex-col *:hover:opacity-60 *:transition-opacity
+				*:flex *:flex-col *:hover:opacity-60 *:anim-opacity
 				*:gap-[18px] *sm::gap-[12px]"
 >
 	<a

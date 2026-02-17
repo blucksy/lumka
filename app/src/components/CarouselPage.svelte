@@ -95,7 +95,7 @@
 					}}
 				>
 					<div
-						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] transition-opacity duration-500"
+						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] anim-opacity"
 					>
 						<slot name="slide" {item} />
 					</div>
@@ -118,8 +118,7 @@
 			on:click={() => {
 				window.scrollTo({ behavior: 'smooth', top: 0 });
 			}}
-			class="hover:opacity-60 transition-opacity w-fit mx-auto sans cursor-pointer"
-			>Return to Top</button
+			class="hover:opacity-60 anim-opacity w-fit mx-auto sans cursor-pointer">Return to Top</button
 		>
 	</div>
 
