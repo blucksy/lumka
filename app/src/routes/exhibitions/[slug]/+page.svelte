@@ -102,7 +102,7 @@
 
 		<!-- Media -->
 		{#each currentItem?.content || [] as media}
-			<MediaEntry entry={media} />
+			<MediaEntry fallbackTitle={currentItem?.title} entry={media} />
 		{/each}
 
 		<!-- Works -->

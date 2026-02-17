@@ -5,6 +5,7 @@
 	import ImageWrapper from './ImageWrapper.svelte';
 
 	export let entry;
+	export let fallbackTitle = 'LUmkA';
 
 	let image = entry?.asset || entry?.image;
 </script>
@@ -23,7 +24,12 @@
 				{@html entry.embed}
 			</div>
 		{:else if image}
-			<ImageWrapper className="w-full" {image} zoomable={true} />
+			<ImageWrapper
+				className="w-full"
+				{image}
+				zoomable={true}
+				alt={entry?.title || fallbackTitle}
+			/>
 		{/if}
 		{#if entry.title}
 			<div class="mt-[18px] sm:mt-[24px] flex flex-col gap-[12px] text-center">

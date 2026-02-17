@@ -29,7 +29,7 @@
 				class="col-span-10 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
 				flex flex-col gap-[18px] sm:gap-[24px]"
 			>
-				<ImageWrapper image={item.image} className="aspect-5/3 " />
+				<ImageWrapper alt={item.title || 'LUmkA'} image={item.image} className="aspect-5/3 " />
 				<p class="small-serif small-caps">{item.category}</p>
 				<p class="mobile-link sm:link-serif col-span xl:[--span:7] mx-auto">
 					{#if item.link}
