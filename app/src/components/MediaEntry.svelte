@@ -14,8 +14,8 @@
 	<div
 		class={clsx(
 			entry?.aspectRatio && entry?.aspectRatio < 1
-				? 'col-span-6 col-start-3 sm:col-span-9 sm:col-start-4  md:col-span-7 md:col-start-5 lg:col-span-5 lg:col-start-6'
-				: 'col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4',
+				? 'col-span-6 col-start-3 sm:col-span-9 sm:col-start-4  md:col-span-7 md:col-start-5 lg:col-span-5 lg:col-start-6 2xl:col-span-3 2xl:col-start-7'
+				: 'col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4 2xl:col-span-7 2xl:col-start-5',
 			'w-full'
 		)}
 	>
