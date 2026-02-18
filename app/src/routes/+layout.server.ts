@@ -57,6 +57,7 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		query,
-		options: { initial }
+		options: { initial },
+		pathname: event.url.pathname
 	};
 };

@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { useQuery } from '@sanity/svelte-loader';
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
-
-	import { onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import Footer from '../components/Footer.svelte';
@@ -11,6 +9,8 @@
 	import '../styles/app.css';
 
 	export let data;
+
+	console.log('layout data', data);
 
 	const q = useQuery(data);
 
@@ -24,17 +24,6 @@
 		setTimeout(() => {
 			firstOpen = false;
 		}, 500);
-	});
-
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
-
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
-		});
 	});
 </script>
 
@@ -50,7 +39,11 @@
 
 <Nav data={siteData} />
 
-<slot />
+{#key data.pathname}
+	<div class="anim-opacity" in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }}>
+		<slot />
+	</div>
+{/key}
 
 {#if $isPreviewing}
 	<VisualEditing />

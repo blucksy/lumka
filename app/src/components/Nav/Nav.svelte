@@ -71,10 +71,14 @@
 					? 'artists'
 					: 'main');
 
+	let exempt = false;
 	// --- CLOSE ON PAGE CHANGE ---
 	const unsubscribePage = page.subscribe(() => {
-		if ($page.url.pathname !== '/') {
+		if (!exempt) {
 			open = '';
+		} else {
+			console.log('exempting nav close for this page change');
+			exempt = false;
 		}
 	});
 
@@ -147,6 +151,7 @@
 		<button
 			on:click={() => {
 				if (open === '' && $page.url.pathname !== '/') {
+					exempt = true;
 					goto('/');
 				}
 				toggleTab('main');

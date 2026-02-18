@@ -13,6 +13,8 @@
 	export let routeBase: string; // e.g., '/artists' or '/exhibitions'
 	export let getDetails: (item: any) => string;
 
+	const id = `carousel-${Math.random().toString(36).substr(2, 9)}`;
+
 	let swiper;
 	let currentItem;
 
@@ -29,7 +31,7 @@
 
 	onMount(() => {
 		const initialIndex = items?.findIndex((item) => item.slug.current === currentSlug) || 0;
-		swiper = new Swiper('.swiper', {
+		swiper = new Swiper(`#${id}`, {
 			modules: [Mousewheel],
 			loop: true,
 			speed: 750,
@@ -47,6 +49,7 @@
 
 		swiper.on('slideChange', () => {
 			const realIndex = swiper.realIndex;
+
 			if (realIndex !== oldRealIndex) {
 				const item = items[realIndex];
 				if (item && item.slug.current !== currentItem?.slug.current) {
@@ -79,7 +82,7 @@
 
 <div class="py-[48px] md:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
 	<!-- Carousel -->
-	<div class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!">
+	<div class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!" {id}>
 		<div
 			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"
 		></div>
