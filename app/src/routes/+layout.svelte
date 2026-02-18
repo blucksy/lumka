@@ -2,6 +2,7 @@
 	import { useQuery } from '@sanity/svelte-loader';
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 
+	import { onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import Footer from '../components/Footer.svelte';
@@ -23,6 +24,17 @@
 		setTimeout(() => {
 			firstOpen = false;
 		}, 500);
+	});
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
 	});
 </script>
 
@@ -82,3 +94,10 @@
 		</svg>
 	</div>
 {/if}
+
+<style>
+	:root::view-transition-old(root),
+	:root::view-transition-new(root) {
+		animation-duration: 0.3s;
+	}
+</style>

@@ -2,20 +2,13 @@
 	import removeEmptyPortableTextBlocks from '$lib/utils/removeEmptyPortableTextBlocks';
 	import { PortableText } from '@portabletext/svelte';
 	import { useQuery } from '@sanity/svelte-loader';
-	import { onMount } from 'svelte';
 	import ImageWrapper from '../components/ImageWrapper.svelte';
 	import Tags from '../components/Tags.svelte';
 	import TextRotate from '../components/Text/TextRotate.svelte';
 	import type { PageData } from './$types';
-	import { afterNavigate } from '$app/navigation';
 
 	export let data: PageData;
 	const q = useQuery(data);
-	$: loaded = false;
-
-	afterNavigate(() => {
-		loaded = true;
-	});
 
 	$: ({ data: publications } = $q);
 	$: console.log(publications.publications);
@@ -23,9 +16,7 @@
 
 <Tags />
 
-<div
-	class={`pb-[96px] pt-[48px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] anim-opacity ${loaded ? 'opacity-100' : 'opacity-0'}`}
->
+<div class="pb-[96px] pt-[48px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] anim-opacity">
 	{#each publications.publications as item}
 		<div class="main-grid px-page text-center">
 			<div
