@@ -25,6 +25,12 @@
 			firstOpen = false;
 		}, 500);
 	});
+
+	$: transitionKey =
+		data?.pathname &&
+		data.pathname
+			.replace(/\/exhibitions\/[^/]+/, '/exhibitions/*')
+			.replace(/\/artists\/[^/]+/, '/artists/*');
 </script>
 
 <!-- {#if $isPreviewing}
@@ -39,7 +45,7 @@
 
 <Nav data={siteData} />
 
-{#key data.pathname}
+{#key transitionKey}
 	<div class="anim-opacity" in:fade={{ duration: 200, delay: 200 }} out:fade={{ duration: 200 }}>
 		<slot />
 	</div>
