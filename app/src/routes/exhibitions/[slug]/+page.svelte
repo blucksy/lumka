@@ -44,6 +44,7 @@
 				sizes={'(max-width: 658px) 95vw, 60vw'}
 				srcset={[768, 1280, 1800, 2300]}
 				image={item?.exhibitionImage}
+				loading="lazy"
 				zoomable={true}
 				alt={item?.exhibitionImage?.alt || item?.title + ' from LUmkA'}
 			/>
