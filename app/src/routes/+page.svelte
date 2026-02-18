@@ -24,7 +24,7 @@
 <Tags />
 
 <div
-	class={`pb-[96px] pt-[18px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] anim-opacity ${loaded ? 'opacity-100' : 'opacity-0'}`}
+	class={`pb-[96px] pt-[48px] sm:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] anim-opacity ${loaded ? 'opacity-100' : 'opacity-0'}`}
 >
 	{#each publications.publications as item}
 		<div class="main-grid px-page text-center">
