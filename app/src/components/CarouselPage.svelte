@@ -77,7 +77,7 @@
 	}
 </script>
 
-<div class="pt-[48px] md:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
+<div class="py-[48px] md:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
 	<!-- Carousel -->
 	<div class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!">
 		<div
