@@ -33,13 +33,15 @@
 	}
 
 	function recalcHeight() {
+		const holder = document.getElementById('nav-holder');
+		if (!holder) return;
 		if (open) {
 			const el = document.getElementById(`nav-${open}`);
-			document.getElementById('nav-holder').style.height = el ? el.scrollHeight + 'px' : '0px';
+			holder.style.height = el ? el.scrollHeight + 'px' : '0px';
 
 			console.log('recalc', el ? el.scrollHeight : 'no element');
 		} else {
-			document.getElementById('nav-holder').style.height = '0px';
+			holder.style.height = '0px';
 		}
 	}
 
