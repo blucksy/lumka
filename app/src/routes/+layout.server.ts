@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 // TO DO: Remove alltags and refactor page template to fetch tags from layout
 export const load: PageServerLoad = async (event) => {
-	const { loadQuery } = event.locals;
+	const { preview, loadQuery } = event.locals;
 
 	let query = `
 	{
@@ -44,7 +44,13 @@ export const load: PageServerLoad = async (event) => {
 	}
 	`;
 
-	let initial = await loadQuery(query);
+	const initial = await loadQuery(
+		query,
+		{},
+		{
+			preview
+		}
+	);
 
 	console.log('Initial data:', initial);
 
