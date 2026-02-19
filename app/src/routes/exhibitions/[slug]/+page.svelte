@@ -13,8 +13,7 @@
 	import WorksSection from '../../../components/WorksSection.svelte';
 
 	export let data;
-	let q;
-	$: q = useQuery(data);
+	const q = useQuery(data);
 
 	let shows;
 	$: ({ data: shows } = $q);
