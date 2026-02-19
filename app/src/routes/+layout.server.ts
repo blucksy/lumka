@@ -62,6 +62,7 @@ export const load: PageServerLoad = async (event) => {
 	);
 
 	return {
+		preview,
 		query,
 		options: { initial },
 		pathname: event.url.pathname
