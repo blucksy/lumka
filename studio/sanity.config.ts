@@ -50,10 +50,6 @@ export default defineConfig({
             disable: '/preview/disable',
           },
         },
-        previewMode: {
-          enable: '/preview/enable',
-          disable: '/preview/disable',
-        },
       },
     }),
     visionTool(),
