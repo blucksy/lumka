@@ -42,7 +42,14 @@ export default defineConfig({
     }),
     presentationTool({
       previewUrl: {
-        origin: 'https://lumkea-app.vercel.app/',
+        origin: 'https://lumka-app.vercel.app/',
+        previewUrl: {
+          origin: 'https://lumka-app.vercel.app',
+          previewMode: {
+            enable: '/preview/enable',
+            disable: '/preview/disable',
+          },
+        },
         previewMode: {
           enable: '/preview/enable',
           disable: '/preview/disable',
