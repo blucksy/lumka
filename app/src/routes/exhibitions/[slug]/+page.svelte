@@ -11,6 +11,7 @@
 	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
 	import WorksSection from '../../../components/WorksSection.svelte';
+	import { browser } from '$app/environment';
 
 	export let data;
 	const q = useQuery(data);
@@ -50,11 +51,13 @@
 		</div>
 		<div class="mt-[18px] text-center">
 			<p class="sans">
-				{#each item?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
-					<a class="hover:opacity-60 anim-opacity" href="/artists/{artist.slug.current}"
-						>{artist.title}</a
-					>{#if i < item.artist.length - 1},&nbsp;{/if}
-				{/each}
+				{#if browser}
+					{#each item?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist, i}
+						<a class="hover:opacity-60 anim-opacity" href="/artists/{artist.slug.current}"
+							>{artist.title}</a
+						>{#if i < item.artist.length - 1},&nbsp;{/if}
+					{/each}
+				{/if}
 				<br />
 				{item.venue}
 				<br />
