@@ -130,12 +130,12 @@
 		next={{
 			link: routeBase + '/' + next?.slug.current,
 			title: next?.title,
-			details: getDetails(next)
+			details: getDetails ? getDetails(next) : 'null'
 		}}
 		previous={{
 			link: routeBase + '/' + previous?.slug.current,
 			title: previous?.title,
-			details: getDetails(previous)
+			details: getDetails ? getDetails(previous) : 'null'
 		}}
 	/>
 </div>

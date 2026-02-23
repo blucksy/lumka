@@ -20,10 +20,12 @@
 		href={previous.link}
 	>
 		<div class="pb-[6px] sm:pb-0">
-			<p class="small-serif small-caps">Previous</p>
+			<p class="small-serif small-caps">Next</p>
 		</div>
 		<p class="body">{previous.title}</p>
-		<p class="small-sans whitespace-pre-line">{previous.details}</p>
+		{#if previous.details}
+			<p class="small-sans whitespace-pre-line">{previous.details}</p>
+		{/if}
 	</a>
 	<a
 		class="col-span-1 sm:col-span-4 sm:col-start-11 md:col-start-10 lg:col-start-9 2xl:col-start-8
@@ -31,9 +33,11 @@
 		href={next.link}
 	>
 		<div class="pb-[6px] sm:pb-0">
-			<p class="small-serif small-caps">Next</p>
+			<p class="small-serif small-caps">Previous</p>
 		</div>
 		<p class="body">{next.title}</p>
-		<p class="small-sans whitespace-pre-line">{next.details}</p>
+		{#if next.details}
+			<p class="small-sans whitespace-pre-line">{next.details}</p>
+		{/if}
 	</a>
 </div>
