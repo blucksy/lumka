@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { urlFor } from '$lib/sanity/image';
 	import formatDate from '$lib/utils/formatDate.js';
 	import getLastName from '$lib/utils/getLastName.js';
@@ -11,7 +12,6 @@
 	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
 	import WorksSection from '../../../components/WorksSection.svelte';
-	import { browser } from '$app/environment';
 
 	export let data;
 	const q = useQuery(data);
@@ -40,7 +40,7 @@
 		<h1 class="title italic text-center" tabindex="-1">{item?.title}</h1>
 		<div class="col-span [--span:11] md:[--span:9] lg:[--span:7] 2xl:[--span:5] mx-auto mt-[48px]">
 			<ImageWrapper
-				className="aspect-5/3 object-cover"
+				className="w-full"
 				sizes={'(max-width: 658px) 95vw, 60vw'}
 				srcset={[768, 1280, 1800, 2300]}
 				image={item?.exhibitionImage}
