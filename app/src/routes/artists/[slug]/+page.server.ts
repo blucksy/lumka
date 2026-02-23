@@ -14,7 +14,7 @@ export const load: PageServerLoad = async (event) => {
 				label,
 				"url": coalesce(file.asset->url, url),
 			},
-			"works": *[_type == "artwork" && references(^._id) && defined(image.asset)] {
+			"works": *[_type == "artwork" && references(^._id) && defined(image)] {
 				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,
 				description,
 				image,

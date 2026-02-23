@@ -22,7 +22,7 @@ export const load: PageServerLoad = async (event) => {
 				"aspectRatio": asset->metadata.dimensions.aspectRatio,
 				...,
 			},
-			works[]-> [defined(image.asset)] {
+			works[]-> [defined(image)] {
 				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,
 				description,
 				image,
