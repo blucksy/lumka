@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { useQuery } from '@sanity/svelte-loader';
 	import { isPreviewing, VisualEditing } from '@sanity/visual-editing/svelte';
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import Footer from '../components/Footer.svelte';
 	import LiveMode from '../components/LiveMode.svelte';
@@ -11,13 +11,9 @@
 
 	export let data;
 
-	console.log('layout data', data);
-
 	const q = useQuery(data);
 
 	$: ({ data: siteData } = $q);
-
-	$: console.log(siteData);
 
 	let firstOpen = true;
 

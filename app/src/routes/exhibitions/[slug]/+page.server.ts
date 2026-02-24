@@ -10,6 +10,7 @@ export const load: PageServerLoad = async (event) => {
 	const projectQuery = groq`
 		 *[_type == "exhibition"] | order(startDate desc) {
 			...,
+			"mainAspectRatio": exhibitionImage.asset->metadata.dimensions.aspectRatio,
 			"extraLinks": extraLinks[] {
 				label,
 				"url": coalesce(file.asset->url, url),
@@ -22,7 +23,7 @@ export const load: PageServerLoad = async (event) => {
 				"aspectRatio": asset->metadata.dimensions.aspectRatio,
 				...,
 			},
-			works[]-> [defined(image)] {
+			works[defined(@->image)][]-> {
 				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,
 				description,
 				image,
@@ -44,8 +45,6 @@ export const load: PageServerLoad = async (event) => {
 		`;
 
 	const initial = await loadQuery(projectQuery, params);
-
-	console.log('initial', initial);
 
 	if (
 		!initial ||

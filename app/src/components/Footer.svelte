@@ -2,7 +2,6 @@
 	import Newsletter from './Newsletter.svelte';
 
 	export let data;
-	console.log(data);
 
 	const socials = [
 		{ name: 'Instagram', url: 'https://instagram.com/l_u_m_k_a' },

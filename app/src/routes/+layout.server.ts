@@ -52,8 +52,6 @@ export const load: PageServerLoad = async (event) => {
 		}
 	);
 
-	console.log('Initial data:', initial);
-
 	initial.data.artists.represented.sort((a, b) =>
 		getLastName(a.title).localeCompare(getLastName(b.title))
 	);

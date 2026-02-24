@@ -19,11 +19,6 @@
 	function checkOverlap() {
 		if (!navEl || !footerEl) return;
 
-		console.log('checking overlap', {
-			nav: navEl.getBoundingClientRect(),
-			footer: footerEl.getBoundingClientRect()
-		});
-
 		const navRect = navEl.getBoundingClientRect();
 		const footerRect = footerEl.getBoundingClientRect();
 
@@ -38,8 +33,6 @@
 		if (open) {
 			const el = document.getElementById(`nav-${open}`);
 			holder.style.height = el ? el.scrollHeight + 'px' : '0px';
-
-			console.log('recalc', el ? el.scrollHeight : 'no element');
 		} else {
 			holder.style.height = '0px';
 		}

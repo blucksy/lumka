@@ -1,5 +1,11 @@
 import {defineField, defineType} from 'sanity'
 
+function decodeDimensionsFromRef(ref) {
+  const match = ref.match(/^image-[^-]+-(\d+)x(\d+)-/)
+  if (!match) return {}
+  return {width: parseInt(match[1], 10), height: parseInt(match[2], 10)}
+}
+
 export default defineType({
   name: 'exhibition',
   title: 'Exhibition',
@@ -15,8 +21,17 @@ export default defineType({
     defineField({
       name: 'exhibitionImage',
       title: 'Exhibition Thumbnail',
-      validation: (Rule) => Rule.required(),
       type: 'image',
+      validation: (Rule) =>
+        Rule.custom((image) => {
+          // if no image selected
+          if (!image?.asset?._ref) return true
+
+          const {width, height} = decodeDimensionsFromRef(image.asset._ref)
+          if (!width || !height) return true // fallback
+
+          return width > height ? true : 'Image must be horizontal (wider than tall)'
+        }),
     }),
     defineField({
       name: 'slug',

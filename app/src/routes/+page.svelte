@@ -11,7 +11,6 @@
 	const q = useQuery(data);
 
 	$: ({ data: publications } = $q);
-	$: console.log(publications.publications);
 </script>
 
 <Tags />

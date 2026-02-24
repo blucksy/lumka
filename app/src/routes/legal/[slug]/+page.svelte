@@ -9,8 +9,6 @@
 	let legal;
 
 	$: ({ data: legal } = $q);
-
-	$: console.log(legal);
 </script>
 
 <Tags title={legal?.title || 'Legal'} />
