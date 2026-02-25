@@ -38,7 +38,11 @@ export default defineType({
             {
               name: 'link',
               title: 'Link',
-              type: 'url',
+              type: 'reference',
+              to: [{type: 'exhibition'}, {type: 'artist'}],
+              options: {
+                disableNew: true,
+              },
             },
           ],
         },
