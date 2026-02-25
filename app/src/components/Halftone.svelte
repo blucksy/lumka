@@ -2,7 +2,7 @@
 	export let src;
 </script>
 
-<div class="grayscale w-full overflow-hidden">
+<div class="grayscale w-full overflow-hidden opacity-95">
 	<div class=" halftone w-full">
 		<img class="w-full h-auto object-cover" src={src + '?auto=format&w=300'} />
 		<div class="halftone-ink"></div>
