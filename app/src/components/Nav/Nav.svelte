@@ -110,7 +110,7 @@
 
 <div
 	id="nav"
-	class="fixed opacity-98 duration-300 aria-hidden:opacity-0 aria-hidden:pointer-events-none anim-opacity bg-lumka bottom-[12px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
+	class="fixed duration-300 aria-hidden:opacity-0 aria-hidden:pointer-events-none anim-opacity bg-lumka/97 bottom-[12px] sm:bottom-auto left-[6px] right-[6px] sm:right-auto sm:w-[468px] sm:top-[6px] sm:left-[18px] z-20 nav"
 	use:clickOutside={() => (open = '')}
 >
 	<div
