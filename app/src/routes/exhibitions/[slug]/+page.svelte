@@ -88,36 +88,40 @@
 	</svelte:fragment>
 
 	<svelte:fragment slot="content" let:currentItem>
-		<!-- Artists -->
-		<div
-			class="flex flex-col gap-[48px] justify-center sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))] 2xl:px-40"
-		>
-			{#each currentItem?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
-				<a
-					href="/artists/{artist.slug.current}"
-					class="col-span sm:[--span:5] 2xl:[--span:4] hover:opacity-60 anim-opacity flex flex-col gap-[18px] h-fit"
-				>
-					<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
-					<div class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px]">
-						<PortableText value={artist.shortBio} />
-					</div>
-				</a>
+		{#key currentItem}
+			<!-- Artists -->
+			<div
+				class="flex flex-col gap-[48px] justify-center sm:flex-row sm:flex-wrap sm:gap-[calc(((100vw-(36px+24px*14))/15+48px))] 2xl:px-40"
+			>
+				{#each currentItem?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
+					<a
+						href="/artists/{artist.slug.current}"
+						class="col-span sm:[--span:5] 2xl:[--span:4] hover:opacity-60 anim-opacity flex flex-col gap-[18px] h-fit"
+					>
+						<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
+						<div
+							class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px]"
+						>
+							<PortableText value={artist.shortBio} />
+						</div>
+					</a>
+				{/each}
+			</div>
+
+			<!-- Media -->
+			{#each currentItem?.content || [] as media}
+				<MediaEntry fallbackTitle={currentItem?.title} entry={media} />
 			{/each}
-		</div>
 
-		<!-- Media -->
-		{#each currentItem?.content || [] as media}
-			<MediaEntry fallbackTitle={currentItem?.title} entry={media} />
-		{/each}
+			<!-- Works -->
+			{#if currentItem?.works && currentItem.works.length > 0}
+				<WorksSection works={currentItem.works} />
+			{/if}
 
-		<!-- Works -->
-		{#if currentItem?.works && currentItem.works.length > 0}
-			<WorksSection works={currentItem.works} />
-		{/if}
-
-		<!-- Press -->
-		{#if currentItem?.press && currentItem.press.length > 0}
-			<PressSection pressItems={currentItem.press} />
-		{/if}
+			<!-- Press -->
+			{#if currentItem?.press && currentItem.press.length > 0}
+				<PressSection pressItems={currentItem.press} />
+			{/if}
+		{/key}
 	</svelte:fragment>
 </CarouselPage>
