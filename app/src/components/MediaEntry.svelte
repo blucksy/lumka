@@ -24,7 +24,7 @@
 				<div class="aspect-video">
 					{@html entry.embed}
 				</div>
-			{:else if image}
+			{:else if image && !image._upload}
 				<ImageWrapper
 					className="w-full"
 					sizes={'(max-width: 658px) 95vw, 60vw'}
