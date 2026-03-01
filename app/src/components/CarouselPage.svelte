@@ -56,6 +56,8 @@
 					currentItem = item;
 					const url = `${routeBase}/${item.slug.current}`;
 					history.replaceState({}, '', url);
+					// change title
+					document.title = `${item.title} | LUmkA`;
 				}
 				oldRealIndex = realIndex;
 			}

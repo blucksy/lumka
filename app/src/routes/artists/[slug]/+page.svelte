@@ -6,6 +6,7 @@
 	import Anchor from '../../../components/Anchor.svelte';
 	import CarouselPage from '../../../components/CarouselPage.svelte';
 	import PressSection from '../../../components/PressSection.svelte';
+	import Tags from '../../../components/Tags.svelte';
 	import Body from '../../../components/Text/Body.svelte';
 	import TextRotate from '../../../components/Text/TextRotate.svelte';
 	import WorksSection from '../../../components/WorksSection.svelte';
@@ -16,7 +17,12 @@
 
 	let artists;
 	$: ({ data: artists } = $q);
+
+	let currentArtist;
+	$: currentArtist = artists?.find((a) => a.slug.current === data.options.slug);
 </script>
+
+<Tags title={currentArtist?.title} description={currentArtist?.shortBio} />
 
 <CarouselPage
 	items={artists}
