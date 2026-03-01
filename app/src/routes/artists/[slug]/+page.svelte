@@ -18,7 +18,12 @@
 	$: ({ data: artists } = $q);
 </script>
 
-<CarouselPage items={artists} currentSlug={data.options.slug} routeBase="/artists">
+<CarouselPage
+	items={artists}
+	currentSlug={data.options.slug}
+	routeBase="/artists"
+	getDetails={(artist) => `${artist?.represented ? 'Represented' : 'Exhibited'} Artist`}
+>
 	<svelte:fragment slot="slide" let:item>
 		<h1 class="title italic text-center">{item?.title}</h1>
 
