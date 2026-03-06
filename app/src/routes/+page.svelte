@@ -24,7 +24,7 @@
 				"
 			>
 				<LinkWrapper
-					href={item.link?.slug ? `${item.link._type}s/${item.link.slug.current}` : undefined}
+					href={item.link?.slug ? `/${item.link._type}s/${item.link.slug.current}` : undefined}
 					className="flex flex-col gap-[18px] sm:gap-[24px] group"
 				>
 					<ImageWrapper
