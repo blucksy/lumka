@@ -96,7 +96,7 @@
 				{#each currentItem?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
 					<a
 						href="/artists/{artist.slug.current}"
-						class="col-span sm:[--span:12] md:[--span:10] lg:[--span:8] hover:opacity-60 anim-opacity flex flex-col gap-[18px] h-fit"
+						class="col-span sm:[--span:12] md:[--span:10] lg:[--span:8] xl:[--span:7] hover:opacity-60 anim-opacity flex flex-col gap-[18px] h-fit"
 					>
 						<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
 						<div
