@@ -64,7 +64,7 @@
 			<svg
 				class="col-span-6 col-start-3 sm:col-span-10 sm:col-start-1 mb-[3%]
 			mx-auto sm:[--span:12] md:[--span:10] lg:[--span:8] xl:[--span:6] col-span
-			flex flex-col gap-[48px]"
+			flex flex-col gap-[48px] w-full"
 				viewBox="0 0 164 42"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
