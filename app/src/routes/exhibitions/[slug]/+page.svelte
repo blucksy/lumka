@@ -100,7 +100,7 @@
 					>
 						<p class=" small-caps mobile-small-serif">{artist.title} (B. {artist.year})</p>
 						<div
-							class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px]"
+							class="*:mobile-small-serif *:sm:small-serif flex flex-col gap-[18px] indent-[24px] *:2xl:text-[13px]!"
 						>
 							<PortableText value={artist.shortBio} />
 						</div>

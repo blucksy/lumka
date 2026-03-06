@@ -16,7 +16,7 @@
 	{#each press as item}
 		<div class="grid grid-cols-10 gap-[12px]">
 			<div
-				class="col-span-8 col-start-2 sm:col-span-10 sm:col-start-1
+				class="col-span-8 col-start-2 sm:col-span-10 sm:col-start-1 max-w-[860px]
 			mx-auto sm:[--span:20] md:[--span:18] lg:[--span:16] col-span"
 			>
 				<Press {item} pressPage={true} />
