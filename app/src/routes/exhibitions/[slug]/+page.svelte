@@ -23,6 +23,10 @@
 	$: currentShow = shows?.find((s) => s.slug.current === data.options.slug);
 </script>
 
+<div class="fixed w-screen h-screen top-0 left-0 main-grid px-page">
+	<div class="w-full h-full bg-red-400"></div>
+</div>
+
 <Tags
 	title={currentShow?.title || 'Exhibition'}
 	image={currentShow?.exhibitionImage
@@ -38,7 +42,9 @@
 >
 	<svelte:fragment slot="slide" let:item>
 		<h1 class="title italic text-center text-balance" tabindex="-1">{item?.title}</h1>
-		<div class="col-span [--span:11] md:[--span:9] lg:[--span:7] 2xl:[--span:5] mx-auto mt-[48px]">
+		<div
+			class="col-span [--span:11] md:[--span:9] lg:[--span:7] 2xl:[--span:5] 3xl:[--span:3] mx-auto mt-[48px]"
+		>
 			<ImageWrapper
 				className="w-full"
 				sizes={'(max-width: 658px) 95vw, 60vw'}

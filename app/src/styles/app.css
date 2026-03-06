@@ -3,6 +3,7 @@
 
 @theme {
 	--color-lumka: #ededed;
+	--breakpoint-3xl: 128rem;
 }
 
 .main-grid {
