@@ -8,7 +8,7 @@
 {#if href}
 	<a
 		{href}
-		target={isExternal ? '_blank' : '_self'}
+		target={isExternal ? '_blank' : undefined}
 		rel={isExternal ? 'noopener noreferrer' : undefined}
 		class={className}
 	>
