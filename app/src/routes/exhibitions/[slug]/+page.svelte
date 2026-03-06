@@ -91,7 +91,7 @@
 		{#key currentItem}
 			<!-- Artists -->
 			<div
-				class="flex flex-col gap-[48px] sm:gap-[24px] justify-center sm:flex-row sm:flex-wrap md:gap-[calc(((100vw-(36px+24px*23))/24+48px)*2+24px)]"
+				class="flex flex-col gap-y-[48px] sm:gap-x-[24px] justify-center sm:flex-row sm:flex-wrap md:gap-[calc(((100vw-(36px+24px*23))/24+48px)*2+24px)]"
 			>
 				{#each currentItem?.artist.sort( (a, b) => getLastName(a.title).localeCompare(getLastName(b.title)) ) as artist}
 					<a

@@ -14,7 +14,7 @@
 				*:flex *:flex-col *:hover:opacity-60 *:anim-opacity *:flex-1
 				*:gap-[18px] *sm::gap-[12px]"
 >
-	<a class="text-center sm:text-left" href={previous.link}>
+	<a class="text-center sm:text-left text-balance" href={previous.link}>
 		<div class="pb-[6px] sm:pb-0">
 			<p class="small-serif small-caps">Next</p>
 		</div>
@@ -23,7 +23,7 @@
 			<p class="small-sans whitespace-pre-line">{previous.details}</p>
 		{/if}
 	</a>
-	<a class="text-center sm:text-right" href={next.link}>
+	<a class="text-center sm:text-right text-balance" href={next.link}>
 		<div class="pb-[6px] sm:pb-0">
 			<p class="small-serif small-caps">Previous</p>
 		</div>

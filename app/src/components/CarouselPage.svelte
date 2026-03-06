@@ -128,16 +128,18 @@
 	</div>
 
 	<!-- Navigation -->
-	<Tabber
-		next={{
-			link: routeBase + '/' + next?.slug.current,
-			title: next?.title,
-			details: getDetails ? getDetails(next) : 'null'
-		}}
-		previous={{
-			link: routeBase + '/' + previous?.slug.current,
-			title: previous?.title,
-			details: getDetails ? getDetails(previous) : 'null'
-		}}
-	/>
+	{#key currentItem}
+		<Tabber
+			next={{
+				link: routeBase + '/' + next?.slug.current,
+				title: next?.title,
+				details: getDetails ? getDetails(next) : 'null'
+			}}
+			previous={{
+				link: routeBase + '/' + previous?.slug.current,
+				title: previous?.title,
+				details: getDetails ? getDetails(previous) : 'null'
+			}}
+		/>
+	{/key}
 </div>
