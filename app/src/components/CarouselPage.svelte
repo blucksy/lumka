@@ -100,7 +100,7 @@
 					}}
 				>
 					<div
-						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] 3xl:[--span:5] anim-opacity"
+						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] anim-opacity"
 					>
 						<slot name="slide" {item} />
 					</div>
