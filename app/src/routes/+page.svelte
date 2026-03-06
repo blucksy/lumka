@@ -33,7 +33,6 @@
 					srcset={[768, 1280, 2000, 3000]}
 					alt={item.title[0]?.children[0]?.text || 'LUmkA'}
 					image={item.image}
-					className="aspect-5/3 "
 				/>
 				<p class="small-serif small-caps">{item.category}</p>
 				<p class="mobile-link sm:link-serif col-span xl:[--span:10] 2xl:[--span:8] mx-auto">
