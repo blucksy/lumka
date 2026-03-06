@@ -116,7 +116,7 @@
 	<div
 		id="nav-holder"
 		class="relative overflow-hidden transition-[height] duration-300 h-0
-		*:absolute *:aria-hidden:opacity-0 *:aria-hidden:pointer-events-none *:anim-opacity *:w-full"
+		*:absolute *:aria-hidden:opacity-0 *:aria-hidden:pointer-events-none *:transition-opacity *:duration-300 *:w-full"
 	>
 		<div id="nav-main" aria-hidden={activeTab !== 'main' || !open}>
 			<MainView
