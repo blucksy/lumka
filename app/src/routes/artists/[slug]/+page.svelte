@@ -67,10 +67,10 @@
 			<!-- Exhibitions -->
 			{#if currentItem?.exhibitions && currentItem.exhibitions.length > 0}
 				<Anchor title="Exhibitions">
-					<div class="main-grid">
+					<div class="grid grid-cols-10 gap-[12px]">
 						<div
-							class="
-			col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 md:col-span-11 md:col-start-3 lg:col-span-9 lg:col-start-4
+							class="col-span-8 col-start-2 sm:col-span-10 sm:col-start-1
+			mx-auto sm:[--span:18] md:[--span:16] lg:[--span:12] col-span
 			flex flex-col gap-[48px]"
 						>
 							{#each currentItem?.exhibitions as exhibition}

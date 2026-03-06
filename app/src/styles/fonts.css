@@ -40,6 +40,9 @@ html {
 	@apply font-serif text-[17px] font-normal leading-[1.16] tracking-normal;
 	margin-top: -5px;
 	margin-bottom: -4px;
+	@media screen and (min-width: 96rem) {
+		font-size: 20px;
+	}
 }
 
 @utility title {

@@ -14,9 +14,10 @@
 
 <div class="py-[48px] sm:py-[96px] flex flex-col gap-[48px] sm:gap-[96px]">
 	{#each press as item}
-		<div class="px-page main-grid">
+		<div class="grid grid-cols-10 gap-[12px]">
 			<div
-				class="col-span-8 col-start-2 sm:col-span-13 sm:col-start-2 lg:col-span-11 lg:col-start-3"
+				class="col-span-8 col-start-2 sm:col-span-10 sm:col-start-1
+			mx-auto sm:[--span:20] md:[--span:18] lg:[--span:16] col-span"
 			>
 				<Press {item} pressPage={true} />
 			</div>

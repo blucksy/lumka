@@ -9,10 +9,8 @@
 	];
 </script>
 
-<div class="bg-[#ededed] main-grid px-page py-[24px] hidden! md:grid!">
-	<div
-		class="sm:col-span-7 md:col-span-6 lg:col-span-5 2xl:col-span-4 flex flex-col justify-between"
-	>
+<div class="bg-[#ededed] flex justify-between px-page py-[24px] hidden md:flex">
+	<div class="col-span [--span:12] md:[--span:10] lg:[--span:8] flex flex-col justify-between">
 		<div class="small-serif">
 			{data?.settings?.about}
 		</div>
@@ -40,7 +38,7 @@
 	</div>
 
 	<div
-		class="sm:col-span-7 md:col-span-6 lg:col-span-5 sm:col-start-9 md:col-start-10 lg:col-start-11 2xl:col-span-4 2xl:col-start-12
+		class="col-span [--span:12] md:[--span:10] lg:[--span:8]
 		flex flex-col gap-[96px] items-end"
 	>
 		<div class="text-right flex flex-col gap-[18px]">

@@ -10,15 +10,11 @@
 </script>
 
 <div
-	class="main-grid grid-cols-1! sm:grid-cols-15! w-full gap-[96px]! sm:gap-[24px]! items-center w-full
-				*:flex *:flex-col *:hover:opacity-60 *:anim-opacity
+	class="col-span [--span:20] md:[--span:18] lg:[--span:14] mx-auto flex justify-between flex-col sm:flex-row gap-[96px] sm:gap-[24px]
+				*:flex *:flex-col *:hover:opacity-60 *:anim-opacity *:flex-1
 				*:gap-[18px] *sm::gap-[12px]"
 >
-	<a
-		class="col-span-1 sm:col-span-4 sm:col-start-2 md:col-start-3 lg:col-start-4 2xl:col-start-5 2xl:col-span-3
-		text-center sm:text-left"
-		href={previous.link}
-	>
+	<a class="text-center sm:text-left" href={previous.link}>
 		<div class="pb-[6px] sm:pb-0">
 			<p class="small-serif small-caps">Next</p>
 		</div>
@@ -27,11 +23,7 @@
 			<p class="small-sans whitespace-pre-line">{previous.details}</p>
 		{/if}
 	</a>
-	<a
-		class="col-span-1 sm:col-span-4 sm:col-start-11 md:col-start-10 lg:col-start-9 2xl:col-start-8
-		text-center sm:text-right"
-		href={next.link}
-	>
+	<a class="text-center sm:text-right" href={next.link}>
 		<div class="pb-[6px] sm:pb-0">
 			<p class="small-serif small-caps">Previous</p>
 		</div>

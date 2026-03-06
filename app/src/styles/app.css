@@ -6,7 +6,7 @@
 }
 
 .main-grid {
-	@apply grid grid-cols-10 gap-[12px] sm:grid-cols-15  sm:gap-[24px];
+	@apply grid grid-cols-10 gap-[12px] sm:grid-cols-24  sm:gap-[24px];
 }
 
 .px-page {
@@ -30,7 +30,7 @@ p:empty {
 }
 
 :root {
-	--col-count: 15;
+	--col-count: 24;
 	--gap: 24px;
 	--margin: 18px;
 }

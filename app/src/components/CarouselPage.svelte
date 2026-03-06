@@ -92,7 +92,7 @@
 			{#each items as item, i}
 				<div
 					id="slide-{i}"
-					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:cursor-pointer [&:not(.swiper-slide-active)]:hover:*:opacity-40 [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! py-[18px]"
+					class="swiper-slide w-fit! [&:not(.swiper-slide-active)]:cursor-pointer [&:not(.swiper-slide-active)]:hover:*:opacity-40 [&:not(.swiper-slide-active)]:*:opacity-20 [&:not(.swiper-slide-active)]:*:pointer-events-none lg:[--span:1]! 2xl:[--span:2]! py-[18px]"
 					aria-hidden={item.slug.current !== currentItem?.slug.current}
 					on:click={() => {
 						const index = items.findIndex((i) => i.slug.current === item.slug.current);
@@ -100,7 +100,7 @@
 					}}
 				>
 					<div
-						class="col-span [--span:13] md:[--span:11] lg:[--span:9] 2xl:[--span:7] anim-opacity"
+						class="col-span [--span:20] md:[--span:18] lg:[--span:14] xl:[--span:12] anim-opacity"
 					>
 						<slot name="slide" {item} />
 					</div>
