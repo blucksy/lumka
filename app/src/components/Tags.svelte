@@ -9,7 +9,7 @@
 	let url = 'https://amirhamja.com';
 	let name = 'LUmkA';
 	let defaultDesc =
-		'Explore work from LUmkA, an award-winning photographer based in New York City.';
+		'Contemporary gallery showcasing experimental and interdisciplinary artists through exhibitions, installations, and artworks exploring space and environment.';
 
 	title = title ? title + ' | ' + name : name;
 	description = description || defaultDesc;
