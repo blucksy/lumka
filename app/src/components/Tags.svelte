@@ -6,7 +6,7 @@
 	export let product = null;
 	export let slug = '';
 
-	let url = 'https://amirhamja.com';
+	let url = 'https://lumka.com';
 	let name = 'LUmkA';
 	let defaultDesc =
 		'Contemporary gallery showcasing experimental and interdisciplinary artists through exhibitions, installations, and artworks exploring space and environment.';
