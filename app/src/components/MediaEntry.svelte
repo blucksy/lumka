@@ -35,7 +35,7 @@
 		{/if}
 		{#if entry.title}
 			<div class="mt-[18px] sm:mt-[24px] flex flex-col gap-[12px] text-center">
-				<div class="mobile-body sm:body">
+				<div class="mobile-body sm:body text-balance">
 					{#if entry.year}
 						{#if entry.artist}<a
 								href="/artists/{entry.artist.slug.current}"
