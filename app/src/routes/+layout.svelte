@@ -58,7 +58,7 @@
 {#if firstOpen}
 	<div
 		transition:fade={{ duration: 500 }}
-		class="fixed top-0 left-0 w-screen h-dvh z-999999999999 bg-white px-page items-center flex justify-center"
+		class="fixed top-0 left-0 w-full h-dvh z-999999999999 bg-white px-page items-center flex justify-center"
 	>
 		<div class="grid grid-cols-10 gap-[12px] w-full">
 			<div

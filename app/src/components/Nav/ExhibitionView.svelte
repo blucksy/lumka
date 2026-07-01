@@ -72,7 +72,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="flex flex-col gap-[18px]">
+	<div class="flex flex-col gap-[18px]" id="exhibition">
 		{#each filtered as exhibition}
 			<div class={clsx('w-full group relative', filtered.length === 1 && 'sm:pb-[18px]')}>
 				<a

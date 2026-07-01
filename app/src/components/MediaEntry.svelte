@@ -20,8 +20,8 @@
 		)}
 	>
 		{#if entry.embed}
-			<div class="aspect-video">
-				{@html entry.embed}
+			<div class="*:aspect-video *:w-full">
+				{@html entry.embed.replace(/\s(?:width|height)=["'][^"']*["']/g, '')}
 			</div>
 		{:else if image && !image._upload}
 			<ImageWrapper

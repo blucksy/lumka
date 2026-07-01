@@ -82,11 +82,13 @@
 	}
 </script>
 
-<div class="py-[48px] md:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page">
+<div
+	class="py-[48px] sm:px-0! md:py-[96px] flex flex-col gap-[96px] sm:gap-[144px] items-center px-page"
+>
 	<!-- Carousel -->
-	<div class="swiper w-screen -mx-[36px]! -my-[18px] relative hidden! sm:flex!" {id}>
+	<div class="swiper w-full -mx-[36px]! -my-[18px] relative hidden! sm:flex!" {id}>
 		<div
-			class="bottom-0 absolute h-[18px] w-screen left-0 bg-linear-to-t from-white to-transparent z-10"
+			class="bottom-0 absolute h-[18px] w-full left-0 bg-linear-to-t from-white to-transparent z-10"
 		></div>
 		<div class="swiper-wrapper will-change-transform">
 			{#each items as item, i}

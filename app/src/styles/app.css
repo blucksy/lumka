@@ -66,3 +66,11 @@ p:empty {
 .anim-opacity {
 	@apply transition-opacity duration-[500ms] ease-in-out;
 }
+
+.test-hover {
+	@apply italic;
+}
+
+.test-hover * {
+	@apply opacity-100;
+}

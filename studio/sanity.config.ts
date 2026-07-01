@@ -1,6 +1,7 @@
 import {colorInput} from '@sanity/color-input'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
+import {muxInput} from 'sanity-plugin-mux-input'
 import {presentationTool} from 'sanity/presentation'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './schemas'
@@ -51,6 +52,7 @@ export default defineConfig({
     }),
     visionTool(),
     colorInput(),
+    muxInput({max_resolution_tier: '2160p'}),
   ],
   schema: {
     types: schemaTypes,

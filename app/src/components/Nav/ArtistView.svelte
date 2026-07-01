@@ -16,7 +16,10 @@
 					<a
 						href={`/artists/${artist.slug.current}`}
 						class="hover:italic mobile-body sm:small-serif"
-						on:mouseenter={() => (hoveredArtist = artist.slug.current)}
+						on:mouseenter={(e) => {
+							hoveredArtist = artist.slug.current;
+							e.currentTarget.style.fontStyle = 'italic';
+						}}
 						on:mouseleave={() => (hoveredArtist = '')}>{artist.title}</a
 					>
 				{/each}
@@ -29,7 +32,10 @@
 					<a
 						href={`/artists/${artist.slug.current}`}
 						class="hover:italic mobile-body sm:small-serif"
-						on:mouseenter={() => (hoveredArtist = artist.slug.current)}
+						on:mouseenter={(e) => {
+							hoveredArtist = artist.slug.current;
+							e.currentTarget.style.fontStyle = 'italic';
+						}}
 						on:mouseleave={() => (hoveredArtist = '')}>{artist.title}</a
 					>
 				{/each}
