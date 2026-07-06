@@ -20,7 +20,10 @@
 							hoveredArtist = artist.slug.current;
 							e.currentTarget.style.fontStyle = 'italic';
 						}}
-						on:mouseleave={() => (hoveredArtist = '')}>{artist.title}</a
+						on:mouseleave={(e) => {
+							hoveredArtist = '';
+							e.currentTarget.style.fontStyle = 'normal';
+						}}>{artist.title}</a
 					>
 				{/each}
 			</div>
@@ -36,7 +39,10 @@
 							hoveredArtist = artist.slug.current;
 							e.currentTarget.style.fontStyle = 'italic';
 						}}
-						on:mouseleave={() => (hoveredArtist = '')}>{artist.title}</a
+						on:mouseleave={(e) => {
+							hoveredArtist = '';
+							e.currentTarget.style.fontStyle = 'normal';
+						}}>{artist.title}</a
 					>
 				{/each}
 			</div>
